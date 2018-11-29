@@ -7,7 +7,7 @@ public class WorldCity : MonoBehaviour
 {
 
     //City[] cities = new City[20];
-    private List<City> cities = new List<City>();
+    // private List<City> cities = new List<City>();
 
     private City Lindisfarne = new City("Lindisfarne", 20, City.dificultyInGame.easy, new Loot(100, 100, 100, 4));
     private City Dublin = new City("Dublin", 40, City.dificultyInGame.easy, new Loot(150, 50, 120, 2));

@@ -85,26 +85,29 @@ public class TimeManager : Singleton<TimeManager> {
 	
 	void updateResources(){
 		if ( timeElapsed > 0 ){
-			// faire une fonction regroupant tout ça dans jobsmanager ou ici
-			jobsManager.MyHuntingBuilding.updateProduct(gameManager,timeElapsed * 3);
-			jobsManager.MyFishingBuilding.updateProduct(gameManager,timeElapsed * 3);
-			jobsManager.MyWoodBuilding.updateProduct(gameManager,timeElapsed * 3);
-			jobsManager.MyMineralBuilding.updateProduct(gameManager,timeElapsed * 3);
+			updateJobs(timeElapsed * 3);
 			jobsManager.MyShipBuilderBuilding.RemainingTimeForConstruction -= timeElapsed;
 			jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People );
 			timeElapsed = 0;
 		} else {
 			if ( DateTime.Now.Subtract(resourceFrequency).Seconds > TIME_OF_A_DAY_IN_SECONDS / 3 ){
-				jobsManager.MyHuntingBuilding.updateProduct(gameManager,1);
-				jobsManager.MyFishingBuilding.updateProduct(gameManager,1);
-				jobsManager.MyWoodBuilding.updateProduct(gameManager,1);
-				jobsManager.MyMineralBuilding.updateProduct(gameManager,1);
+				updateJobs(1);
 				resourceFrequency = DateTime.Now;
 			} 
-			// else if (DateTime.Now.Subtract(resourceFrequency).Seconds > TIME_OF_A_DAY_IN_SECONDS){
-			// 	jobsManager.MyShipBuilderBuilding.inConstruction();
-			// }
+			else if (DateTime.Now.Subtract(resourceFrequency).Seconds > TIME_OF_A_DAY_IN_SECONDS){
+				jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People);
+			}
 		}
+	}
+
+	void updateJob(Jobs job, int time){
+		job.updateProduct(gameManager,time);
+	}
+	void updateJobs(int time){
+		updateJob(jobsManager.MyHuntingBuilding,time);
+		// updateJob(jobsManager.MyFishingBuilding,time);
+		updateJob(jobsManager.MyWoodBuilding,time);
+		updateJob(jobsManager.MyMineralBuilding,time);
 	}
 
 	void textDisplay(){

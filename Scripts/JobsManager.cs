@@ -36,31 +36,6 @@ public class JobsManager : Singleton<JobsManager> {
 	[SerializeField] private Text displayOfLaborNeeded;
 	[SerializeField] private Text displayOfLaborChosen;
 
-	private enum tagBtnJob{
-		huntingBtn,
-		fishingBtn,
-		shipBuilderBtn,
-		rawMaterialBtn
-	}
-	private enum tagPanel{
-		jobPanel,
-		woodBtn,
-		ironBtn,
-		applyBtn,
-		ship1Btn,
-		ship2Btn,
-		ship3Btn,
-		shipUI
-	}
-
-	private enum tagUpOrDown{
-		upViking,
-		downViking,
-		upShieldMaiden,
-		downShieldMaiden,
-		upSlave,
-		downSlave
-	}
 
 	// Getters and Setters
 
@@ -103,32 +78,39 @@ public class JobsManager : Singleton<JobsManager> {
 	}
 	public void selectedShipType(Btn btnSelected){
 		whichShipSelected = btnSelected;
+		if (whichShipSelected.tag == ConstantsAndEnums.tagPanel.ship1Btn.ToString()){
+			myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type1;
+		} else if (whichShipSelected.tag == ConstantsAndEnums.tagPanel.ship2Btn.ToString()){
+			myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type2;
+		} else if (whichShipSelected.tag == ConstantsAndEnums.tagPanel.ship3Btn.ToString()){
+			myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type3;
+		} 
 	}
 
 	public void jobSettingCreation(){
 		
 		setAllJobPanelInactive();
 		myShipBuilderBuilding.closeAssignment();
-		if ( jobsBtnPressed.tag == tagBtnJob.huntingBtn.ToString() || jobsBtnPressed.tag == tagBtnJob.rawMaterialBtn.ToString()
-			|| jobsBtnPressed.tag == tagBtnJob.shipBuilderBtn.ToString() ){
-			GameObject btnToActivate = findGameObject(tagPanel.jobPanel.ToString()); 
+		if ( jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.huntingBtn.ToString() || jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString()
+			|| jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString() ){
+			GameObject btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.jobPanel.ToString()); 
 			if (btnToActivate) btnToActivate.SetActive(true); // Afficher le panel de la chasse
-			if (jobsBtnPressed.tag == tagBtnJob.rawMaterialBtn.ToString()){ // afficher le panel du travail des matières premières
-				btnToActivate = findGameObject(tagPanel.woodBtn.ToString()); 
+			if (jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString()){ // afficher le panel du travail des matières premières
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.woodBtn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(tagPanel.ironBtn.ToString()); 
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.ironBtn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
 			}
-			if (jobsBtnPressed.tag == tagBtnJob.shipBuilderBtn.ToString()){ // Afficher le panel de la construction de navires
-				btnToActivate = findGameObject(tagPanel.applyBtn.ToString()); 
+			if (jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString()){ // Afficher le panel de la construction de navires
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.applyBtn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(tagPanel.ship1Btn.ToString()); 
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.ship1Btn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(tagPanel.ship2Btn.ToString()); 
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.ship2Btn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(tagPanel.ship3Btn.ToString()); 
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.ship3Btn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(tagPanel.shipUI.ToString()); 
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.shipUI.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
 			}
 		}
@@ -142,25 +124,25 @@ public class JobsManager : Singleton<JobsManager> {
 	}
 
 	public void jobAssignement(Jobs myJobBuilding){
-		if ( upOrDownBtnPressed.tag == tagUpOrDown.upSlave.ToString() && gameManager.Resources.People.NbrOfSlave > 0 ){
+		if ( upOrDownBtnPressed.tag == ConstantsAndEnums.tagUpOrDown.upSlave.ToString() && gameManager.Resources.People.NbrOfSlave > 0 ){
 			myJobBuilding.assignAnotherSlave();
 			gameManager.Resources.People.NbrOfSlave -= 1;
 		}
-		else if ( upOrDownBtnPressed.tag == tagUpOrDown.downSlave.ToString() && myJobBuilding.NbrOfSlaveAssigned > 0 ){
+		else if ( upOrDownBtnPressed.tag == ConstantsAndEnums.tagUpOrDown.downSlave.ToString() && myJobBuilding.NbrOfSlaveAssigned > 0 ){
 			myJobBuilding.removeASlave();
 			gameManager.Resources.People.NbrOfSlave += 1;
-		} else if ( upOrDownBtnPressed.tag == tagUpOrDown.upViking.ToString() && gameManager.Resources.People.NbrOfVikings > 0 ){
+		} else if ( upOrDownBtnPressed.tag == ConstantsAndEnums.tagUpOrDown.upViking.ToString() && gameManager.Resources.People.NbrOfVikings > 0 ){
 			myJobBuilding.assignAnotherViking();
 			gameManager.Resources.People.NbrOfVikings -= 1;
 		}
-		else if ( upOrDownBtnPressed.tag == tagUpOrDown.downViking.ToString() && myJobBuilding.NbrOfVikingAssigned > 0 ){
+		else if ( upOrDownBtnPressed.tag == ConstantsAndEnums.tagUpOrDown.downViking.ToString() && myJobBuilding.NbrOfVikingAssigned > 0 ){
 			myJobBuilding.removeAViking();
 			gameManager.Resources.People.NbrOfVikings += 1;
-		} else if ( upOrDownBtnPressed.tag == tagUpOrDown.upShieldMaiden.ToString() && gameManager.Resources.People.NbrOfShieldMaidens > 0 ){
+		} else if ( upOrDownBtnPressed.tag == ConstantsAndEnums.tagUpOrDown.upShieldMaiden.ToString() && gameManager.Resources.People.NbrOfShieldMaidens > 0 ){
 			myJobBuilding.assignAnotherShieldMaiden();
 			gameManager.Resources.People.NbrOfShieldMaidens -= 1;
 		}
-		else if ( upOrDownBtnPressed.tag == tagUpOrDown.downShieldMaiden.ToString() && myJobBuilding.NbrOfShieldMaidenAssigned > 0 ){
+		else if ( upOrDownBtnPressed.tag == ConstantsAndEnums.tagUpOrDown.downShieldMaiden.ToString() && myJobBuilding.NbrOfShieldMaidenAssigned > 0 ){
 			myJobBuilding.removeAShieldMaiden();
 			gameManager.Resources.People.NbrOfShieldMaidens += 1;
 		}
@@ -168,15 +150,15 @@ public class JobsManager : Singleton<JobsManager> {
 	}
 
 	public void huntingAssignement(){
-		if ( jobsBtnPressed.tag == tagBtnJob.huntingBtn.ToString() ){
+		if ( jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.huntingBtn.ToString() ){
 			jobAssignement(myHuntingBuilding);
 		}
 	}
 
 	public void rawMaterialAssignement(){
-		if ( jobsBtnPressed.tag == tagBtnJob.rawMaterialBtn.ToString() ){
+		if ( jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString() ){
 			if (woodOrIronBtnPressed){
-				if ( woodOrIronBtnPressed.tag == tagPanel.woodBtn.ToString()){
+				if ( woodOrIronBtnPressed.tag == ConstantsAndEnums.tagPanel.woodBtn.ToString()){
 					jobAssignement(myWoodBuilding);
 				} else {
 					jobAssignement(myMineralBuilding);
@@ -190,35 +172,46 @@ public class JobsManager : Singleton<JobsManager> {
 	public void shipBuildingAssignement(){
 		// attribution des vikings
 		if (gameManager.Resources.People.NbrOfVikings > myShipBuilderBuilding.NbrOfAssignedVikingChosen ){
-			if ( upOrDownBtnPressed.tag.Equals(tagUpOrDown.upViking.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
+			if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagUpOrDown.upViking.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
 				myShipBuilderBuilding.NbrOfAssignedVikingChosen += 1;
 			}
 		} 
-		if (upOrDownBtnPressed.tag.Equals(tagUpOrDown.downViking.ToString()) && !myShipBuilderBuilding.WorkInProgress){
+		if (upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagUpOrDown.downViking.ToString()) && !myShipBuilderBuilding.WorkInProgress){
 			if ( myShipBuilderBuilding.NbrOfAssignedVikingChosen > 0) myShipBuilderBuilding.NbrOfAssignedVikingChosen -= 1;
 		}
 		// attribution des shieldmaidens
 		if (gameManager.Resources.People.NbrOfShieldMaidens > myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen ){
-			if ( upOrDownBtnPressed.tag.Equals(tagUpOrDown.upShieldMaiden.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
+			if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagUpOrDown.upShieldMaiden.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
 				myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen += 1;
 			}
 		} 
-		if (upOrDownBtnPressed.tag.Equals(tagUpOrDown.downShieldMaiden.ToString()) && !myShipBuilderBuilding.WorkInProgress){
+		if (upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagUpOrDown.downShieldMaiden.ToString()) && !myShipBuilderBuilding.WorkInProgress){
 			if ( myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen > 0) myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen -= 1;
 		}
 		// attribution des esclaves
 		if (gameManager.Resources.People.NbrOfSlave > myShipBuilderBuilding.NbrOfAssignedSlaveChosen ){
-			if ( upOrDownBtnPressed.tag.Equals(tagUpOrDown.upSlave.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
+			if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagUpOrDown.upSlave.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
 				myShipBuilderBuilding.NbrOfAssignedSlaveChosen += 1;
 			}
 		} 
-		if (upOrDownBtnPressed.tag.Equals(tagUpOrDown.downSlave.ToString()) && !myShipBuilderBuilding.WorkInProgress){
+		if (upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagUpOrDown.downSlave.ToString()) && !myShipBuilderBuilding.WorkInProgress){
 			if ( myShipBuilderBuilding.NbrOfAssignedSlaveChosen > 0) myShipBuilderBuilding.NbrOfAssignedSlaveChosen -= 1;
 		} 
-		// application pour les troics types
-		if ( upOrDownBtnPressed.tag.Equals(tagPanel.applyBtn.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
-			myShipBuilderBuilding.assignWork(gameManager);
+		
+		// application pour les trois types de navires
+		if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagPanel.applyBtn.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
+			int valeur = gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded ;
+			if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
+				//valeur = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded ;
+			} else if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type3){
+				//valeur = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded ;
+			}
+			myShipBuilderBuilding.assignWork(gameManager,valeur);
 		}
+
+		myShipBuilderBuilding.TotalLaborValue = myShipBuilderBuilding.NbrOfAssignedVikingChosen * gameManager.Resources.People.Vikings.ShipConstructionEffeciency
+						+ myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen * gameManager.Resources.People.ShieldMaidens.ShipConstructionEffeciency
+						+ myShipBuilderBuilding.NbrOfAssignedSlaveChosen * gameManager.Resources.People.Slaves.ShipConstructionEffeciency;
 	}
 
 
@@ -246,38 +239,32 @@ public class JobsManager : Singleton<JobsManager> {
 		displayOfNbrOfShieldMaidenChosen.text = myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen.ToString();
 		displayOfNbrOSlaveChosen.text = myShipBuilderBuilding.NbrOfAssignedSlaveChosen.ToString();
 
-		if (whichShipSelected){
-			if (whichShipSelected.tag == tagPanel.ship1Btn.ToString()){
-				displayOfShipTypeChosen.text = "Type of ship to construct : type 1" ;
-				displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded.ToString() ;
-			} else if (whichShipSelected.tag == tagPanel.ship2Btn.ToString()){
-				displayOfShipTypeChosen.text = "Type of ship to construct : type 2" ;
-				// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded.ToString() ;
-			} else if (whichShipSelected.tag == tagPanel.ship3Btn.ToString()){
-				displayOfShipTypeChosen.text = "Type of ship to construct : type 3" ;
-				// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded.ToString() ;
-			}
-		} else {
+		if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type1){
 			displayOfShipTypeChosen.text = "Type of ship to construct : type 1" ;
 			displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded.ToString() ;
+		} else if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
+			displayOfShipTypeChosen.text = "Type of ship to construct : type 2" ;
+			// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded.ToString() ;
+		} else if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type3){
+			displayOfShipTypeChosen.text = "Type of ship to construct : type 3" ;
+			// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded.ToString() ;
 		}
 		
+		
 		// a mettre dans shipBuilding??
-		displayOfLaborChosen.text = ( myShipBuilderBuilding.NbrOfAssignedVikingChosen * gameManager.Resources.People.Vikings.ShipConstructionEffeciency
-						+ myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen * gameManager.Resources.People.ShieldMaidens.ShipConstructionEffeciency
-						+ myShipBuilderBuilding.NbrOfAssignedSlaveChosen * gameManager.Resources.People.Slaves.ShipConstructionEffeciency).ToString();
+		displayOfLaborChosen.text = myShipBuilderBuilding.TotalLaborValue.ToString();
 
 		// Affichage de l'efficacité de chaque personnes (Viking ou ShieldMaiden ou Slave) en fonction du travail demandé
 		if (jobsBtnPressed){
-			if ( jobsBtnPressed.tag == tagBtnJob.huntingBtn.ToString()  ){
+			if ( jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.huntingBtn.ToString()  ){
 				displayOfEfficiencyOfAViking.text = gameManager.Resources.People.Vikings.FoodGatheringEfficiency.ToString();
 				displayOfEfficiencyOfAShieldMaiden.text = gameManager.Resources.People.ShieldMaidens.FoodGatheringEfficiency.ToString();
 				displayOfEfficiencyOfASlave.text = gameManager.Resources.People.Slaves.FoodGatheringEfficiency.ToString();
 			}
 
-			else if ( jobsBtnPressed.tag == tagBtnJob.rawMaterialBtn.ToString()  ){
+			else if ( jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString()  ){
 				if (woodOrIronBtnPressed){
-					if (woodOrIronBtnPressed.tag == tagPanel.ironBtn.ToString()){
+					if (woodOrIronBtnPressed.tag == ConstantsAndEnums.tagPanel.ironBtn.ToString()){
 						displayOfEfficiencyOfAViking.text = gameManager.Resources.People.Vikings.IronGatheringEfficiency.ToString();
 						displayOfEfficiencyOfAShieldMaiden.text = gameManager.Resources.People.ShieldMaidens.IronGatheringEfficiency.ToString();
 						displayOfEfficiencyOfASlave.text = gameManager.Resources.People.Slaves.IronGatheringEfficiency.ToString();
@@ -295,7 +282,7 @@ public class JobsManager : Singleton<JobsManager> {
 				}
 			}
 			
-			else if (jobsBtnPressed.tag == tagBtnJob.shipBuilderBtn.ToString()){
+			else if (jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString()){
 				displayOfEfficiencyOfAViking.text = gameManager.Resources.People.Vikings.ShipConstructionEffeciency.ToString();
 				displayOfEfficiencyOfAShieldMaiden.text = gameManager.Resources.People.ShieldMaidens.ShipConstructionEffeciency.ToString();
 				displayOfEfficiencyOfASlave.text = gameManager.Resources.People.Slaves.ShipConstructionEffeciency.ToString();
@@ -310,7 +297,7 @@ public class JobsManager : Singleton<JobsManager> {
 
 	public void setAllJobPanelInactive(){
 		foreach ( GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject))){
-			foreach( tagPanel tagou in Enum.GetValues(typeof(tagPanel)))
+			foreach( ConstantsAndEnums.tagPanel tagou in Enum.GetValues(typeof(ConstantsAndEnums.tagPanel)))
 				if ( go.tag.Equals(tagou.ToString())) go.SetActive(false);
 		} ;
 	}
