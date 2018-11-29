@@ -7,12 +7,16 @@ public class ShipBuilder : Jobs {
 
 	// Variables
 	private bool workInProgress = false;
-	private int nbrOfAssignedPeopleChosen = 0;
+	private int nbrOfAssignedVikingChosen = 0;
+	private int nbrOfAssignedShieldMaidenChosen = 0;
+	private int nbrOfAssignedSlaveChosen = 0;
 	private int remainingTimeForConstruction = 0;
 
 	// Getters and Setters 
 	public bool WorkInProgress{ get { return workInProgress;} set{workInProgress = value;}}
-	public int NbrOfAssignedPeopleChosen{ get{return nbrOfAssignedPeopleChosen;} set{ nbrOfAssignedPeopleChosen = value;}}
+	public int NbrOfAssignedVikingChosen{ get{return nbrOfAssignedVikingChosen;} set{ nbrOfAssignedVikingChosen = value;}}
+	public int NbrOfAssignedShieldMaidenChosen{ get{return nbrOfAssignedShieldMaidenChosen;} set{ nbrOfAssignedShieldMaidenChosen = value;}}
+	public int NbrOfAssignedSlaveChosen{ get{return nbrOfAssignedSlaveChosen;} set{ nbrOfAssignedSlaveChosen = value;}}
 	public int RemainingTimeForConstruction{get{return remainingTimeForConstruction;} set{ remainingTimeForConstruction = value;}}
 
 	// Constructor
@@ -29,20 +33,31 @@ public class ShipBuilder : Jobs {
 		
 	}
 
-	public void assignWork(People people){
-		if (nbrOfAssignedPeopleChosen > 0 ){
-			addOrRemoveSeveralSlave(nbrOfAssignedPeopleChosen);
+	public void assignWork(GameManager gameManager){
+		if (nbrOfAssignedVikingChosen > 0 || nbrOfAssignedShieldMaidenChosen > 0 || nbrOfAssignedSlaveChosen > 0 ){
+			addOrRemoveSeveralViking(nbrOfAssignedVikingChosen);
+			addOrRemoveSeveralShieldMaiden(nbrOfAssignedShieldMaidenChosen);
+			addOrRemoveSeveralSlave(nbrOfAssignedSlaveChosen);
+			gameManager.Resources.People.NbrOfVikings -= nbrOfAssignedVikingChosen;
+			gameManager.Resources.People.NbrOfShieldMaidens -= nbrOfAssignedShieldMaidenChosen;
+			gameManager.Resources.People.NbrOfSlave -= nbrOfAssignedSlaveChosen;
+			nbrOfAssignedVikingChosen = 0;
+			nbrOfAssignedShieldMaidenChosen = 0;
+			nbrOfAssignedSlaveChosen = 0;
+			constructShip(gameManager);
 			workInProgress = true;
-			people.NbrOfSlave -= nbrOfAssignedPeopleChosen;
-			nbrOfAssignedPeopleChosen = 0;
-			constructShip();
 		}
 	}
 	public void closeAssignment(){
-		if ( !workInProgress) nbrOfAssignedPeopleChosen = 0;
+		if ( !workInProgress) {
+			nbrOfAssignedVikingChosen = 0;
+			nbrOfAssignedShieldMaidenChosen = 0;
+			nbrOfAssignedSlaveChosen = 0;
+		}
 	}
 
-	public void constructShip(){
+	public void constructShip(GameManager gameManager){
+		// TODO
 		remainingTimeForConstruction = 4;
 	}
 	public void inConstruction(Ships ships, People people){

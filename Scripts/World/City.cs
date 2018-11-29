@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class City : MonoBehaviour
+public class City 
 {
 
     private String nameOfCity;
@@ -36,7 +36,7 @@ public class City : MonoBehaviour
         }
         set
         {
-            name = value;
+            nameOfCity = value;
         }
     }
 

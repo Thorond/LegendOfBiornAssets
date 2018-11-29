@@ -35,15 +35,11 @@ public class JobsManager : Singleton<JobsManager> {
 		shipBuilderBtn,
 		rawMaterialBtn
 	}
-	private enum tagBtn{
-		shipBuilderBtnUp,
-		applyShipBuilder,
-		shipBuilderBtnDown
-	}
 	private enum tagPanel{
 		jobPanel,
 		woodBtn,
-		ironBtn
+		ironBtn,
+		applyBtn
 	}
 
 	private enum tagUpOrDown{
@@ -81,7 +77,6 @@ public class JobsManager : Singleton<JobsManager> {
 	// Update is called once per frame
 	void Update () {
 		textDisplay();
-
 	}
 
 
@@ -100,60 +95,28 @@ public class JobsManager : Singleton<JobsManager> {
 		
 		setAllJobPanelInactive();
 		myShipBuilderBuilding.closeAssignment();
-		if ( jobsBtnPressed.tag == tagBtnJob.huntingBtn.ToString() || jobsBtnPressed.tag == tagBtnJob.rawMaterialBtn.ToString()){
-			GameObject btnToActivate = findGameObject(tagPanel.jobPanel.ToString()); // Afficher le panel de la chasse
-			if (btnToActivate) btnToActivate.SetActive(true);
-			if (jobsBtnPressed.tag == tagBtnJob.rawMaterialBtn.ToString()){
-				btnToActivate = findGameObject(tagPanel.woodBtn.ToString()); // Afficher le panel de la chasse
+		if ( jobsBtnPressed.tag == tagBtnJob.huntingBtn.ToString() || jobsBtnPressed.tag == tagBtnJob.rawMaterialBtn.ToString()
+			|| jobsBtnPressed.tag == tagBtnJob.shipBuilderBtn.ToString() ){
+			GameObject btnToActivate = findGameObject(tagPanel.jobPanel.ToString()); 
+			if (btnToActivate) btnToActivate.SetActive(true); // Afficher le panel de la chasse
+			if (jobsBtnPressed.tag == tagBtnJob.rawMaterialBtn.ToString()){ // afficher le panel du travail des matières premières
+				btnToActivate = findGameObject(tagPanel.woodBtn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(tagPanel.ironBtn.ToString()); // Afficher le panel de la chasse
+				btnToActivate = findGameObject(tagPanel.ironBtn.ToString()); 
+				if (btnToActivate) btnToActivate.SetActive(true);
+			}
+			if (jobsBtnPressed.tag == tagBtnJob.shipBuilderBtn.ToString()){ // Afficher le panel de la construction de navires
+				btnToActivate = findGameObject(tagPanel.applyBtn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
 			}
 		}
-		// else if ( jobsBtnPressed.tag == tagBtnJob.fishingBtn.ToString() ){
-		// 	GameObject btnToActivate = findGameObject(tagBtn.fishingBtnUp.ToString()); // Afficher le bouton pour augmenter le nomrbe de pecheurs
-		// 	if (btnToActivate) btnToActivate.SetActive(true);
-		// 	btnToActivate = findGameObject(tagBtn.fishingBtnDown.ToString()); // Afficher le bouton pour diminuer le nomrbe de pecheurs
-		// 	if (btnToActivate) btnToActivate.SetActive(true);
-		// }
-		// else if ( jobsBtnPressed.tag == tagBtnJob.shipBuilderBtn.ToString() ){
-		// 	GameObject btnToActivate = findGameObject(tagBtn.shipBuilderBtnUp.ToString()); // Afficher le bouton pour augmenter le nomrbe de shipbuilder
-		// 	if (btnToActivate) btnToActivate.SetActive(true);
-		// 	btnToActivate = findGameObject(tagBtn.shipBuilderBtnDown.ToString()); // Afficher le bouton pour diminuer le nomrbe de shipbuilder
-		// 	if (btnToActivate) btnToActivate.SetActive(true);
-		// 	btnToActivate = findGameObject(tagBtn.applyShipBuilder.ToString()); // Afficher le btn pour appliquer le changement
-		// 	if (btnToActivate) btnToActivate.SetActive(true);
-		// }
-		// else if (jobsBtnPressed.tag == tagBtnJob.rawMaterialBtn.ToString() ){
-		// 	GameObject btnToActivate = findGameObject(tagPanel.RawMaterialPanel.ToString()); // Afficher le panel de la maison des matériaux
-		// 	if (btnToActivate) btnToActivate.SetActive(true);
-		// }
 
 	}
 
 	public void peopleAssignement( ){
 		huntingAssignement();
 		rawMaterialAssignement();
-		if ( gameManager.Resources.People.NbrOfSlave > 0 ) {
-			// if ( jobsBtnPressed.tag.Equals(tagBtn.fishingBtnUp.ToString())){
-			// 	myFishingBuilding.assignAnotherPerson();
-			// 	gameManager.Resources.People.NbrOfSlave -= 1;
-			// } 
-			// if (gameManager.Resources.People.NbrOfSlave > myShipBuilderBuilding.NbrOfAssignedPeopleChosen ){
-			// 	if ( jobsBtnPressed.tag.Equals(tagBtn.shipBuilderBtnUp.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
-			// 		myShipBuilderBuilding.NbrOfAssignedPeopleChosen += 1;
-			// 	}
-			// }
-		}
-		// if (jobsBtnPressed.tag.Equals(tagBtn.fishingBtnDown.ToString()) && myFishingBuilding.NbrOfPeopleAssigned > 0  ){
-		// 	myFishingBuilding.removeAPerson();
-		// 	gameManager.Resources.People.NbrOfSlave += 1;
-		// } else if (jobsBtnPressed.tag.Equals(tagBtn.shipBuilderBtnDown.ToString()) && !myShipBuilderBuilding.WorkInProgress){
-		// 	if ( myShipBuilderBuilding.NbrOfAssignedPeopleChosen > 0) myShipBuilderBuilding.NbrOfAssignedPeopleChosen -= 1;
-		// }
-		// if ( jobsBtnPressed.tag.Equals(tagBtn.applyShipBuilder.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
-		// 	myShipBuilderBuilding.assignWork(gameManager.Resources.People);
-		// }
+		shipBuildingAssignement();
 	}
 
 	public void jobAssignement(Jobs myJobBuilding){
@@ -202,6 +165,39 @@ public class JobsManager : Singleton<JobsManager> {
 		}
 	}
 
+	public void shipBuildingAssignement(){
+		// attribution des vikings
+		if (gameManager.Resources.People.NbrOfVikings > myShipBuilderBuilding.NbrOfAssignedVikingChosen ){
+			if ( upOrDownBtnPressed.tag.Equals(tagUpOrDown.upViking.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
+				myShipBuilderBuilding.NbrOfAssignedVikingChosen += 1;
+			}
+		} 
+		if (upOrDownBtnPressed.tag.Equals(tagUpOrDown.downViking.ToString()) && !myShipBuilderBuilding.WorkInProgress){
+			if ( myShipBuilderBuilding.NbrOfAssignedVikingChosen > 0) myShipBuilderBuilding.NbrOfAssignedVikingChosen -= 1;
+		}
+		// attribution des shieldmaidens
+		if (gameManager.Resources.People.NbrOfShieldMaidens > myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen ){
+			if ( upOrDownBtnPressed.tag.Equals(tagUpOrDown.upShieldMaiden.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
+				myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen += 1;
+			}
+		} 
+		if (upOrDownBtnPressed.tag.Equals(tagUpOrDown.downShieldMaiden.ToString()) && !myShipBuilderBuilding.WorkInProgress){
+			if ( myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen > 0) myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen -= 1;
+		}
+		// attribution des esclaves
+		if (gameManager.Resources.People.NbrOfSlave > myShipBuilderBuilding.NbrOfAssignedSlaveChosen ){
+			if ( upOrDownBtnPressed.tag.Equals(tagUpOrDown.upSlave.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
+				myShipBuilderBuilding.NbrOfAssignedSlaveChosen += 1;
+			}
+		} 
+		if (upOrDownBtnPressed.tag.Equals(tagUpOrDown.downSlave.ToString()) && !myShipBuilderBuilding.WorkInProgress){
+			if ( myShipBuilderBuilding.NbrOfAssignedSlaveChosen > 0) myShipBuilderBuilding.NbrOfAssignedSlaveChosen -= 1;
+		} 
+		// application pour les troics types
+		if ( upOrDownBtnPressed.tag.Equals(tagPanel.applyBtn.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
+			myShipBuilderBuilding.assignWork(gameManager);
+		}
+	}
 
 	public void textDisplay(){
 		displayOfNbrOfHunter.text = "Hunting : \n" + myHuntingBuilding.NbrOfVikingAssigned.ToString()
@@ -250,6 +246,17 @@ public class JobsManager : Singleton<JobsManager> {
 				}
 			}
 			
+			// on met à profit ces variables pour compter le nombre de travailleurs que le joueur veut mettre dans la construction du navire
+			else if (jobsBtnPressed.tag == tagBtnJob.shipBuilderBtn.ToString()){
+				displayOfEfficiencyOfAViking.text = myShipBuilderBuilding.NbrOfAssignedVikingChosen.ToString();
+				displayOfEfficiencyOfAShieldMaiden.text = myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen.ToString();
+				displayOfEfficiencyOfASlave.text = myShipBuilderBuilding.NbrOfAssignedSlaveChosen.ToString();
+			}
+			
+		} else{
+			displayOfEfficiencyOfAViking.text = "";
+			displayOfEfficiencyOfAShieldMaiden.text = "";
+			displayOfEfficiencyOfASlave.text = "";
 		}
 	}
 
