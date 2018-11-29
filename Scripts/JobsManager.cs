@@ -10,6 +10,7 @@ public class JobsManager : Singleton<JobsManager> {
 	private Btn jobsBtnPressed;
 	private Btn upOrDownBtnPressed;
 	private Btn woodOrIronBtnPressed;
+	private Btn whichShipSelected;
 
 	private Hunting myHuntingBuilding;
 	private Fishing myFishingBuilding;
@@ -28,6 +29,12 @@ public class JobsManager : Singleton<JobsManager> {
 	[SerializeField] private Text displayOfEfficiencyOfAViking;
 	[SerializeField] private Text displayOfEfficiencyOfAShieldMaiden;
 	[SerializeField] private Text displayOfEfficiencyOfASlave;
+	[SerializeField] private Text displayOfNbrOfVikingChosen;
+	[SerializeField] private Text displayOfNbrOfShieldMaidenChosen;
+	[SerializeField] private Text displayOfNbrOSlaveChosen;
+	[SerializeField] private Text displayOfShipTypeChosen;
+	[SerializeField] private Text displayOfLaborNeeded;
+	[SerializeField] private Text displayOfLaborChosen;
 
 	private enum tagBtnJob{
 		huntingBtn,
@@ -39,7 +46,11 @@ public class JobsManager : Singleton<JobsManager> {
 		jobPanel,
 		woodBtn,
 		ironBtn,
-		applyBtn
+		applyBtn,
+		ship1Btn,
+		ship2Btn,
+		ship3Btn,
+		shipUI
 	}
 
 	private enum tagUpOrDown{
@@ -90,6 +101,9 @@ public class JobsManager : Singleton<JobsManager> {
 	public void selectedWoodOrIron(Btn btnSelected){
 		woodOrIronBtnPressed = btnSelected;
 	}
+	public void selectedShipType(Btn btnSelected){
+		whichShipSelected = btnSelected;
+	}
 
 	public void jobSettingCreation(){
 		
@@ -107,6 +121,14 @@ public class JobsManager : Singleton<JobsManager> {
 			}
 			if (jobsBtnPressed.tag == tagBtnJob.shipBuilderBtn.ToString()){ // Afficher le panel de la construction de navires
 				btnToActivate = findGameObject(tagPanel.applyBtn.ToString()); 
+				if (btnToActivate) btnToActivate.SetActive(true);
+				btnToActivate = findGameObject(tagPanel.ship1Btn.ToString()); 
+				if (btnToActivate) btnToActivate.SetActive(true);
+				btnToActivate = findGameObject(tagPanel.ship2Btn.ToString()); 
+				if (btnToActivate) btnToActivate.SetActive(true);
+				btnToActivate = findGameObject(tagPanel.ship3Btn.ToString()); 
+				if (btnToActivate) btnToActivate.SetActive(true);
+				btnToActivate = findGameObject(tagPanel.shipUI.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
 			}
 		}
@@ -199,6 +221,8 @@ public class JobsManager : Singleton<JobsManager> {
 		}
 	}
 
+
+	// a mettre dans un textManager?
 	public void textDisplay(){
 		displayOfNbrOfHunter.text = "Hunting : \n" + myHuntingBuilding.NbrOfVikingAssigned.ToString()
 				+ "\n"  + myHuntingBuilding.NbrOfShieldMaidenAssigned.ToString()
@@ -217,6 +241,31 @@ public class JobsManager : Singleton<JobsManager> {
 				+ "\n"  + myMineralBuilding.NbrOfSlaveAssigned.ToString();
 		displayOfNbrOfShip.text = "Ships  \n Type 1 : " + gameManager.Resources.Ships.NbrOfShipType1.ToString();
 
+		
+		displayOfNbrOfVikingChosen.text = myShipBuilderBuilding.NbrOfAssignedVikingChosen.ToString();
+		displayOfNbrOfShieldMaidenChosen.text = myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen.ToString();
+		displayOfNbrOSlaveChosen.text = myShipBuilderBuilding.NbrOfAssignedSlaveChosen.ToString();
+
+		if (whichShipSelected){
+			if (whichShipSelected.tag == tagPanel.ship1Btn.ToString()){
+				displayOfShipTypeChosen.text = "Type of ship to construct : type 1" ;
+				displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded.ToString() ;
+			} else if (whichShipSelected.tag == tagPanel.ship2Btn.ToString()){
+				displayOfShipTypeChosen.text = "Type of ship to construct : type 2" ;
+				// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded.ToString() ;
+			} else if (whichShipSelected.tag == tagPanel.ship3Btn.ToString()){
+				displayOfShipTypeChosen.text = "Type of ship to construct : type 3" ;
+				// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded.ToString() ;
+			}
+		} else {
+			displayOfShipTypeChosen.text = "Type of ship to construct : type 1" ;
+			displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded.ToString() ;
+		}
+		
+		// a mettre dans shipBuilding??
+		displayOfLaborChosen.text = ( myShipBuilderBuilding.NbrOfAssignedVikingChosen * gameManager.Resources.People.Vikings.ShipConstructionEffeciency
+						+ myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen * gameManager.Resources.People.ShieldMaidens.ShipConstructionEffeciency
+						+ myShipBuilderBuilding.NbrOfAssignedSlaveChosen * gameManager.Resources.People.Slaves.ShipConstructionEffeciency).ToString();
 
 		// Affichage de l'efficacité de chaque personnes (Viking ou ShieldMaiden ou Slave) en fonction du travail demandé
 		if (jobsBtnPressed){
@@ -246,11 +295,10 @@ public class JobsManager : Singleton<JobsManager> {
 				}
 			}
 			
-			// on met à profit ces variables pour compter le nombre de travailleurs que le joueur veut mettre dans la construction du navire
 			else if (jobsBtnPressed.tag == tagBtnJob.shipBuilderBtn.ToString()){
-				displayOfEfficiencyOfAViking.text = myShipBuilderBuilding.NbrOfAssignedVikingChosen.ToString();
-				displayOfEfficiencyOfAShieldMaiden.text = myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen.ToString();
-				displayOfEfficiencyOfASlave.text = myShipBuilderBuilding.NbrOfAssignedSlaveChosen.ToString();
+				displayOfEfficiencyOfAViking.text = gameManager.Resources.People.Vikings.ShipConstructionEffeciency.ToString();
+				displayOfEfficiencyOfAShieldMaiden.text = gameManager.Resources.People.ShieldMaidens.ShipConstructionEffeciency.ToString();
+				displayOfEfficiencyOfASlave.text = gameManager.Resources.People.Slaves.ShipConstructionEffeciency.ToString();
 			}
 			
 		} else{

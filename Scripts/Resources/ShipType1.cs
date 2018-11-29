@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShipType1 {
 
 	// Variables 
-
+	private int nbrOfLaborNeeded;
 	private int nbrOfMenNeededForNavigation;
 	private int totalCapacityOfMen;
 	private int totalCapacityOfLoot;
@@ -14,6 +14,7 @@ public class ShipType1 {
 
 	// Getters and Setters
 
+	public int NbrOfLaborNeeded{ get { return nbrOfLaborNeeded; }}
 	public int NbrOfMenNeededForNavigation{ get { return nbrOfMenNeededForNavigation; }}
 	public int TotalCapacityOfMen{ get { return totalCapacityOfMen; }}
 	public int TotalCapacityOfLoot{ get { return totalCapacityOfLoot; }}
@@ -23,6 +24,7 @@ public class ShipType1 {
 	// Constructor
 
 	public ShipType1(){
+		nbrOfLaborNeeded = 15;
 		nbrOfMenNeededForNavigation = 5;
 		totalCapacityOfMen = 10;
 		totalCapacityOfLoot = 20;

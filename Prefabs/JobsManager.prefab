@@ -56,9 +56,11 @@ MonoBehaviour:
   displayOfNbrOfFisherMen: {fileID: 0}
   displayOfNbrOfShipBuilder: {fileID: 0}
   displayOfNbrOfShip: {fileID: 0}
-  displayOfEfficiencyOfAViking: {fileID: 114095009241280530, guid: 52eeacaac2f918140a8b47fb6cecb3c1,
-    type: 2}
-  displayOfEfficiencyOfAShieldMaiden: {fileID: 114207659420160586, guid: d51aca6cc80263e4c83ed638c065a63f,
-    type: 2}
-  displayOfEfficiencyOfASlave: {fileID: 114700047723110888, guid: c807fb12fbdd3124890ecfcdf9fc6ffa,
-    type: 2}
+  displayOfWoodWorkers: {fileID: 0}
+  displayOfIronWorkers: {fileID: 0}
+  displayOfEfficiencyOfAViking: {fileID: 0}
+  displayOfEfficiencyOfAShieldMaiden: {fileID: 0}
+  displayOfEfficiencyOfASlave: {fileID: 0}
+  displayOfShipTypeChosen: {fileID: 0}
+  displayOfLaborNeeded: {fileID: 0}
+  displayOfLaborChosen: {fileID: 0}

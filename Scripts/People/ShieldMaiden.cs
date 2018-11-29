@@ -8,7 +8,7 @@ public class ShieldMaiden : Inhabitant {
 		this.foodGatheringEfficiency = 6;
 		this.woodGatheringEfficiency = 4;
 		this.ironGatheringEfficiency = 3;
-		this.shipConstructionEffeciency = 4;
+		this.shipConstructionEffeciency = 2;
 		this.battleEfficiency = 8;
 	}
 }

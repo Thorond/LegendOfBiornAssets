@@ -8,7 +8,7 @@ public class Viking : Inhabitant {
 		this.foodGatheringEfficiency = 5;
 		this.woodGatheringEfficiency = 6;
 		this.ironGatheringEfficiency = 4;
-		this.shipConstructionEffeciency = 5;
+		this.shipConstructionEffeciency = 3;
 		this.battleEfficiency = 10;
 	}
 }
