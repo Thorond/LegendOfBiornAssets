@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1105366462868078}
+  m_IsPrefabAsset: 1
+--- !u!1 &1105366462868078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4341106049197268}
+  - component: {fileID: 114400550927551832}
+  m_Layer: 0
+  m_Name: JobsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4341106049197268
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105366462868078}
+  m_LocalRotation: {x: -0.79854244, y: -0.04764552, z: 0.05457061, w: 0.5975633}
+  m_LocalPosition: {x: 60.27841, y: -3.6553478, z: -13.224614}
+  m_LocalScale: {x: 1.1663574, y: 1.0000201, z: 1.0035279}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114400550927551832
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105366462868078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c359f99cc695eda4580dd4a397a76331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  displayOfNbrOfHunter: {fileID: 0}
+  displayOfNbrOfFisherMen: {fileID: 0}
+  displayOfNbrOfShipBuilder: {fileID: 0}
+  displayOfNbrOfShip: {fileID: 0}
+  displayOfEfficiencyOfAViking: {fileID: 114095009241280530, guid: 52eeacaac2f918140a8b47fb6cecb3c1,
+    type: 2}
+  displayOfEfficiencyOfAShieldMaiden: {fileID: 114207659420160586, guid: d51aca6cc80263e4c83ed638c065a63f,
+    type: 2}
+  displayOfEfficiencyOfASlave: {fileID: 114700047723110888, guid: c807fb12fbdd3124890ecfcdf9fc6ffa,
+    type: 2}
