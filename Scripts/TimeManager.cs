@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using System;
 
 public class TimeManager : Singleton<TimeManager> {
@@ -16,7 +15,6 @@ public class TimeManager : Singleton<TimeManager> {
 	private int timeInDay;
 	private int timeChoice;
 	private int timeElapsed;
-	[SerializeField] private Text timeElapsedText;
 
 	private DateTime resourceFrequency;
 
@@ -25,6 +23,9 @@ public class TimeManager : Singleton<TimeManager> {
 	// Getters and Setters
 
 	public int TimeElapsed { get {return timeElapsed;} set{ timeElapsed = value;}}
+	public int TimeInYear { get {return timeInYear;} set{ timeInYear = value;}}
+	public int TimeInDay { get {return timeInDay;} set{ timeInDay = value;}}
+	public int TimeChoice{ get {return timeChoice;} set{ timeChoice = value;}}
 
 	// Use this for initialization
 	void Start () {
@@ -35,14 +36,12 @@ public class TimeManager : Singleton<TimeManager> {
 		updateTime();
 
 		resourceFrequency = DateTime.Now;
-		textDisplay();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		updateTime();
 		updateResources();
-		textDisplay();
 	}
 
 	// Functions 
@@ -110,8 +109,4 @@ public class TimeManager : Singleton<TimeManager> {
 		updateJob(jobsManager.MyMineralBuilding,time);
 	}
 
-	void textDisplay(){
-		timeElapsedText.text = "Year " + timeInYear.ToString() + " - Day " + timeInDay.ToString()
-			+ "\n How many days do you want to skip : " + timeChoice.ToString();
-	}
 }
