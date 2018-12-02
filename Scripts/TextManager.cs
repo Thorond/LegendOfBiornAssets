@@ -69,7 +69,9 @@ public class TextManager : Singleton<TextManager> {
 
 		if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type1){
 			displayOfShipTypeChosen.text = "Type of ship to construct : type 1" ;
-			displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded.ToString() ;
+			displayOfLaborNeeded.text = "Workforce needed : " + gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded.ToString()
+										+ "\n Wood needed : " + gameManager.Resources.Ships.ShipType1.NbrOfWoodNeededForConstruction.ToString()
+										+ "\n Iron needed : " + gameManager.Resources.Ships.ShipType1.NbrOfIronNeededForConstruction.ToString();
 		} else if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
 			displayOfShipTypeChosen.text = "Type of ship to construct : type 2" ;
 			// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded.ToString() ;
@@ -78,7 +80,7 @@ public class TextManager : Singleton<TextManager> {
 			// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded.ToString() ;
 		}
 		
-		displayOfLaborChosen.text = jobsManager.MyShipBuilderBuilding.TotalLaborValue.ToString();
+		displayOfLaborChosen.text = "Workforce selected : " + jobsManager.MyShipBuilderBuilding.TotalLaborValue.ToString();
 	}
 
 	void timeElapsedTextDisplay(){

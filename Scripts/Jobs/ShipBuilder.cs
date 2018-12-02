@@ -48,20 +48,31 @@ public class ShipBuilder : Jobs {
 	public void assignWork(GameManager gameManager, int laborValue ){
 		if (nbrOfAssignedVikingChosen > 0 || nbrOfAssignedShieldMaidenChosen > 0 || nbrOfAssignedSlaveChosen > 0 ){
 			if ( totalLaborValue >= laborValue ){
-				addOrRemoveSeveralViking(nbrOfAssignedVikingChosen);
-				addOrRemoveSeveralShieldMaiden(nbrOfAssignedShieldMaidenChosen);
-				addOrRemoveSeveralSlave(nbrOfAssignedSlaveChosen);
-				gameManager.Resources.People.NbrOfVikings -= nbrOfAssignedVikingChosen;
-				gameManager.Resources.People.NbrOfShieldMaidens -= nbrOfAssignedShieldMaidenChosen;
-				gameManager.Resources.People.NbrOfSlave -= nbrOfAssignedSlaveChosen;
-				nbrOfAssignedVikingChosen = 0;
-				nbrOfAssignedShieldMaidenChosen = 0;
-				nbrOfAssignedSlaveChosen = 0;
-				constructShip(gameManager);
-				workInProgress = true;
+				if ( gameManager.Resources.Wood >= gameManager.Resources.Ships.ShipType1.NbrOfWoodNeededForConstruction ){
+					if (gameManager.Resources.Iron >= gameManager.Resources.Ships.ShipType1.NbrOfIronNeededForConstruction){
+						addOrRemoveSeveralViking(nbrOfAssignedVikingChosen);
+						addOrRemoveSeveralShieldMaiden(nbrOfAssignedShieldMaidenChosen);
+						addOrRemoveSeveralSlave(nbrOfAssignedSlaveChosen);
+						gameManager.Resources.People.NbrOfVikings -= nbrOfAssignedVikingChosen;
+						gameManager.Resources.People.NbrOfShieldMaidens -= nbrOfAssignedShieldMaidenChosen;
+						gameManager.Resources.People.NbrOfSlave -= nbrOfAssignedSlaveChosen;
+						nbrOfAssignedVikingChosen = 0;
+						nbrOfAssignedShieldMaidenChosen = 0;
+						nbrOfAssignedSlaveChosen = 0;
+						gameManager.Resources.Wood -= gameManager.Resources.Ships.ShipType1.NbrOfWoodNeededForConstruction;
+						gameManager.Resources.Iron -= gameManager.Resources.Ships.ShipType1.NbrOfIronNeededForConstruction;
+						constructShip(gameManager);
+						workInProgress = true;
+					}else{
+						// affichage d'erreur disant que le joueur n'a pas assez de métal
+					}
+				}else {
+					// message d'erreur disant que le joueur n'a pas assez de bois
+				}
+				
 			}
 			else {
-				//retourner un affichage d'erreur
+				//retourner un affichage d'erreur comme quoi le joueur n'a pas sélectionné assez de travailleurs 
 			}
 		}
 	}
