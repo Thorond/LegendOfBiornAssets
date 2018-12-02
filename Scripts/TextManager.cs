@@ -21,7 +21,7 @@ public class TextManager : Singleton<TextManager> {
 
 
 	[SerializeField] private Text displayOfNbrOfHunter;
-	[SerializeField] private Text displayOfNbrOfFisherMen;
+	// [SerializeField] private Text displayOfNbrOfFisherMen;
 	[SerializeField] private Text displayOfNbrOfShipBuilder;
 	[SerializeField] private Text displayOfNbrOfShip;
 	[SerializeField] private Text displayOfWoodWorkers;
@@ -98,9 +98,9 @@ public class TextManager : Singleton<TextManager> {
 		displayOfNbrOfHunter.text = "Hunting : \n" + jobsManager.MyHuntingBuilding.NbrOfVikingAssigned.ToString()
 				+ "\n"  + jobsManager.MyHuntingBuilding.NbrOfShieldMaidenAssigned.ToString()
 				+ "\n"  + jobsManager.MyHuntingBuilding.NbrOfSlaveAssigned.ToString();
-		displayOfNbrOfFisherMen.text = "Fishing : \n" + jobsManager.MyFishingBuilding.NbrOfVikingAssigned.ToString()
-				+ "\n"  + jobsManager.MyFishingBuilding.NbrOfShieldMaidenAssigned.ToString()
-				+ "\n"  + jobsManager.MyFishingBuilding.NbrOfSlaveAssigned.ToString();
+		// displayOfNbrOfFisherMen.text = "Fishing : \n" + jobsManager.MyFishingBuilding.NbrOfVikingAssigned.ToString()
+		// 		+ "\n"  + jobsManager.MyFishingBuilding.NbrOfShieldMaidenAssigned.ToString()
+		// 		+ "\n"  + jobsManager.MyFishingBuilding.NbrOfSlaveAssigned.ToString();
 		displayOfNbrOfShipBuilder.text = "Ships Workers : \n" + jobsManager.MyShipBuilderBuilding.NbrOfVikingAssigned.ToString()
 				+ "\n"  + jobsManager.MyShipBuilderBuilding.NbrOfShieldMaidenAssigned.ToString()
 				+ "\n"  + jobsManager.MyShipBuilderBuilding.NbrOfSlaveAssigned.ToString();
@@ -121,7 +121,7 @@ public class TextManager : Singleton<TextManager> {
 
 			else if ( jobsManager.JobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString()  ){
 				if (jobsManager.WoodOrIronBtnPressed){
-					if (jobsManager.WoodOrIronBtnPressed.tag == ConstantsAndEnums.tagPanel.ironBtn.ToString()){
+					if (jobsManager.WoodOrIronBtnPressed.tag == ConstantsAndEnums.tagPanelJobs.ironBtn.ToString()){
 						displayOfEfficiencyOfAViking.text = gameManager.Resources.People.Vikings.IronGatheringEfficiency.ToString();
 						displayOfEfficiencyOfAShieldMaiden.text = gameManager.Resources.People.ShieldMaidens.IronGatheringEfficiency.ToString();
 						displayOfEfficiencyOfASlave.text = gameManager.Resources.People.Slaves.IronGatheringEfficiency.ToString();

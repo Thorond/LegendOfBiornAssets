@@ -64,11 +64,11 @@ public class JobsManager : Singleton<JobsManager> {
 	}
 	public void selectedShipType(Btn btnSelected){
 		whichShipSelected = btnSelected;
-		if (whichShipSelected.tag == ConstantsAndEnums.tagPanel.ship1Btn.ToString()){
+		if (whichShipSelected.tag == ConstantsAndEnums.tagPanelJobs.ship1Btn.ToString()){
 			myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type1;
-		} else if (whichShipSelected.tag == ConstantsAndEnums.tagPanel.ship2Btn.ToString()){
+		} else if (whichShipSelected.tag == ConstantsAndEnums.tagPanelJobs.ship2Btn.ToString()){
 			myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type2;
-		} else if (whichShipSelected.tag == ConstantsAndEnums.tagPanel.ship3Btn.ToString()){
+		} else if (whichShipSelected.tag == ConstantsAndEnums.tagPanelJobs.ship3Btn.ToString()){
 			myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type3;
 		} 
 	}
@@ -78,27 +78,32 @@ public class JobsManager : Singleton<JobsManager> {
 		setAllJobPanelInactive();
 		myShipBuilderBuilding.closeAssignment();
 		if ( jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.huntingBtn.ToString() || jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString()
-			|| jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString() ){
-			GameObject btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.jobPanel.ToString()); 
+			|| jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString()  ){
+			GameObject btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.jobPanel.ToString()); 
 			if (btnToActivate) btnToActivate.SetActive(true); // Afficher le panel de la chasse
 			if (jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString()){ // afficher le panel du travail des matières premières
-				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.woodBtn.ToString()); 
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.woodBtn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.ironBtn.ToString()); 
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.ironBtn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
 			}
 			if (jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString()){ // Afficher le panel de la construction de navires
-				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.applyBtn.ToString()); 
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.applyBtn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.ship1Btn.ToString()); 
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.ship1Btn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.ship2Btn.ToString()); 
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.ship2Btn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.ship3Btn.ToString()); 
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.ship3Btn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.shipUI.ToString()); 
+				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.shipUI.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
 			}
+		} else if (jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.harbor.ToString()){
+			GameObject btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.ourCityPanel.ToString()); 
+			if (btnToActivate) btnToActivate.SetActive(false); // enlever le panel de la ville pour afficher celui de la map
+			btnToActivate = findGameObject(ConstantsAndEnums.tagPanel.mapPanel.ToString()); 
+			if (btnToActivate) btnToActivate.SetActive(true); 
 		}
 
 	}
@@ -144,7 +149,7 @@ public class JobsManager : Singleton<JobsManager> {
 	public void rawMaterialAssignement(){
 		if ( jobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString() ){
 			if (woodOrIronBtnPressed){
-				if ( woodOrIronBtnPressed.tag == ConstantsAndEnums.tagPanel.woodBtn.ToString()){
+				if ( woodOrIronBtnPressed.tag == ConstantsAndEnums.tagPanelJobs.woodBtn.ToString()){
 					jobAssignement(myWoodBuilding);
 				} else {
 					jobAssignement(myMineralBuilding);
@@ -185,7 +190,7 @@ public class JobsManager : Singleton<JobsManager> {
 		} 
 
 		// application des travailleurs pour les trois types de navires
-		if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagPanel.applyBtn.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
+		if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagPanelJobs.applyBtn.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
 			int valeur = gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded ;
 			if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
 				//valeur = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded ;
@@ -203,13 +208,13 @@ public class JobsManager : Singleton<JobsManager> {
 
 
 	
-	public void setAllJobPanelInactive(){
+	public static void setAllJobPanelInactive(){
 		foreach ( GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject))){
-			foreach( ConstantsAndEnums.tagPanel tagou in Enum.GetValues(typeof(ConstantsAndEnums.tagPanel)))
+			foreach( ConstantsAndEnums.tagPanelJobs tagou in Enum.GetValues(typeof(ConstantsAndEnums.tagPanelJobs)))
 				if ( go.tag.Equals(tagou.ToString())) go.SetActive(false);
 		} ;
 	}
-	public GameObject findGameObject(string tagou){
+	public static GameObject findGameObject(string tagou){
 		foreach ( GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject))){
 			if ( go.tag.Equals(tagou)) return go;
 		} ;

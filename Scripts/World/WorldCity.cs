@@ -143,6 +143,8 @@ public class WorldCity : MonoBehaviour
     public void BackAccueil()
     {
         panelMap.SetActive(false);
+        GameObject btnToActivate = JobsManager.findGameObject(ConstantsAndEnums.tagPanel.ourCityPanel.ToString()); 
+		if (btnToActivate) btnToActivate.SetActive(true); // Afficher le panel de la chasse
     }
 
 
