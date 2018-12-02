@@ -46,6 +46,7 @@ public class TextManager : Singleton<TextManager> {
 	[SerializeField] private Text displayOfNbrOfShipChosenForWar;
 	[SerializeField] private Text displayOfShipTypeChosenForWar;
 	[SerializeField] private Text displayOfSpacesAvailable;
+	[SerializeField] private Text displayOfTotalFighterForce;
 
 
 	
@@ -187,15 +188,18 @@ public class TextManager : Singleton<TextManager> {
 		// 	// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded.ToString() ;
 		// }
 		
-		displayOfSpacesAvailable.text = warManager.MyExpedition.NbrOfSpacesAvailable.ToString();
-		// displayOfLaborChosen.text = "Workforce selected : " + jobsManager.MyShipBuilderBuilding.TotalLaborValue.ToString();
+		displayOfSpacesAvailable.text = "Space available : " + warManager.MyExpedition.NbrOfSpacesAvailable.ToString()
+									+ "\n\nSpace available for loots : " 
+									+ (warManager.MyExpedition.NbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfLoot).ToString();
+		displayOfTotalFighterForce.text = "Fighter force selected : " + warManager.MyExpedition.TotalForceValue.ToString();
 	}
 	void forceOfPeopleTextDisplay(){
 			
 	
 		displayOfForceOfAViking.text = "Force d'un viking : " + gameManager.Resources.People.Vikings.BattleEfficiency.ToString();
 		displayOfForceOfAShieldMaiden.text = "Force d'une SM : " +  gameManager.Resources.People.ShieldMaidens.BattleEfficiency.ToString();
-		displayOfTheSpacesOfAShip.text = "Espace dans un navire : " +  gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen.ToString(); // a faire pour les trois types
+		displayOfTheSpacesOfAShip.text = "Espace dans un navire : " +  gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen.ToString()
+									+ "\n\nEspace pour les loots : " + gameManager.Resources.Ships.ShipType1.TotalCapacityOfLoot.ToString(); // a faire pour les trois types
 		
 			
 	}

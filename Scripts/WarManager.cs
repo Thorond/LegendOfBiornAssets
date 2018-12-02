@@ -45,7 +45,16 @@ public class WarManager : JobsAndWarManager {
 	
 	// Functions
 
-
+	public override void selectedShipType(Btn btnSelected){
+		whichShipSelected = btnSelected;
+		if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship1Btn.ToString()){
+			myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type1;
+		} else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship2Btn.ToString()){
+			myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type2;
+		} else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship3Btn.ToString()){
+			myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type3;
+		} 
+	}
     public override void jobOrCitySettingCreation()
     {
         if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.LindisfarneBtn.ToString())
@@ -119,33 +128,27 @@ public class WarManager : JobsAndWarManager {
 			if ( myExpedition.NbrOfAssignedShieldMaidenChosen > 0) myExpedition.NbrOfAssignedShieldMaidenChosen -= 1;
 		}
 		// attribution des navires
-		// !!!!! différencier en fonctiond u type 
+		// !!!!! différencier en fonctiond du type 
 		if (gameManager.Resources.Ships.NbrOfShipType1 > myExpedition.NbrOfAssignedShipChosen ){
 			if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagUpOrDown.upShip.ToString()) ){
 				myExpedition.NbrOfAssignedShipChosen += 1;
 			}
 		} 
 		if (upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagUpOrDown.downShip.ToString()) ){
-			if ( myExpedition.NbrOfAssignedShipChosen > 0) myExpedition.NbrOfAssignedShipChosen -= 1;
+			if ( myExpedition.NbrOfAssignedShipChosen > 0 
+				&& (myExpedition.NbrOfAssignedShieldMaidenChosen+myExpedition.NbrOfAssignedVikingChosen) // a faire pour les dfft types
+				    <= myExpedition.NbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen - gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen) 
+					myExpedition.NbrOfAssignedShipChosen -= 1;
 		} 
 
 		// application des travailleurs pour les trois types de navires
-		// if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagPanelJobs.applyBtn.ToString()) ){
-		// 	int valeur = gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded ;
-		// 	if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
-		// 		//valeur = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded ;
-		// 	} else if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type3){
-		// 		//valeur = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded ;
-		// 	}
-		// 	myShipBuilderBuilding.assignWork(gameManager,valeur);
-		// }
+		if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagShipType.applyBtn.ToString()) ){
+			myExpedition.assignWork(gameManager);
+		}
 
 
 		myExpedition.nbrOfSpacesAvailableCalculation(gameManager);
-		// mise à jour de la valeur effective de la force de main d'oeuvre avec les choix de travailleurs
-		// myShipBuilderBuilding.TotalLaborValue = myShipBuilderBuilding.NbrOfAssignedVikingChosen * gameManager.Resources.People.Vikings.ShipConstructionEffeciency
-		// 				+ myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen * gameManager.Resources.People.ShieldMaidens.ShipConstructionEffeciency
-		// 				+ myShipBuilderBuilding.NbrOfAssignedSlaveChosen * gameManager.Resources.People.Slaves.ShipConstructionEffeciency;
+		myExpedition.totalForceValueCalculation(gameManager);
 	}
 
     // a mettre dans text Manager

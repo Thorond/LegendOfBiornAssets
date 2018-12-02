@@ -76,8 +76,7 @@ public class JobsManager : JobsAndWarManager {
 				if (btnToActivate) btnToActivate.SetActive(true);
 			}
 			if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString()){ // Afficher le panel de la construction de navires
-				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.applyBtn.ToString()); 
-				if (btnToActivate) btnToActivate.SetActive(true);
+				applyBtn.SetActive(true);
 				ship1Btn.SetActive(true);
 				ship2Btn.SetActive(true);
 				ship3Btn.SetActive(true);
@@ -174,7 +173,7 @@ public class JobsManager : JobsAndWarManager {
 		} 
 
 		// application des travailleurs pour les trois types de navires
-		if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagPanelJobs.applyBtn.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
+		if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagShipType.applyBtn.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
 			int valeur = gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded ;
 			if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
 				//valeur = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded ;
@@ -193,6 +192,7 @@ public class JobsManager : JobsAndWarManager {
 
 	
 	public void setAllJobPanelInactive(){
+		applyBtn.SetActive(false);
 		ship1Btn.SetActive(false);
 		ship2Btn.SetActive(false);
 		ship3Btn.SetActive(false);

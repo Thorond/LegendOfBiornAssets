@@ -13,7 +13,11 @@ public class Expedition : JobsAndWar {
 		nbrOfAssignedShieldMaidenChosen = 0;
 		nbrOfAssignedShipChosen = 0;
 		nbrOfSpacesAvailable = 0;
-		totalLaborValue = 0;
+		totalForceValue = 0;
+
+		nbrOfSimulatneousBattle = 0;
+
+		battles = new Battle[5];
 	}
 
 	// Variables
@@ -27,7 +31,11 @@ public class Expedition : JobsAndWar {
 	private int nbrOfAssignedShieldMaidenChosen;
 	private int nbrOfAssignedShipChosen;
 	private int nbrOfSpacesAvailable;
-	private int totalLaborValue;
+	private int totalForceValue;
+
+	private int NBR_MAX_OF_SIMULTANEOUS_BATTLE = 5;
+	private int nbrOfSimulatneousBattle;
+	private Battle[] battles;
 
 
 	// Getters and Setters
@@ -38,7 +46,9 @@ public class Expedition : JobsAndWar {
 	public int NbrOfAssignedShieldMaidenChosen{ get{return nbrOfAssignedShieldMaidenChosen;} set{ nbrOfAssignedShieldMaidenChosen = value;}}
 	public int NbrOfAssignedShipChosen{ get{return nbrOfAssignedShipChosen;} set{ nbrOfAssignedShipChosen = value;}}
 	public int NbrOfSpacesAvailable{ get{return nbrOfSpacesAvailable;} set{ nbrOfSpacesAvailable = value;}}
-	public int TotalLaborValue{ get{return totalLaborValue;} set{ totalLaborValue = value;}}
+	public int TotalForceValue{ get{return totalForceValue;} set{ totalForceValue = value;}}
+
+	public Battle[] Battles{get{return battles;}}
 
 	// Functions 
 
@@ -53,10 +63,38 @@ public class Expedition : JobsAndWar {
 	}
 
 	public void nbrOfSpacesAvailableCalculation(GameManager gameManager){
-		if (nbrOfAssignedShipChosen > 0 ){
-			nbrOfSpacesAvailable = nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen 
-							- ( nbrOfAssignedVikingChosen + nbrOfAssignedShieldMaidenChosen);
-		}
+		nbrOfSpacesAvailable = nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen 
+						- ( nbrOfAssignedVikingChosen + nbrOfAssignedShieldMaidenChosen);
+		
+	}
+	public void totalForceValueCalculation(GameManager gameManager){
+		totalForceValue = nbrOfAssignedVikingChosen * gameManager.Resources.People.Vikings.BattleEfficiency 
+						+ nbrOfAssignedShieldMaidenChosen * gameManager.Resources.People.ShieldMaidens.BattleEfficiency ;
 	}
 
+
+	public void assignWork(GameManager gameManager){
+		if (nbrOfAssignedVikingChosen > 0 || nbrOfAssignedShieldMaidenChosen > 0 ){
+			if ( nbrOfSimulatneousBattle < NBR_MAX_OF_SIMULTANEOUS_BATTLE ){
+				Battle battle = new Battle(nbrOfAssignedVikingChosen,nbrOfAssignedShieldMaidenChosen,nbrOfAssignedShipChosen);
+				battles[nbrOfSimulatneousBattle] = battle;
+				nbrOfSimulatneousBattle += 1;
+
+				// mise a jour des donnees de jeu
+				gameManager.Resources.People.NbrOfVikings -= nbrOfAssignedVikingChosen;
+				gameManager.Resources.People.NbrOfShieldMaidens -= nbrOfAssignedShieldMaidenChosen;
+				gameManager.Resources.Ships.NbrOfShipType1 -= nbrOfAssignedShipChosen;
+
+				// réinitialisation des paramètres 
+				nbrOfAssignedVikingChosen = 0;
+				nbrOfAssignedShieldMaidenChosen = 0;
+				nbrOfAssignedShipChosen = 0;
+
+				nbrOfSpacesAvailableCalculation(gameManager);
+				totalForceValueCalculation(gameManager);
+
+			}
+			
+		}
+	}
 }

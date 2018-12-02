@@ -5,6 +5,16 @@ using UnityEngine;
 
 public class ShipBuilder : Jobs {
 
+	// Constructor
+	public ShipBuilder() : base() {
+		workInProgress = false;
+		typeOfShipConstruct = ConstantsAndEnums.shipType.type1;
+		nbrOfAssignedVikingChosen = 0;
+		nbrOfAssignedShieldMaidenChosen = 0;
+		nbrOfAssignedSlaveChosen = 0;
+		totalLaborValue = 0;
+		remainingTimeForConstruction = 0;
+	}
 	// Variables
 	private bool workInProgress;
 	private ConstantsAndEnums.shipType typeOfShipConstruct;
@@ -24,16 +34,6 @@ public class ShipBuilder : Jobs {
 	public int TotalLaborValue{ get{return totalLaborValue;} set{ totalLaborValue = value;}}
 	public int RemainingTimeForConstruction{get{return remainingTimeForConstruction;} set{ remainingTimeForConstruction = value;}}
 
-	// Constructor
-	public ShipBuilder() : base() {
-		workInProgress = false;
-		typeOfShipConstruct = ConstantsAndEnums.shipType.type1;
-		nbrOfAssignedVikingChosen = 0;
-		nbrOfAssignedShieldMaidenChosen = 0;
-		nbrOfAssignedSlaveChosen = 0;
-		totalLaborValue = 0;
-		remainingTimeForConstruction = 0;
-	}
 	
 	// Functions 
 
