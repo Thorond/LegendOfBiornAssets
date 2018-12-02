@@ -12,7 +12,7 @@ public class TextManager : Singleton<TextManager> {
 	[SerializeField] private TimeManager timeManager;
 	[SerializeField] private JobsManager jobsManager;
 
-	
+	// Les différents Texts
 
 	[SerializeField] private Text nameOfPeople;
 	[SerializeField] private Text displayOfNbrOfPeople;
@@ -112,14 +112,14 @@ public class TextManager : Singleton<TextManager> {
 				+ "\n"  + jobsManager.MyMineralBuilding.NbrOfSlaveAssigned.ToString();
 	}
 	void efficiencyOfPeopleTextDisplay(){
-		if (jobsManager.JobsBtnPressed){
-			if ( jobsManager.JobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.huntingBtn.ToString()  ){
+		if (jobsManager.JobsOrCityBtnPressed){
+			if ( jobsManager.JobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.huntingBtn.ToString()  ){
 				displayOfEfficiencyOfAViking.text = gameManager.Resources.People.Vikings.FoodGatheringEfficiency.ToString();
 				displayOfEfficiencyOfAShieldMaiden.text = gameManager.Resources.People.ShieldMaidens.FoodGatheringEfficiency.ToString();
 				displayOfEfficiencyOfASlave.text = gameManager.Resources.People.Slaves.FoodGatheringEfficiency.ToString();
 			}
 
-			else if ( jobsManager.JobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString()  ){
+			else if ( jobsManager.JobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString()  ){
 				if (jobsManager.WoodOrIronBtnPressed){
 					if (jobsManager.WoodOrIronBtnPressed.tag == ConstantsAndEnums.tagPanelJobs.ironBtn.ToString()){
 						displayOfEfficiencyOfAViking.text = gameManager.Resources.People.Vikings.IronGatheringEfficiency.ToString();
@@ -139,7 +139,7 @@ public class TextManager : Singleton<TextManager> {
 				}
 			}
 			
-			else if (jobsManager.JobsBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString()){
+			else if (jobsManager.JobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString()){
 				displayOfEfficiencyOfAViking.text = gameManager.Resources.People.Vikings.ShipConstructionEffeciency.ToString();
 				displayOfEfficiencyOfAShieldMaiden.text = gameManager.Resources.People.ShieldMaidens.ShipConstructionEffeciency.ToString();
 				displayOfEfficiencyOfASlave.text = gameManager.Resources.People.Slaves.ShipConstructionEffeciency.ToString();

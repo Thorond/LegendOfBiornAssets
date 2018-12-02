@@ -52,15 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  displayOfNbrOfHunter: {fileID: 0}
-  displayOfNbrOfFisherMen: {fileID: 0}
-  displayOfNbrOfShipBuilder: {fileID: 0}
-  displayOfNbrOfShip: {fileID: 0}
-  displayOfWoodWorkers: {fileID: 0}
-  displayOfIronWorkers: {fileID: 0}
-  displayOfEfficiencyOfAViking: {fileID: 0}
-  displayOfEfficiencyOfAShieldMaiden: {fileID: 0}
-  displayOfEfficiencyOfASlave: {fileID: 0}
-  displayOfShipTypeChosen: {fileID: 0}
-  displayOfLaborNeeded: {fileID: 0}
-  displayOfLaborChosen: {fileID: 0}
+  panelCity: {fileID: 0}
+  panelMap: {fileID: 0}
