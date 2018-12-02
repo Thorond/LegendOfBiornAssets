@@ -11,6 +11,7 @@ public class TextManager : Singleton<TextManager> {
 	[SerializeField] private GameManager gameManager;
 	[SerializeField] private TimeManager timeManager;
 	[SerializeField] private JobsManager jobsManager;
+	[SerializeField] private WarManager warManager;
 
 	// Les différents Texts
 
@@ -19,7 +20,7 @@ public class TextManager : Singleton<TextManager> {
 	[SerializeField] private Text displayOfResources;
 
 
-
+	// Pour les jobs
 	[SerializeField] private Text displayOfNbrOfHunter;
 	// [SerializeField] private Text displayOfNbrOfFisherMen;
 	[SerializeField] private Text displayOfNbrOfShipBuilder;
@@ -36,7 +37,17 @@ public class TextManager : Singleton<TextManager> {
 	[SerializeField] private Text displayOfLaborNeeded;
 	[SerializeField] private Text displayOfLaborChosen;
 
+	// Pour les batailles 
+	[SerializeField] private Text displayOfForceOfAViking;
+	[SerializeField] private Text displayOfForceOfAShieldMaiden;
+	[SerializeField] private Text displayOfTheSpacesOfAShip;
+	[SerializeField] private Text displayOfNbrOfVikingChosenForWar;
+	[SerializeField] private Text displayOfNbrOfShieldMaidenChosenForWar;
+	[SerializeField] private Text displayOfNbrOfShipChosenForWar;
+	[SerializeField] private Text displayOfShipTypeChosenForWar;
+
 	
+	// Pour le timeManager
 	[SerializeField] private Text timeElapsedText;
 
 	// Use this for initialization
@@ -51,7 +62,7 @@ public class TextManager : Singleton<TextManager> {
 	}
 
 
-	// Functions 
+	// ********** FUNCTIONS **********
 
 	public void textDisplay(){
 		peopleAndNbrOfPeopleAndResourcesTextDisplay(); // affichage des personnes disponibles et des ressources
@@ -59,9 +70,14 @@ public class TextManager : Singleton<TextManager> {
 		shipsTextDisplay(); // affichage du nombre de navires de chaque types
 		choiceOfWorkerForShipBuildingTextDisplay(); // Affichage du choix IG du joueur pour la construction de navires
 		efficiencyOfPeopleTextDisplay(); // Affichage de l'efficacité de chaque personnes (Viking ou ShieldMaiden ou Slave) en fonction du travail demandé
+
+		choiceOfFighterForWarTextDisplay();
+		forceOfPeopleTextDisplay();
+
 		timeElapsedTextDisplay(); // Affichage du temps écoulés 
 	}
 
+	// Pour les jobs
 	void choiceOfWorkerForShipBuildingTextDisplay(){
 		displayOfNbrOfVikingChosen.text = jobsManager.MyShipBuilderBuilding.NbrOfAssignedVikingChosen.ToString();
 		displayOfNbrOfShieldMaidenChosen.text = jobsManager.MyShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen.ToString();
@@ -70,8 +86,8 @@ public class TextManager : Singleton<TextManager> {
 		if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type1){
 			displayOfShipTypeChosen.text = "Type of ship to construct : type 1" ;
 			displayOfLaborNeeded.text = "Workforce needed : " + gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded.ToString()
-										+ "\n Wood needed : " + gameManager.Resources.Ships.ShipType1.NbrOfWoodNeededForConstruction.ToString()
-										+ "\n Iron needed : " + gameManager.Resources.Ships.ShipType1.NbrOfIronNeededForConstruction.ToString();
+										+ "\nWood needed : " + gameManager.Resources.Ships.ShipType1.NbrOfWoodNeededForConstruction.ToString()
+										+ "\nIron needed : " + gameManager.Resources.Ships.ShipType1.NbrOfIronNeededForConstruction.ToString();
 		} else if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
 			displayOfShipTypeChosen.text = "Type of ship to construct : type 2" ;
 			// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded.ToString() ;
@@ -81,11 +97,6 @@ public class TextManager : Singleton<TextManager> {
 		}
 		
 		displayOfLaborChosen.text = "Workforce selected : " + jobsManager.MyShipBuilderBuilding.TotalLaborValue.ToString();
-	}
-
-	void timeElapsedTextDisplay(){
-		timeElapsedText.text = "Year " + timeManager.TimeInYear.ToString() + " - Day " + timeManager.TimeInDay.ToString()
-			+ "\n How many days do you want to skip : " + timeManager.TimeChoice.ToString();
 	}
 
 	void peopleAndNbrOfPeopleAndResourcesTextDisplay(){
@@ -155,6 +166,49 @@ public class TextManager : Singleton<TextManager> {
 		displayOfNbrOfShip.text = "Ships  \n Type 1 : " + gameManager.Resources.Ships.NbrOfShipType1.ToString();
 	}
 		
-	
+	// Pour les batailles
+	void choiceOfFighterForWarTextDisplay(){
+		displayOfNbrOfVikingChosenForWar.text = warManager.MyExpedition.NbrOfAssignedVikingChosen.ToString();
+		displayOfNbrOfShieldMaidenChosenForWar.text = warManager.MyExpedition.NbrOfAssignedShieldMaidenChosen.ToString();
+		displayOfNbrOfShipChosenForWar.text = warManager.MyExpedition.NbrOfAssignedShipChosen.ToString();
+
+		// if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type1){
+		// 	displayOfShipTypeChosen.text = "Type of ship to construct : type 1" ;
+		// 	displayOfLaborNeeded.text = "Workforce needed : " + gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded.ToString()
+		// 								+ "\nWood needed : " + gameManager.Resources.Ships.ShipType1.NbrOfWoodNeededForConstruction.ToString()
+		// 								+ "\nIron needed : " + gameManager.Resources.Ships.ShipType1.NbrOfIronNeededForConstruction.ToString();
+		// } else if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
+		// 	displayOfShipTypeChosen.text = "Type of ship to construct : type 2" ;
+		// 	// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded.ToString() ;
+		// } else if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type3){
+		// 	displayOfShipTypeChosen.text = "Type of ship to construct : type 3" ;
+		// 	// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded.ToString() ;
+		// }
+		
+		// displayOfLaborChosen.text = "Workforce selected : " + jobsManager.MyShipBuilderBuilding.TotalLaborValue.ToString();
+	}
+	void forceOfPeopleTextDisplay(){
+		if (warManager.JobsOrCityBtnPressed){
+			
+		
+			displayOfEfficiencyOfAViking.text = gameManager.Resources.People.Vikings.BattleEfficiency.ToString();
+			displayOfEfficiencyOfAShieldMaiden.text = gameManager.Resources.People.ShieldMaidens.BattleEfficiency.ToString();
+			displayOfTheSpacesOfAShip.text = gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen.ToString(); // a faire pour les trois types
+			
+			
+		} else{
+			displayOfEfficiencyOfAViking.text = "";
+			displayOfEfficiencyOfAShieldMaiden.text = "";
+			displayOfTheSpacesOfAShip.text = "";
+		}
+	}
+
+	// Pour le timeManager
+
+	void timeElapsedTextDisplay(){
+		timeElapsedText.text = "Year " + timeManager.TimeInYear.ToString() + " - Day " + timeManager.TimeInDay.ToString()
+			+ "\n How many days do you want to skip : " + timeManager.TimeChoice.ToString();
+	}
+
 
 }

@@ -6,12 +6,9 @@ using UnityEngine.UI;
 public class Battle : MonoBehaviour
 {
 
-    [SerializeField]
-    Text textNbVikings;
-    [SerializeField]
-    Text textNbShieldmaidens;
-    [SerializeField]
-    GameObject panelAttack;
+    [SerializeField] Text textNbVikings;
+    [SerializeField] Text textNbShieldmaidens;
+    [SerializeField] GameObject panelAttack;
 
     enum tagBtn
     {
