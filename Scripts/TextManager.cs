@@ -45,6 +45,8 @@ public class TextManager : Singleton<TextManager> {
 	[SerializeField] private Text displayOfNbrOfShieldMaidenChosenForWar;
 	[SerializeField] private Text displayOfNbrOfShipChosenForWar;
 	[SerializeField] private Text displayOfShipTypeChosenForWar;
+	[SerializeField] private Text displayOfSpacesAvailable;
+
 
 	
 	// Pour le timeManager
@@ -185,22 +187,17 @@ public class TextManager : Singleton<TextManager> {
 		// 	// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded.ToString() ;
 		// }
 		
+		displayOfSpacesAvailable.text = warManager.MyExpedition.NbrOfSpacesAvailable.ToString();
 		// displayOfLaborChosen.text = "Workforce selected : " + jobsManager.MyShipBuilderBuilding.TotalLaborValue.ToString();
 	}
 	void forceOfPeopleTextDisplay(){
-		if (warManager.JobsOrCityBtnPressed){
 			
+	
+		displayOfForceOfAViking.text = "Force d'un viking : " + gameManager.Resources.People.Vikings.BattleEfficiency.ToString();
+		displayOfForceOfAShieldMaiden.text = "Force d'une SM : " +  gameManager.Resources.People.ShieldMaidens.BattleEfficiency.ToString();
+		displayOfTheSpacesOfAShip.text = "Espace dans un navire : " +  gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen.ToString(); // a faire pour les trois types
 		
-			displayOfEfficiencyOfAViking.text = gameManager.Resources.People.Vikings.BattleEfficiency.ToString();
-			displayOfEfficiencyOfAShieldMaiden.text = gameManager.Resources.People.ShieldMaidens.BattleEfficiency.ToString();
-			displayOfTheSpacesOfAShip.text = gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen.ToString(); // a faire pour les trois types
 			
-			
-		} else{
-			displayOfEfficiencyOfAViking.text = "";
-			displayOfEfficiencyOfAShieldMaiden.text = "";
-			displayOfTheSpacesOfAShip.text = "";
-		}
 	}
 
 	// Pour le timeManager

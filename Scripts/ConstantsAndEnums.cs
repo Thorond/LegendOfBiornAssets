@@ -6,7 +6,8 @@ public static class ConstantsAndEnums {
 
 	// JobsManager	
 	public enum tagBtnJob{ huntingBtn, fishingBtn,shipBuilderBtn,rawMaterialBtn,harbor}
-	public enum tagPanelJobs{jobPanel,mapPanel,woodBtn,ironBtn,applyBtn,ship1Btn,ship2Btn,ship3Btn,shipUI}
+	public enum tagPanelJobs{jobPanel,mapPanel,woodBtn,ironBtn,applyBtn,shipUI}
+	public enum tagShipType{ship1Btn,ship2Btn,ship3Btn}
 	public enum tagUpOrDown{upViking,downViking,upShieldMaiden,downShieldMaiden,upSlave,downSlave,upShip,downShip}
 
 	// ShipBuilding

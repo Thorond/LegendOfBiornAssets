@@ -363,7 +363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1252322756124422
 GameObject:
   m_ObjectHideFlags: 1
@@ -430,7 +430,7 @@ GameObject:
   - component: {fileID: 222004035440734848}
   - component: {fileID: 114149585012984216}
   m_Layer: 5
-  m_Name: Efficiency Viking
+  m_Name: Force Viking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 222667311047387720}
   - component: {fileID: 114617745534256792}
   m_Layer: 5
-  m_Name: Efficiency ShieldMaiden
+  m_Name: Force ShieldMaiden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2307,7 +2307,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3
+  m_Text: "Efficacit\xE9 d'un viking"
 --- !u!114 &114158722237335412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4401,7 +4401,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 2
+  m_Text: "Efficacit\xE9 d'une SM"
 --- !u!114 &114623196997530624
 MonoBehaviour:
   m_ObjectHideFlags: 1

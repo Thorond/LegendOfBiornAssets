@@ -14,6 +14,10 @@ public abstract class JobsAndWarManager : Singleton<JobsAndWarManager> {
 	[SerializeField] protected GameManager gameManager;
     [SerializeField] protected GameObject panelCity;
     [SerializeField] protected GameObject panelMap;
+
+	[SerializeField] protected GameObject ship1Btn;
+	[SerializeField] protected GameObject ship2Btn;
+	[SerializeField] protected GameObject ship3Btn;
 	protected Btn jobsOrCityBtnPressed;
 	protected Btn upOrDownBtnPressed;
 	protected Btn whichShipSelected;

@@ -8,6 +8,12 @@ public class Expedition : JobsAndWar {
 
 	public Expedition() : base() {
 		nbrOfShipAssigned = 0;
+		typeOfShipSelected = ConstantsAndEnums.shipType.type1; // encore le même problème
+		nbrOfAssignedVikingChosen = 0;
+		nbrOfAssignedShieldMaidenChosen = 0;
+		nbrOfAssignedShipChosen = 0;
+		nbrOfSpacesAvailable = 0;
+		totalLaborValue = 0;
 	}
 
 	// Variables
@@ -15,7 +21,7 @@ public class Expedition : JobsAndWar {
 	protected int nbrOfShipAssigned;
 
 	// mettre une variable des différents batailles en cours ici 
-	
+
 	private ConstantsAndEnums.shipType typeOfShipSelected;
 	private int nbrOfAssignedVikingChosen;
 	private int nbrOfAssignedShieldMaidenChosen;
@@ -44,6 +50,13 @@ public class Expedition : JobsAndWar {
 	}
 	public void addOrRemoveSeveralShip(int nbr){
 		nbrOfShipAssigned = nbr;
+	}
+
+	public void nbrOfSpacesAvailableCalculation(GameManager gameManager){
+		if (nbrOfAssignedShipChosen > 0 ){
+			nbrOfSpacesAvailable = nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen 
+							- ( nbrOfAssignedVikingChosen + nbrOfAssignedShieldMaidenChosen);
+		}
 	}
 
 }

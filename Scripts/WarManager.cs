@@ -51,57 +51,45 @@ public class WarManager : JobsAndWarManager {
         if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.LindisfarneBtn.ToString())
         {
             currentCity = worldCities.Lindisfarne;
-            Debug.Log("Dans Lindisfarne");
-            Debug.Log("Nom de la ville : " + worldCities.Lindisfarne.NameOfCity);
         }
         else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.DublinBtn.ToString())
         {
-            Debug.Log("Dans Dublin");
             currentCity = worldCities.Dublin;
         }
         else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.YorkBtn.ToString())
         {
-            Debug.Log("Dans York");
             currentCity = worldCities.York;
         }
         else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.NovgorodBtn.ToString())
         {
-            Debug.Log("Dans Novgorod");
             currentCity = worldCities.Novgorod;
         }
         else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.KiovBtn.ToString())
         {
-            Debug.Log("Dans Kiov");
             currentCity = worldCities.Kiov;
         }
         else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.ConstantinopleBtn.ToString())
         {
-            Debug.Log("Dans Constantinople");
             currentCity = worldCities.Constantinople;
         }
         else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.BagdadBtn.ToString())
         {
-            Debug.Log("Dans Bagdad");
             currentCity = worldCities.Bagdad;
         }
         else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.ParisBtn.ToString())
         {
-            Debug.Log("Dans Paris");
             currentCity = worldCities.Paris;
         }
         else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.BordeauxBtn.ToString())
         {
-            Debug.Log("Dans Bordeaux");
             currentCity = worldCities.Bordeaux;
         }
         else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.LunaBtn.ToString())
         {
-            Debug.Log("Dans Luna");
             currentCity = worldCities.Luna;
         }
         else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.LisbonneBtn.ToString())
         {
-            Debug.Log("Dans Lisbonne");
             currentCity = worldCities.Lisbonne;
         }
     }
@@ -113,7 +101,7 @@ public class WarManager : JobsAndWarManager {
 
 	public void attackAssignement(){
 		// attribution des vikings
-		if (gameManager.Resources.People.NbrOfVikings > myExpedition.NbrOfAssignedVikingChosen ){
+		if (gameManager.Resources.People.NbrOfVikings > myExpedition.NbrOfAssignedVikingChosen && myExpedition.NbrOfSpacesAvailable > 0 ){
 			if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagUpOrDown.upViking.ToString())  ){
 				myExpedition.NbrOfAssignedVikingChosen += 1;
 			}
@@ -122,7 +110,7 @@ public class WarManager : JobsAndWarManager {
 			if ( myExpedition.NbrOfAssignedVikingChosen > 0) myExpedition.NbrOfAssignedVikingChosen -= 1;
 		}
 		// attribution des shieldmaidens
-		if (gameManager.Resources.People.NbrOfShieldMaidens > myExpedition.NbrOfAssignedShieldMaidenChosen ){
+		if (gameManager.Resources.People.NbrOfShieldMaidens > myExpedition.NbrOfAssignedShieldMaidenChosen && myExpedition.NbrOfSpacesAvailable > 0 ){
 			if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagUpOrDown.upShieldMaiden.ToString())  ){
 				myExpedition.NbrOfAssignedShieldMaidenChosen += 1;
 			}
@@ -152,6 +140,8 @@ public class WarManager : JobsAndWarManager {
 		// 	myShipBuilderBuilding.assignWork(gameManager,valeur);
 		// }
 
+
+		myExpedition.nbrOfSpacesAvailableCalculation(gameManager);
 		// mise à jour de la valeur effective de la force de main d'oeuvre avec les choix de travailleurs
 		// myShipBuilderBuilding.TotalLaborValue = myShipBuilderBuilding.NbrOfAssignedVikingChosen * gameManager.Resources.People.Vikings.ShipConstructionEffeciency
 		// 				+ myShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen * gameManager.Resources.People.ShieldMaidens.ShipConstructionEffeciency

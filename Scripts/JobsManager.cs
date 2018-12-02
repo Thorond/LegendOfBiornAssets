@@ -22,7 +22,6 @@ public class JobsManager : JobsAndWarManager {
 	private ShipBuilder myShipBuilderBuilding;
 	private MineralGathering myMineralBuilding;
 	private WoodGathering myWoodBuilding;
-
 	
 
 
@@ -53,11 +52,11 @@ public class JobsManager : JobsAndWarManager {
 	}
 	public override void selectedShipType(Btn btnSelected){
 		whichShipSelected = btnSelected;
-		if (whichShipSelected.tag == ConstantsAndEnums.tagPanelJobs.ship1Btn.ToString()){
+		if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship1Btn.ToString()){
 			myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type1;
-		} else if (whichShipSelected.tag == ConstantsAndEnums.tagPanelJobs.ship2Btn.ToString()){
+		} else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship2Btn.ToString()){
 			myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type2;
-		} else if (whichShipSelected.tag == ConstantsAndEnums.tagPanelJobs.ship3Btn.ToString()){
+		} else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship3Btn.ToString()){
 			myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type3;
 		} 
 	}
@@ -79,12 +78,9 @@ public class JobsManager : JobsAndWarManager {
 			if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString()){ // Afficher le panel de la construction de navires
 				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.applyBtn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.ship1Btn.ToString()); 
-				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.ship2Btn.ToString()); 
-				if (btnToActivate) btnToActivate.SetActive(true);
-				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.ship3Btn.ToString()); 
-				if (btnToActivate) btnToActivate.SetActive(true);
+				ship1Btn.SetActive(true);
+				ship2Btn.SetActive(true);
+				ship3Btn.SetActive(true);
 				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.shipUI.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
 			}
@@ -197,6 +193,9 @@ public class JobsManager : JobsAndWarManager {
 
 	
 	public void setAllJobPanelInactive(){
+		ship1Btn.SetActive(false);
+		ship2Btn.SetActive(false);
+		ship3Btn.SetActive(false);
 		foreach ( GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject))){
 			foreach( ConstantsAndEnums.tagPanelJobs tagou in Enum.GetValues(typeof(ConstantsAndEnums.tagPanelJobs)))
 				if ( go.tag.Equals(tagou.ToString())) go.SetActive(false);
