@@ -48,6 +48,16 @@ public class TextManager : Singleton<TextManager> {
 	[SerializeField] private Text displayOfSpacesAvailable;
 	[SerializeField] private Text displayOfTotalFighterForce;
 
+	// pour les villes 
+
+	
+    [SerializeField] private Text cityName;
+    [SerializeField] private Text nbSoldats;
+    [SerializeField] private Text dificulty;
+    [SerializeField] private Text gold;
+    [SerializeField] private Text wood;
+    [SerializeField] private Text iron;
+    [SerializeField] private Text slaves;
 
 	
 	// Pour le timeManager
@@ -74,8 +84,8 @@ public class TextManager : Singleton<TextManager> {
 		choiceOfWorkerForShipBuildingTextDisplay(); // Affichage du choix IG du joueur pour la construction de navires
 		efficiencyOfPeopleTextDisplay(); // Affichage de l'efficacité de chaque personnes (Viking ou ShieldMaiden ou Slave) en fonction du travail demandé
 
-		choiceOfFighterForWarTextDisplay();
-		forceOfPeopleTextDisplay();
+		choiceOfFighterForWarTextDisplay(); // affiche le choix des navires et des guerriers à envoyer en bataille
+		forceOfPeopleTextDisplay(); // affiche la force de chaque catégorie de guerriers
 
 		timeElapsedTextDisplay(); // Affichage du temps écoulés 
 	}
@@ -174,19 +184,6 @@ public class TextManager : Singleton<TextManager> {
 		displayOfNbrOfVikingChosenForWar.text = warManager.MyExpedition.NbrOfAssignedVikingChosen.ToString();
 		displayOfNbrOfShieldMaidenChosenForWar.text = warManager.MyExpedition.NbrOfAssignedShieldMaidenChosen.ToString();
 		displayOfNbrOfShipChosenForWar.text = warManager.MyExpedition.NbrOfAssignedShipChosen.ToString();
-
-		// if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type1){
-		// 	displayOfShipTypeChosen.text = "Type of ship to construct : type 1" ;
-		// 	displayOfLaborNeeded.text = "Workforce needed : " + gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded.ToString()
-		// 								+ "\nWood needed : " + gameManager.Resources.Ships.ShipType1.NbrOfWoodNeededForConstruction.ToString()
-		// 								+ "\nIron needed : " + gameManager.Resources.Ships.ShipType1.NbrOfIronNeededForConstruction.ToString();
-		// } else if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
-		// 	displayOfShipTypeChosen.text = "Type of ship to construct : type 2" ;
-		// 	// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded.ToString() ;
-		// } else if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type3){
-		// 	displayOfShipTypeChosen.text = "Type of ship to construct : type 3" ;
-		// 	// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded.ToString() ;
-		// }
 		
 		displayOfSpacesAvailable.text = "Space available : " + warManager.MyExpedition.NbrOfSpacesAvailable.ToString()
 									+ "\n\nSpace available for loots : " 
@@ -203,6 +200,19 @@ public class TextManager : Singleton<TextManager> {
 		
 			
 	}
+
+	// Pour les villes 
+
+	public void CityDetailsCreation()
+    {
+        cityName.text = warManager.CurrentCity.NameOfCity;
+        nbSoldats.text = warManager.CurrentCity.NbSoldats.ToString();
+        dificulty.text = warManager.CurrentCity.DificultyCity.ToString();
+        gold.text = warManager.CurrentCity.LootDetail.Gold.ToString();
+        wood.text = warManager.CurrentCity.LootDetail.Wood.ToString();
+        iron.text = warManager.CurrentCity.LootDetail.Iron.ToString();
+        slaves.text = warManager.CurrentCity.LootDetail.Slaves.ToString();
+    }
 
 	// Pour le timeManager
 

@@ -73,10 +73,10 @@ public class Expedition : JobsAndWar {
 	}
 
 
-	public void assignWork(GameManager gameManager){
+	public void assignWork(GameManager gameManager, City currentCity){
 		if (nbrOfAssignedVikingChosen > 0 || nbrOfAssignedShieldMaidenChosen > 0 ){
 			if ( nbrOfSimulatneousBattle < NBR_MAX_OF_SIMULTANEOUS_BATTLE ){
-				Battle battle = new Battle(nbrOfAssignedVikingChosen,nbrOfAssignedShieldMaidenChosen,nbrOfAssignedShipChosen);
+				Battle battle = new Battle(nbrOfAssignedVikingChosen,nbrOfAssignedShieldMaidenChosen,nbrOfAssignedShipChosen,currentCity);
 				battles[nbrOfSimulatneousBattle] = battle;
 				nbrOfSimulatneousBattle += 1;
 
@@ -93,8 +93,13 @@ public class Expedition : JobsAndWar {
 				nbrOfSpacesAvailableCalculation(gameManager);
 				totalForceValueCalculation(gameManager);
 
+			} else {
+				// dire que le joueur à atteint le nombre max d'attaques simulténées
 			}
 			
+		}
+		else {
+			// dire qu'il faut selectionner des guerriers
 		}
 	}
 }

@@ -10,10 +10,11 @@ public class Battle
     // public Battle(){
         
     // }
-    public Battle(int vik,int sm,int ship){
+    public Battle(int vik,int sm,int ship, City city){
         this.nbrOfViking = vik;
         this.nbrOfShieldMaiden = sm;
         this.nbrOfShip = ship;
+        this.city = city;
     }
 
     // Variables
@@ -21,6 +22,7 @@ public class Battle
     private int nbrOfViking;
     private int nbrOfShieldMaiden;
     private int nbrOfShip;
+    private City city;
 
     // Getters and Setters
 

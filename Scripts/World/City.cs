@@ -8,22 +8,19 @@ public class City
 
     private String nameOfCity;
     private int nbSoldats;
-    private dificultyInGame cityDificulty;
+    private ConstantsAndEnums.dificultyInGame cityDificulty;
+
+    private int approximatedTripAndBattleTime;
     private Loot loot;
 
-    public enum dificultyInGame
-    {
-        easy,
-        medium,
-        hard
-    }
 
     //Constructor
-    public City(String name, int nbS, dificultyInGame cityDif, Loot l)
+    public City(String name, int nbS, ConstantsAndEnums.dificultyInGame cityDif,int time, Loot l)
     {
         nameOfCity = name;
         nbSoldats = nbS;
         cityDificulty = cityDif;
+        approximatedTripAndBattleTime = time;
         loot = l;
     }
 
@@ -52,7 +49,7 @@ public class City
         }
     }
 
-    public dificultyInGame DificultyCity
+    public ConstantsAndEnums.dificultyInGame DificultyCity
     {
         get
         {
@@ -64,6 +61,7 @@ public class City
         }
     }
 
+    public int ApproximatedTripAndBattleTime{get{return approximatedTripAndBattleTime;}set{approximatedTripAndBattleTime = value;}}
     public Loot LootDetail
     {
         get
@@ -76,15 +74,4 @@ public class City
         }
     }
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

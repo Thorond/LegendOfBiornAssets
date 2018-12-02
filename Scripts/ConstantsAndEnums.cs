@@ -22,4 +22,6 @@ public static class ConstantsAndEnums {
 
     public enum tagBtnCity{LindisfarneBtn, DublinBtn, YorkBtn, NovgorodBtn, KiovBtn, ConstantinopleBtn, BagdadBtn,
         ParisBtn, BordeauxBtn, LunaBtn, LisbonneBtn}
+		
+    public enum dificultyInGame{easy, medium, hard}
 }

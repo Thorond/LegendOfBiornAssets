@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class WarManager : JobsAndWarManager {
 	
@@ -20,17 +19,10 @@ public class WarManager : JobsAndWarManager {
 	private Expedition myExpedition;
 
 	
-    [SerializeField] private Text cityName;
-    [SerializeField] private Text nbSoldats;
-    [SerializeField] private Text dificulty;
-    [SerializeField] private Text gold;
-    [SerializeField] private Text wood;
-    [SerializeField] private Text iron;
-    [SerializeField] private Text slaves;
-
 	// Getters and Setters
 
 	public Expedition MyExpedition { get{return myExpedition;}}
+	public City CurrentCity { get{return currentCity;}}
 
 	
 	// Use this for initialization
@@ -143,7 +135,7 @@ public class WarManager : JobsAndWarManager {
 
 		// application des travailleurs pour les trois types de navires
 		if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagShipType.applyBtn.ToString()) ){
-			myExpedition.assignWork(gameManager);
+			myExpedition.assignWork(gameManager, currentCity);
 		}
 
 
@@ -151,19 +143,6 @@ public class WarManager : JobsAndWarManager {
 		myExpedition.totalForceValueCalculation(gameManager);
 	}
 
-    // a mettre dans text Manager
-	// *****
-    public void CityDetailsCreation()
-    {
-        cityName.text = currentCity.NameOfCity;
-        nbSoldats.text = currentCity.NbSoldats.ToString();
-        dificulty.text = currentCity.DificultyCity.ToString();
-        gold.text = currentCity.LootDetail.Gold.ToString();
-        wood.text = currentCity.LootDetail.Wood.ToString();
-        iron.text = currentCity.LootDetail.Iron.ToString();
-        slaves.text = currentCity.LootDetail.Slaves.ToString();
-    }
-	// *****
 
     public void AfficherDetails()
     {
