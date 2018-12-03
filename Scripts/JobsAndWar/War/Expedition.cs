@@ -2,104 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Expedition : JobsAndWar {
+public class Expedition {
+    // Constructor
 
-	// Constructor 
+    // public Expedition(){
+        
+    // }
+    public Expedition(int vik,int sm,int ship, City city){
+		this.battleInProgress = true;
+        this.nbrOfViking = vik;
+        this.nbrOfShieldMaiden = sm;
+        this.nbrOfShip = ship;
+        this.city = city;
+        this.durationOfMission = city.ApproximatedTripAndBattleTime;
+    }
 
-	public Expedition() : base() {
-		nbrOfShipAssigned = 0;
-		typeOfShipSelected = ConstantsAndEnums.shipType.type1; // encore le même problème
-		nbrOfAssignedVikingChosen = 0;
-		nbrOfAssignedShieldMaidenChosen = 0;
-		nbrOfAssignedShipChosen = 0;
-		nbrOfSpacesAvailable = 0;
-		totalForceValue = 0;
+    // Variables
 
-		nbrOfSimulatneousBattle = 0;
+	private bool battleInProgress;
+    private int nbrOfViking;
+    private int nbrOfShieldMaiden;
+    private int nbrOfShip;
+    private City city;
 
-		battles = new Battle[5];
-	}
+    private int durationOfMission;
 
-	// Variables
+    // Getters and Setters
 
-	protected int nbrOfShipAssigned;
+    public bool BattleInProgress{get{return battleInProgress;}set{battleInProgress = value;}}
+    public int NbrOfViking{get{return nbrOfViking;}set{nbrOfViking = value;}}
+    public int NbrOfShieldMaiden{get{return nbrOfShieldMaiden;}set{nbrOfShieldMaiden = value;}}
+    public int NbrOfShip{get{return nbrOfShip;}}
+    public City City{get{return city;}}
+    public int DurationOfMission{get{return durationOfMission;}}
 
-	// mettre une variable des différents batailles en cours ici 
+    // Functions
 
-	private ConstantsAndEnums.shipType typeOfShipSelected;
-	private int nbrOfAssignedVikingChosen;
-	private int nbrOfAssignedShieldMaidenChosen;
-	private int nbrOfAssignedShipChosen;
-	private int nbrOfSpacesAvailable;
-	private int totalForceValue;
-
-	private int NBR_MAX_OF_SIMULTANEOUS_BATTLE = 5;
-	private int nbrOfSimulatneousBattle;
-	private Battle[] battles;
-
-
-	// Getters and Setters
-
-	public int NbrOfShipAssigned{get{return nbrOfShipAssigned;}set{nbrOfShipAssigned = value;}}
-	public ConstantsAndEnums.shipType TypeOfShipSelected{ get{return typeOfShipSelected;} set{ typeOfShipSelected = value;}}
-	public int NbrOfAssignedVikingChosen{ get{return nbrOfAssignedVikingChosen;} set{ nbrOfAssignedVikingChosen = value;}}
-	public int NbrOfAssignedShieldMaidenChosen{ get{return nbrOfAssignedShieldMaidenChosen;} set{ nbrOfAssignedShieldMaidenChosen = value;}}
-	public int NbrOfAssignedShipChosen{ get{return nbrOfAssignedShipChosen;} set{ nbrOfAssignedShipChosen = value;}}
-	public int NbrOfSpacesAvailable{ get{return nbrOfSpacesAvailable;} set{ nbrOfSpacesAvailable = value;}}
-	public int TotalForceValue{ get{return totalForceValue;} set{ totalForceValue = value;}}
-
-	public Battle[] Battles{get{return battles;}}
-
-	// Functions 
-
-	public void assignAnotherShip(){
-		nbrOfShipAssigned += 1;
-	}
-	public void removeAShip(){
-		nbrOfShipAssigned -= 1;
-	}
-	public void addOrRemoveSeveralShip(int nbr){
-		nbrOfShipAssigned = nbr;
-	}
-
-	public void nbrOfSpacesAvailableCalculation(GameManager gameManager){
-		nbrOfSpacesAvailable = nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen 
-						- ( nbrOfAssignedVikingChosen + nbrOfAssignedShieldMaidenChosen);
-		
-	}
-	public void totalForceValueCalculation(GameManager gameManager){
-		totalForceValue = nbrOfAssignedVikingChosen * gameManager.Resources.People.Vikings.BattleEfficiency 
-						+ nbrOfAssignedShieldMaidenChosen * gameManager.Resources.People.ShieldMaidens.BattleEfficiency ;
-	}
-
-
-	public void assignWork(GameManager gameManager, City currentCity){
-		if (nbrOfAssignedVikingChosen > 0 || nbrOfAssignedShieldMaidenChosen > 0 ){
-			if ( nbrOfSimulatneousBattle < NBR_MAX_OF_SIMULTANEOUS_BATTLE ){
-				Battle battle = new Battle(nbrOfAssignedVikingChosen,nbrOfAssignedShieldMaidenChosen,nbrOfAssignedShipChosen,currentCity);
-				battles[nbrOfSimulatneousBattle] = battle;
-				nbrOfSimulatneousBattle += 1;
-
-				// mise a jour des donnees de jeu
-				gameManager.Resources.People.NbrOfVikings -= nbrOfAssignedVikingChosen;
-				gameManager.Resources.People.NbrOfShieldMaidens -= nbrOfAssignedShieldMaidenChosen;
-				gameManager.Resources.Ships.NbrOfShipType1 -= nbrOfAssignedShipChosen;
-
-				// réinitialisation des paramètres 
-				nbrOfAssignedVikingChosen = 0;
-				nbrOfAssignedShieldMaidenChosen = 0;
-				nbrOfAssignedShipChosen = 0;
-
-				nbrOfSpacesAvailableCalculation(gameManager);
-				totalForceValueCalculation(gameManager);
-
-			} else {
-				// dire que le joueur à atteint le nombre max d'attaques simulténées
+    
+	public void missionUpdate(){
+		if ( battleInProgress ) {
+			if ( durationOfMission <= 0 ){
+				// dérouler la bataille, appeler battle
+				
+				battleInProgress = false;
+			} else if ( durationOfMission > 0 ){
+				durationOfMission -= 1;
 			}
-			
-		}
-		else {
-			// dire qu'il faut selectionner des guerriers
-		}
+		} 
 	}
 }

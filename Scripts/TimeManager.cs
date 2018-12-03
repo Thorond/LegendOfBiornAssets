@@ -41,7 +41,7 @@ public class TimeManager : Singleton<TimeManager> {
 	// Update is called once per frame
 	void Update () {
 		updateTime();
-		updateResources();
+		updateJobsAndWar();
 	}
 
 	// Functions 
@@ -58,7 +58,7 @@ public class TimeManager : Singleton<TimeManager> {
 		}
 	}
 
-	void updateTimeElapesed(){
+	void updateTimeElapsed(){
 		timeInDay += timeElapsed;
 		if ( timeInDay >= 365 ){
 			timeInYear += timeInDay / 365;
@@ -74,7 +74,7 @@ public class TimeManager : Singleton<TimeManager> {
 				timeChoice += 1;
 			} else if ( btnSelected.tag.Equals(tagTime.applyTime.ToString())){
 				timeElapsed = timeChoice;
-				updateTimeElapesed();
+				updateTimeElapsed();
 				inGameDate = DateTime.Now;
 				resourceFrequency = DateTime.Now;
 				timeChoice = 0;
@@ -82,7 +82,7 @@ public class TimeManager : Singleton<TimeManager> {
 		}
 	}
 	
-	void updateResources(){
+	void updateJobsAndWar(){
 		if ( timeElapsed > 0 ){
 			updateJobs(timeElapsed * 3);
 			jobsManager.MyShipBuilderBuilding.RemainingTimeForConstruction -= timeElapsed;
@@ -93,7 +93,7 @@ public class TimeManager : Singleton<TimeManager> {
 				updateJobs(1);
 				resourceFrequency = DateTime.Now;
 			} 
-			else if (DateTime.Now.Subtract(resourceFrequency).Seconds > TIME_OF_A_DAY_IN_SECONDS){
+			else if (DateTime.Now.Subtract(resourceFrequency).Seconds > TIME_OF_A_DAY_IN_SECONDS){ 
 				jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People);
 			}
 		}
@@ -108,5 +108,7 @@ public class TimeManager : Singleton<TimeManager> {
 		updateJob(jobsManager.MyWoodBuilding,time);
 		updateJob(jobsManager.MyMineralBuilding,time);
 	}
+
+	
 
 }

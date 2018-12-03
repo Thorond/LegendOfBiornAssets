@@ -4,6 +4,10 @@ using UnityEngine;
 
 public static class ConstantsAndEnums {
 
+	// Global
+
+	public enum people{Viking,ShieldMaiden,Slave}
+
 	// JobsManager	
 	public enum tagBtnJob{ huntingBtn, fishingBtn,shipBuilderBtn,rawMaterialBtn,harbor}
 	public enum tagPanelJobs{jobPanel,mapPanel,woodBtn,ironBtn,shipUI}

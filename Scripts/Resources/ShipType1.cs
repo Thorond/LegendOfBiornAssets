@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShipType1 {
 
 	// Variables 
-	private int nbrOfMenNeededForNavigation;
+	private int nbrOfMenNeededForNavigation; // a enlever?
 	private int totalCapacityOfMen;
 	private int totalCapacityOfLoot;
 	private int nbrOfLaborNeeded;

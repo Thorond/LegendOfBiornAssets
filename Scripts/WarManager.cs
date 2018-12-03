@@ -7,7 +7,7 @@ public class WarManager : JobsAndWarManager {
 	// Constructor 
 	public WarManager() : base() {
 		worldCities = new WorldCity();
-		myExpedition = new Expedition();
+		myExpedition = new ExpeditionManager();
 	}
 
 	// Variables
@@ -16,12 +16,12 @@ public class WarManager : JobsAndWarManager {
     [SerializeField] GameObject panelDetails;
 	private WorldCity worldCities;
 	private City currentCity;
-	private Expedition myExpedition;
+	private ExpeditionManager myExpedition;
 
 	
 	// Getters and Setters
 
-	public Expedition MyExpedition { get{return myExpedition;}}
+	public ExpeditionManager MyExpedition { get{return myExpedition;}}
 	public City CurrentCity { get{return currentCity;}}
 
 	
