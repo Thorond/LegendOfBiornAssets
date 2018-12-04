@@ -24,8 +24,6 @@ public class ExpeditionManager : JobsAndWar {
 
 	protected int nbrOfShipAssigned;
 
-	// mettre une variable des différents batailles en cours ici 
-
 	private ConstantsAndEnums.shipType typeOfShipSelected;
 	private int nbrOfAssignedVikingChosen;
 	private int nbrOfAssignedShieldMaidenChosen;
@@ -35,7 +33,7 @@ public class ExpeditionManager : JobsAndWar {
 
 	private int NBR_MAX_OF_SIMULTANEOUS_EXPEDITION = 5;
 	private int nbrOfSimulatneousExpedition;
-	private Expedition[] expeditions;
+	private Expedition[] expeditions; // différentes batailles en cours
 
 
 	// Getters and Setters

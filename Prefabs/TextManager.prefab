@@ -54,6 +54,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   timeManager: {fileID: 0}
   jobsManager: {fileID: 0}
+  warManager: {fileID: 0}
   nameOfPeople: {fileID: 0}
   displayOfNbrOfPeople: {fileID: 0}
   displayOfResources: {fileID: 0}
@@ -71,4 +72,50 @@ MonoBehaviour:
   displayOfShipTypeChosen: {fileID: 0}
   displayOfLaborNeeded: {fileID: 0}
   displayOfLaborChosen: {fileID: 0}
+  displayOfForceOfAViking: {fileID: 0}
+  displayOfForceOfAShieldMaiden: {fileID: 0}
+  displayOfTheSpacesOfAShip: {fileID: 0}
+  displayOfNbrOfVikingChosenForWar: {fileID: 0}
+  displayOfNbrOfShieldMaidenChosenForWar: {fileID: 0}
+  displayOfNbrOfShipChosenForWar: {fileID: 0}
+  displayOfShipTypeChosenForWar: {fileID: 0}
+  displayOfSpacesAvailable: {fileID: 0}
+  displayOfTotalFighterForce: {fileID: 0}
+  cityName: {fileID: 0}
+  nbSoldats: {fileID: 0}
+  difficultyCityDisplay: {fileID: 0}
+  gold: {fileID: 0}
+  wood: {fileID: 0}
+  iron: {fileID: 0}
+  slaves: {fileID: 0}
   timeElapsedText: {fileID: 0}
+  easyDifficulty: {fileID: 21300026, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
+  mediumDifficulty: {fileID: 0}
+  hardDifficulty: {fileID: 0}
+  exploAttack: {fileID: 21300016, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
+  attackAttack: {fileID: 21300018, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
+  razeAttack: {fileID: 21300020, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
+  typeOfAttack:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  cityAttacked:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  RemainingTime:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  difficultyCityImageDisplay:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

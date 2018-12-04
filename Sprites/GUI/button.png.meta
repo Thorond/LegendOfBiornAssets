@@ -5,6 +5,7 @@ TextureImporter:
     21300000: upNormal
     21300002: downNormal
     21300004: validateNormal
+    21300006: backBtn
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -157,13 +158,33 @@ TextureImporter:
         width: 309
         height: 292
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: e784dce10e962cd469727ba2b8318764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: backBtn
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 1745
+        width: 291
+        height: 285
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: def3fe07fd690714582603c6a14fad25
       vertices: []
       indices: 
       edges: []

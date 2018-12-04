@@ -53,7 +53,7 @@ public class TextManager : Singleton<TextManager> {
 	
     [SerializeField] private Text cityName;
     [SerializeField] private Text nbSoldats;
-    [SerializeField] private Text dificulty;
+    [SerializeField] private Text difficultyCityDisplay;
     [SerializeField] private Text gold;
     [SerializeField] private Text wood;
     [SerializeField] private Text iron;
@@ -62,6 +62,23 @@ public class TextManager : Singleton<TextManager> {
 	
 	// Pour le timeManager
 	[SerializeField] private Text timeElapsedText;
+
+
+	// Pour warManager
+	[SerializeField] private Sprite easyDifficulty;
+	[SerializeField] private Sprite mediumDifficulty;
+	[SerializeField] private Sprite hardDifficulty;
+	[SerializeField] private Sprite exploAttack;
+	[SerializeField] private Sprite attackAttack;
+	[SerializeField] private Sprite razeAttack;
+
+
+	[SerializeField] private Image[] typeOfAttack;
+	[SerializeField] private Text[] cityAttacked;
+	[SerializeField] private Text[] RemainingTime;
+	[SerializeField] private Image[] difficultyCityImageDisplay;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -203,11 +220,11 @@ public class TextManager : Singleton<TextManager> {
 
 	// Pour les villes 
 
-	public void CityDetailsCreation()
+	void CityDetailsCreation()
     {
         cityName.text = warManager.CurrentCity.NameOfCity;
         nbSoldats.text = warManager.CurrentCity.NbSoldats.ToString();
-        dificulty.text = warManager.CurrentCity.DificultyCity.ToString();
+        difficultyCityDisplay.text = warManager.CurrentCity.DificultyCity.ToString();
         gold.text = warManager.CurrentCity.LootDetail.Gold.ToString();
         wood.text = warManager.CurrentCity.LootDetail.Wood.ToString();
         iron.text = warManager.CurrentCity.LootDetail.Iron.ToString();
@@ -221,5 +238,42 @@ public class TextManager : Singleton<TextManager> {
 			+ "\n How many days do you want to skip : " + timeManager.TimeChoice.ToString();
 	}
 
+
+
+	// Pour warManager
+
+	public void battleGeneralPanelDisplay(){
+		int iteration = 0;
+		foreach (Expedition expedition in warManager.MyExpedition.Expeditions ) {
+			if (expedition != null){
+				if (expedition.BattleInProgress){
+
+					cityAttacked[iteration].text = expedition.City.NameOfCity;
+					RemainingTime[iteration].text = expedition.DurationOfMission.ToString();
+
+					if ( expedition.City.DificultyCity == ConstantsAndEnums.dificultyInGame.easy ){
+						difficultyCityImageDisplay[iteration].sprite = easyDifficulty;
+					} else if ( expedition.City.DificultyCity == ConstantsAndEnums.dificultyInGame.medium ){
+						difficultyCityImageDisplay[iteration].sprite = mediumDifficulty;
+					} else if ( expedition.City.DificultyCity == ConstantsAndEnums.dificultyInGame.hard ){
+						difficultyCityImageDisplay[iteration].sprite = hardDifficulty;
+					}
+					difficultyCityImageDisplay[iteration].color = new Color(255,255,255,255);
+				} else {
+					hideImagesAndTexts(iteration);
+				}
+			} else {
+				hideImagesAndTexts(iteration);
+			}
+			iteration +=1;
+		}
+	}
+
+	void hideImagesAndTexts(int iteration){
+		typeOfAttack[iteration].color = new Color(0,0,0,0);
+		cityAttacked[iteration].text = "";
+		RemainingTime[iteration].text = "";
+		difficultyCityImageDisplay[iteration].color = new Color(0,0,0,0);
+	}
 
 }

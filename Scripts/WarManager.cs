@@ -14,6 +14,7 @@ public class WarManager : JobsAndWarManager {
 
 	
     [SerializeField] GameObject panelDetails;
+    [SerializeField] GameObject battlesPanel;
 	private WorldCity worldCities;
 	private City currentCity;
 	private ExpeditionManager myExpedition;
@@ -93,6 +94,7 @@ public class WarManager : JobsAndWarManager {
         {
             currentCity = worldCities.Lisbonne;
         }
+
     }
 
 	
@@ -158,7 +160,15 @@ public class WarManager : JobsAndWarManager {
     {
         panelCity.SetActive(true);
 		panelMap.SetActive(false);
+		battlesPanel.SetActive(false);
     }
+
+	public void BattleBtnFunction(){
+        panelCity.SetActive(true);
+		panelMap.SetActive(false);
+        panelDetails.SetActive(false);
+		battlesPanel.SetActive(true);
+	}
 
 
 }
