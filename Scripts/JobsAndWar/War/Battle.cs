@@ -15,9 +15,9 @@ public static class Battle {
 
     private static int percentageLossOfVikings = 0;
     private static float percentageLossOfSieldMaidens = 0;
-    private static float percentageLossAcceptedWhenExplore = 20/100;
+    private static float percentageLossAcceptedWhenExplore = 80/100;
     private static float percentageLossAcceptedWhenPlunder = 50/100;
-    private static float percentageLossAcceptedWhenRaze = 80/100;
+    private static float percentageLossAcceptedWhenRaze = 20/100;
 
     private static int nbrVikingStart = 0;
     private static int nbrShieldMaidenStart = 0;
@@ -83,11 +83,13 @@ public static class Battle {
             weLost = lossAccepted(expedition,nbrVikingBattle + nbrShieldMaidenBattle,nbrVikingStart+nbrShieldMaidenStart);
             ennemyLost = lossAccepted(expedition,nbrSoldierBattle,nbrSoldierStart);
         }
-        // résultat?
+        // résultat
         if ( ennemyLost ) { // battle won
             // fonction de récupération de loot
+            // Debug.Log("We won");
         } else if ( weLost ){ // battle lost
             // fonction de CATASTROOOOOPHE
+            // Debug.Log("We lost");
         }
 
         expedition.NbrOfViking = nbrVikingBattle;

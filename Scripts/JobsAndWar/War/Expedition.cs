@@ -49,6 +49,7 @@ public class Expedition {
 			}
 			if ( durationOfMission <= 0 ){
 				// dérouler la bataille, appeler battle
+                Battle.battleCourse(this);
 				
 				battleInProgress = false;
 			} 
