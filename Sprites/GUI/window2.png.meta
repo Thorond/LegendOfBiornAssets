@@ -3,6 +3,8 @@ guid: 7a1007cc05a3f3a4e8c9e62d0eb18f8f
 TextureImporter:
   fileIDToRecycleName:
     21300000: panel
+    21300002: panel2
+    21300004: panel3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -126,13 +128,53 @@ TextureImporter:
         width: 1176
         height: 721
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 8d6c9514bb985cd449edc058ac887119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panel2
+      rect:
+        serializedVersion: 2
+        x: 2040
+        y: 6150
+        width: 851
+        height: 766
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2a085d2e0bf6e24d91d2d4330dedba6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: panel3
+      rect:
+        serializedVersion: 2
+        x: 1951
+        y: 5234
+        width: 846
+        height: 807
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee0b158222d3c2a4c91af210f6792040
       vertices: []
       indices: 
       edges: []

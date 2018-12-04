@@ -3,6 +3,7 @@ guid: 935b9d49de6a1624687c90261e0bf192
 TextureImporter:
   fileIDToRecycleName:
     21300000: ship1profil1
+    21300002: ship1_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -115,13 +116,33 @@ TextureImporter:
         width: 692
         height: 414
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: cac6d1381cf7dae46aba1e553f4af902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ship1_0
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 1806
+        width: 373
+        height: 552
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c52e94a2951ae0f46a00ae656393b78c
       vertices: []
       indices: 
       edges: []

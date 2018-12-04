@@ -7,6 +7,7 @@ TextureImporter:
     21300004: panelMap
     21300006: window_0
     21300008: panelMap2
+    21300010: combatBtn
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -190,7 +191,7 @@ TextureImporter:
         width: 1
         height: 790
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,13 +211,33 @@ TextureImporter:
         width: 853
         height: 769
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 827d68de2c6405449a082ae1ea735215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: combatBtn
+      rect:
+        serializedVersion: 2
+        x: 2492
+        y: 1575
+        width: 541
+        height: 397
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80edaf83989c2c24ba328295456271cf
       vertices: []
       indices: 
       edges: []
