@@ -15,6 +15,9 @@ public class JobsManager : JobsAndWarManager {
 	}
 
 	// Variables
+
+	[SerializeField] GameObject jobPanel;
+	[SerializeField] GameObject shipUI;
 	private Btn woodOrIronBtnPressed;
 
 	private Hunting myHuntingBuilding;
@@ -67,8 +70,8 @@ public class JobsManager : JobsAndWarManager {
 		myShipBuilderBuilding.closeAssignment();
 		if ( jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.huntingBtn.ToString() || jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString()
 			|| jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString()  ){
-			GameObject btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.jobPanel.ToString()); 
-			if (btnToActivate) btnToActivate.SetActive(true); // Afficher le panel de la chasse
+			GameObject btnToActivate;
+			jobPanel.SetActive(true); // Afficher le panel des métiers
 			if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString()){ // afficher le panel du travail des matières premières
 				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.woodBtn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
@@ -80,8 +83,7 @@ public class JobsManager : JobsAndWarManager {
 				ship1Btn.SetActive(true);
 				ship2Btn.SetActive(true);
 				ship3Btn.SetActive(true);
-				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.shipUI.ToString()); 
-				if (btnToActivate) btnToActivate.SetActive(true);
+				shipUI.SetActive(true);
 			}
 		} else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.harbor.ToString()){
 			panelCity.SetActive(false);
@@ -192,10 +194,12 @@ public class JobsManager : JobsAndWarManager {
 
 	
 	public void setAllJobPanelInactive(){
+		jobPanel.SetActive(false);
 		applyBtn.SetActive(false);
 		ship1Btn.SetActive(false);
 		ship2Btn.SetActive(false);
 		ship3Btn.SetActive(false);
+		shipUI.SetActive(false);
 		foreach ( GameObject go in Resources.FindObjectsOfTypeAll(typeof(GameObject))){
 			foreach( ConstantsAndEnums.tagPanelJobs tagou in Enum.GetValues(typeof(ConstantsAndEnums.tagPanelJobs)))
 				if ( go.tag.Equals(tagou.ToString())) go.SetActive(false);

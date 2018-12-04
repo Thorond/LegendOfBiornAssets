@@ -8,12 +8,13 @@ public class Expedition {
     // public Expedition(){
         
     // }
-    public Expedition(int vik,int sm,int ship, City city){
+    public Expedition(int vik,int sm,int ship, City city, ConstantsAndEnums.possibleAttacks attackChosen){
 		this.battleInProgress = true;
         this.nbrOfViking = vik;
         this.nbrOfShieldMaiden = sm;
         this.nbrOfShip = ship;
         this.city = city;
+        this.attackChosen = attackChosen;
         this.durationOfMission = city.ApproximatedTripAndBattleTime;
     }
 
@@ -24,6 +25,7 @@ public class Expedition {
     private int nbrOfShieldMaiden;
     private int nbrOfShip;
     private City city;
+    private ConstantsAndEnums.possibleAttacks attackChosen;
 
     private int durationOfMission;
 
@@ -34,20 +36,22 @@ public class Expedition {
     public int NbrOfShieldMaiden{get{return nbrOfShieldMaiden;}set{nbrOfShieldMaiden = value;}}
     public int NbrOfShip{get{return nbrOfShip;}}
     public City City{get{return city;}}
-    public int DurationOfMission{get{return durationOfMission;}}
+    public ConstantsAndEnums.possibleAttacks AttackChosen{get{return attackChosen;}}
+    public int DurationOfMission{get{return durationOfMission;}set{durationOfMission = value;}}
 
     // Functions
 
     
-	public void missionUpdate(){
+	public void missionUpdate(int timeE){
 		if ( battleInProgress ) {
+            if ( durationOfMission > 0 ){
+				durationOfMission -= timeE;
+			}
 			if ( durationOfMission <= 0 ){
 				// dérouler la bataille, appeler battle
 				
 				battleInProgress = false;
-			} else if ( durationOfMission > 0 ){
-				durationOfMission -= 1;
-			}
+			} 
 		} 
 	}
 }

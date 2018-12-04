@@ -2133,7 +2133,7 @@ GameObject:
   - component: {fileID: 532776261}
   m_Layer: 5
   m_Name: JobPanel
-  m_TagString: jobPanel
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2787,6 +2787,16 @@ Prefab:
       propertyPath: applyBtn
       value: 
       objectReference: {fileID: 1717054972}
+    - target: {fileID: 114400550927551832, guid: 45ca0864994239d4b9b90aa7d674a6a8,
+        type: 2}
+      propertyPath: jobPanel
+      value: 
+      objectReference: {fileID: 532776260}
+    - target: {fileID: 114400550927551832, guid: 45ca0864994239d4b9b90aa7d674a6a8,
+        type: 2}
+      propertyPath: shipUI
+      value: 
+      objectReference: {fileID: 1206530759}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45ca0864994239d4b9b90aa7d674a6a8, type: 2}
   m_IsPrefabAsset: 0
@@ -7975,6 +7985,11 @@ Prefab:
       propertyPath: timeElapsedText
       value: 
       objectReference: {fileID: 70361782}
+    - target: {fileID: 114778428278072118, guid: fc75fe654eca40942bfd9111caceadf6,
+        type: 2}
+      propertyPath: warManager
+      value: 
+      objectReference: {fileID: 768288944}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc75fe654eca40942bfd9111caceadf6, type: 2}
   m_IsPrefabAsset: 0

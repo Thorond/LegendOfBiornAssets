@@ -89,6 +89,7 @@ public class TextManager : Singleton<TextManager> {
 	void Update () {
 		
 		textDisplay();
+		battleGeneralPanelDisplay();
 	}
 
 
@@ -247,6 +248,15 @@ public class TextManager : Singleton<TextManager> {
 		foreach (Expedition expedition in warManager.MyExpedition.Expeditions ) {
 			if (expedition != null){
 				if (expedition.BattleInProgress){
+
+					if ( expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.explore ){
+						typeOfAttack[iteration].sprite = exploreAttack;
+					} else if ( expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.plunder ){
+						typeOfAttack[iteration].sprite = plunderAttack;
+					} else if ( expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.raze ){
+						typeOfAttack[iteration].sprite = razeAttack;
+					}
+					typeOfAttack[iteration].color = new Color(255,255,255,255);
 
 					cityAttacked[iteration].text = expedition.City.NameOfCity;
 					RemainingTime[iteration].text = expedition.DurationOfMission.ToString();

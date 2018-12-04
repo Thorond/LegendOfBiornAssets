@@ -10,11 +10,13 @@ public class TimeManager : Singleton<TimeManager> {
 	private int TIME_OF_A_DAY_IN_SECONDS = 30; // a mettre dans un fichier constants
 	[SerializeField] private GameManager gameManager;
 	[SerializeField] private JobsManager jobsManager;
+	[SerializeField] private WarManager warManager;
 	private DateTime inGameDate;
 	private int timeInYear;
 	private int timeInDay;
 	private int timeChoice;
 	private int timeElapsed;
+	private bool oneDayHavePassed = false;
 
 	private DateTime resourceFrequency;
 
@@ -26,6 +28,7 @@ public class TimeManager : Singleton<TimeManager> {
 	public int TimeInYear { get {return timeInYear;} set{ timeInYear = value;}}
 	public int TimeInDay { get {return timeInDay;} set{ timeInDay = value;}}
 	public int TimeChoice{ get {return timeChoice;} set{ timeChoice = value;}}
+	public bool OneDayHavePassed{ get {return oneDayHavePassed;} set{ oneDayHavePassed = value;}}
 
 	// Use this for initialization
 	void Start () {
@@ -49,7 +52,7 @@ public class TimeManager : Singleton<TimeManager> {
 	void updateTime(){
 		if ( DateTime.Now.Subtract(inGameDate).Seconds >= TIME_OF_A_DAY_IN_SECONDS ){
 			timeInDay +=1;
-			jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People ); // Le laisser la ???
+			oneDayHavePassed = true;
 			if (timeInDay == 365 ) {
 				timeInDay = 0;
 				timeInYear += 1;
@@ -87,6 +90,7 @@ public class TimeManager : Singleton<TimeManager> {
 			updateJobs(timeElapsed * 3);
 			jobsManager.MyShipBuilderBuilding.RemainingTimeForConstruction -= timeElapsed;
 			jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People );
+			updateExplorations(timeElapsed);
 			timeElapsed = 0;
 		} else {
 			if ( DateTime.Now.Subtract(resourceFrequency).Seconds > TIME_OF_A_DAY_IN_SECONDS / 3 ){
@@ -94,8 +98,14 @@ public class TimeManager : Singleton<TimeManager> {
 				resourceFrequency = DateTime.Now;
 			} 
 			else if (DateTime.Now.Subtract(resourceFrequency).Seconds > TIME_OF_A_DAY_IN_SECONDS){ 
+				updateExplorations(1);
 				jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People);
 			}
+		}
+		if ( oneDayHavePassed){
+			jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People ); 
+			updateExplorations(1);
+			oneDayHavePassed = false;
 		}
 	}
 
@@ -109,6 +119,14 @@ public class TimeManager : Singleton<TimeManager> {
 		updateJob(jobsManager.MyMineralBuilding,time);
 	}
 
+
+	void updateExplorations(int timeE){
+		foreach (Expedition expedition in warManager.MyExpedition.Expeditions ) {
+			if (expedition != null){
+				expedition.missionUpdate(timeE);
+			}
+		}
+	}
 	
 
 }

@@ -77,7 +77,8 @@ public class ExpeditionManager : JobsAndWar {
 	public void assignWork(GameManager gameManager, City currentCity){
 		if (nbrOfAssignedVikingChosen > 0 || nbrOfAssignedShieldMaidenChosen > 0 ){
 			if ( nbrOfSimulatneousExpedition < NBR_MAX_OF_SIMULTANEOUS_EXPEDITION ){
-				Expedition expedition = new Expedition(nbrOfAssignedVikingChosen,nbrOfAssignedShieldMaidenChosen,nbrOfAssignedShipChosen,currentCity);
+				Expedition expedition = new Expedition(nbrOfAssignedVikingChosen,nbrOfAssignedShieldMaidenChosen,
+														nbrOfAssignedShipChosen,currentCity,TypeOfAttackSelected);
 				expeditions[nbrOfSimulatneousExpedition] = expedition;
 				nbrOfSimulatneousExpedition += 1;
 

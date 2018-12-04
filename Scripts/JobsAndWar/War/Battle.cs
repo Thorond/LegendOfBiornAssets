@@ -15,6 +15,13 @@ public static class Battle {
 
     private static int percentageLossOfVikings = 0;
     private static float percentageLossOfSieldMaidens = 0;
+    private static float percentageLossAcceptedWhenExplore = 20/100;
+    private static float percentageLossAcceptedWhenPlunder = 50/100;
+    private static float percentageLossAcceptedWhenRaze = 80/100;
+
+    private static int nbrVikingStart = 0;
+    private static int nbrShieldMaidenStart = 0;
+    private static int nbrSoldierStart = 0;
     private static int nbrVikingBattle = 0;
     private static int nbrShieldMaidenBattle = 0;
     private static int nbrSoldierBattle = 0;
@@ -25,15 +32,14 @@ public static class Battle {
 
     public static void battleCourse(Expedition expedition){
         percentageLossCalculation(expedition.City.DificultyCity);
+        nbrVikingStart = expedition.NbrOfViking;
+        nbrShieldMaidenStart = expedition.NbrOfShieldMaiden;
+        nbrSoldierStart = expedition.City.NbSoldats;
         nbrVikingBattle = expedition.NbrOfViking;
         nbrShieldMaidenBattle = expedition.NbrOfShieldMaiden;
         nbrSoldierBattle = expedition.City.NbSoldats;
         resultOfTheBattle(expedition);
     }
-
-    // public static void battleCourseByDifficulty(ConstantsAndEnums.dificultyInGame difficulty){
-
-    // }
 
     public static void percentageLossCalculation(ConstantsAndEnums.dificultyInGame difficulty){
         if ( difficulty == ConstantsAndEnums.dificultyInGame.easy){
@@ -50,15 +56,37 @@ public static class Battle {
         }
     }
 
+    public static bool lossAccepted(Expedition expedition, int nbrFighterBattle, int nbrFighterStart){
+        if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.explore){
+            if ( nbrFighterBattle <= nbrFighterStart * percentageLossAcceptedWhenExplore ){
+                return true;
+            }
+        } else if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.plunder){
+            if ( nbrFighterBattle <= nbrFighterStart * percentageLossAcceptedWhenPlunder ){
+                return true;
+            }
+        } else if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.raze){
+            if ( nbrFighterBattle <= nbrFighterStart * percentageLossAcceptedWhenRaze ){
+                return true;
+            }
+        } 
+        return false;
+
+    }
+
     // faire un test pour cette fonction
     public static void resultOfTheBattle(Expedition expedition){
-        while( (nbrVikingBattle > 0 || nbrShieldMaidenBattle > 0 ) && nbrSoldierBattle > 0 ){
-            resultOfOneDuel(); // mettre un stop avant que ça n'atteigne 0?
+        bool weLost = false;
+        bool ennemyLost = false;
+        while( !weLost && !ennemyLost ){
+            resultOfOneDuel(); 
+            weLost = lossAccepted(expedition,nbrVikingBattle + nbrShieldMaidenBattle,nbrVikingStart+nbrShieldMaidenStart);
+            ennemyLost = lossAccepted(expedition,nbrSoldierBattle,nbrSoldierStart);
         }
         // résultat?
-        if ( nbrSoldierBattle == 0 ) { // battle won
+        if ( ennemyLost ) { // battle won
             // fonction de récupération de loot
-        } else if (nbrVikingBattle == 0 && nbrShieldMaidenBattle == 0){ // battle lost
+        } else if ( weLost ){ // battle lost
             // fonction de CATASTROOOOOPHE
         }
 
