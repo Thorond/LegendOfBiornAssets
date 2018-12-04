@@ -92,8 +92,8 @@ MonoBehaviour:
   easyDifficulty: {fileID: 21300026, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
   mediumDifficulty: {fileID: 0}
   hardDifficulty: {fileID: 0}
-  exploAttack: {fileID: 21300016, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
-  attackAttack: {fileID: 21300018, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
+  exploreAttack: {fileID: 21300016, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
+  plunderAttack: {fileID: 21300018, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
   razeAttack: {fileID: 21300020, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
   typeOfAttack:
   - {fileID: 0}

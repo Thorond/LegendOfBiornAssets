@@ -9,6 +9,7 @@ public class ExpeditionManager : JobsAndWar {
 	public ExpeditionManager() : base() {
 		nbrOfShipAssigned = 0;
 		typeOfShipSelected = ConstantsAndEnums.shipType.type1; // encore le même problème
+		typeOfAttackSelected = ConstantsAndEnums.possibleAttacks.explore;
 		nbrOfAssignedVikingChosen = 0;
 		nbrOfAssignedShieldMaidenChosen = 0;
 		nbrOfAssignedShipChosen = 0;
@@ -25,6 +26,7 @@ public class ExpeditionManager : JobsAndWar {
 	protected int nbrOfShipAssigned;
 
 	private ConstantsAndEnums.shipType typeOfShipSelected;
+	private ConstantsAndEnums.possibleAttacks typeOfAttackSelected;
 	private int nbrOfAssignedVikingChosen;
 	private int nbrOfAssignedShieldMaidenChosen;
 	private int nbrOfAssignedShipChosen;
@@ -40,6 +42,7 @@ public class ExpeditionManager : JobsAndWar {
 
 	public int NbrOfShipAssigned{get{return nbrOfShipAssigned;}set{nbrOfShipAssigned = value;}}
 	public ConstantsAndEnums.shipType TypeOfShipSelected{ get{return typeOfShipSelected;} set{ typeOfShipSelected = value;}}
+	public ConstantsAndEnums.possibleAttacks TypeOfAttackSelected{ get{return typeOfAttackSelected;} set{ typeOfAttackSelected = value;}}
 	public int NbrOfAssignedVikingChosen{ get{return nbrOfAssignedVikingChosen;} set{ nbrOfAssignedVikingChosen = value;}}
 	public int NbrOfAssignedShieldMaidenChosen{ get{return nbrOfAssignedShieldMaidenChosen;} set{ nbrOfAssignedShieldMaidenChosen = value;}}
 	public int NbrOfAssignedShipChosen{ get{return nbrOfAssignedShipChosen;} set{ nbrOfAssignedShipChosen = value;}}

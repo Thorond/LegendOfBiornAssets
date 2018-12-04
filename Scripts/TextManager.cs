@@ -68,8 +68,8 @@ public class TextManager : Singleton<TextManager> {
 	[SerializeField] private Sprite easyDifficulty;
 	[SerializeField] private Sprite mediumDifficulty;
 	[SerializeField] private Sprite hardDifficulty;
-	[SerializeField] private Sprite exploAttack;
-	[SerializeField] private Sprite attackAttack;
+	[SerializeField] private Sprite exploreAttack;
+	[SerializeField] private Sprite plunderAttack;
 	[SerializeField] private Sprite razeAttack;
 
 

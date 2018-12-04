@@ -20,7 +20,7 @@ public static class ConstantsAndEnums {
 
 	// War
 
-	public enum possibleAttacks{plunder,kill,raze}
+	public enum possibleAttacks{explore,plunder,raze}
 
 	// Cities 
 

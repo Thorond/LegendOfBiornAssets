@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WarManager : JobsAndWarManager {
 	
@@ -15,9 +16,13 @@ public class WarManager : JobsAndWarManager {
 	
     [SerializeField] GameObject panelDetails;
     [SerializeField] GameObject battlesPanel;
+    [SerializeField] Btn exploreBtn;
+    [SerializeField] Btn plunderBtn;
+    [SerializeField] Btn razeBtn;
 	private WorldCity worldCities;
 	private City currentCity;
 	private ExpeditionManager myExpedition;
+	private Btn whichAttackSelected;
 
 	
 	// Getters and Setters
@@ -48,6 +53,35 @@ public class WarManager : JobsAndWarManager {
 			myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type3;
 		} 
 	}
+
+	public void selectedTypeOfAttack(Btn btnSelected){
+		whichAttackSelected = btnSelected;
+		if (whichAttackSelected.tag == ConstantsAndEnums.possibleAttacks.explore.ToString()){
+			myExpedition.TypeOfAttackSelected = ConstantsAndEnums.possibleAttacks.explore;
+		} else if (whichAttackSelected.tag == ConstantsAndEnums.possibleAttacks.plunder.ToString()){
+			myExpedition.TypeOfAttackSelected = ConstantsAndEnums.possibleAttacks.plunder;
+		} else if (whichAttackSelected.tag == ConstantsAndEnums.possibleAttacks.raze.ToString()){
+			myExpedition.TypeOfAttackSelected = ConstantsAndEnums.possibleAttacks.raze;
+		} 
+		highlightAttackBtnSelected();
+	}
+
+	void highlightAttackBtnSelected(){
+		if ( myExpedition.TypeOfAttackSelected == ConstantsAndEnums.possibleAttacks.explore ){
+			exploreBtn.GetComponent<Image>().color = new Color(255,255,255,255) ;
+			plunderBtn.GetComponent<Image>().color = new Color(0,0,0,255) ;
+			razeBtn.GetComponent<Image>().color = new Color(0,0,0,255) ;
+		} else if ( myExpedition.TypeOfAttackSelected == ConstantsAndEnums.possibleAttacks.plunder ){
+			exploreBtn.GetComponent<Image>().color = new Color(0,0,0,255) ;
+			plunderBtn.GetComponent<Image>().color = new Color(255,255,255,255) ;
+			razeBtn.GetComponent<Image>().color = new Color(0,0,0,255) ;
+		} else if ( myExpedition.TypeOfAttackSelected == ConstantsAndEnums.possibleAttacks.raze ){
+			exploreBtn.GetComponent<Image>().color = new Color(0,0,0,255) ;
+			plunderBtn.GetComponent<Image>().color = new Color(0,0,0,255) ;
+			razeBtn.GetComponent<Image>().color = new Color(255,255,255,255) ;
+		}
+	}
+
     public override void jobOrCitySettingCreation()
     {
         if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.LindisfarneBtn.ToString())
