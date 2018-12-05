@@ -89,9 +89,9 @@ MonoBehaviour:
   iron: {fileID: 0}
   slaves: {fileID: 0}
   timeElapsedText: {fileID: 0}
-  easyDifficulty: {fileID: 21300026, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
-  mediumDifficulty: {fileID: 0}
-  hardDifficulty: {fileID: 0}
+  easyDifficulty: {fileID: 21300000, guid: 50ae04b459a020141958cea164931110, type: 3}
+  mediumDifficulty: {fileID: 21300000, guid: e22acca8839f138428bc8e89735e9894, type: 3}
+  hardDifficulty: {fileID: 21300000, guid: b32626a81ac1820418c4b0a72f02c8e8, type: 3}
   exploreAttack: {fileID: 21300016, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
   plunderAttack: {fileID: 21300018, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
   razeAttack: {fileID: 21300020, guid: fe01737257ed04441a4a3a938c031c28, type: 3}

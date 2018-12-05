@@ -236,7 +236,7 @@ public class TextManager : Singleton<TextManager> {
 
 	void timeElapsedTextDisplay(){
 		timeElapsedText.text = "Year " + timeManager.TimeInYear.ToString() + " - Day " + timeManager.TimeInDay.ToString()
-			+ "\n How many days do you want to skip : " + timeManager.TimeChoice.ToString();
+			+ "\nDays to skip : " + timeManager.TimeChoice.ToString();
 	}
 
 

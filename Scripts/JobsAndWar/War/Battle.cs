@@ -13,18 +13,21 @@ public static class Battle {
 
     // Variables
 
-    private static int percentageLossOfVikings = 0;
+    private static float percentageLossOfVikings = 0;
     private static float percentageLossOfSieldMaidens = 0;
-    private static float percentageLossAcceptedWhenExplore = 80/100;
-    private static float percentageLossAcceptedWhenPlunder = 50/100;
-    private static float percentageLossAcceptedWhenRaze = 20/100;
+    private static float percentageLossAcceptedWhenExplore = 80f/100f;
+    private static float percentageLootRetrievedWhenExplore = 20f/100f;
+    private static float percentageLossAcceptedWhenPlunder = 50f/100f;
+    private static float percentageLootRetrievedWhenPlunder = 90f/100f;
+    private static float percentageLossAcceptedWhenRaze = 20f/100f;
+    private static float percentageLootRetrievedWhenRaze = 100f/100f;
 
-    private static int nbrVikingStart = 0;
-    private static int nbrShieldMaidenStart = 0;
-    private static int nbrSoldierStart = 0;
-    private static int nbrVikingBattle = 0;
-    private static int nbrShieldMaidenBattle = 0;
-    private static int nbrSoldierBattle = 0;
+    private static float nbrVikingStart = 0;
+    private static float nbrShieldMaidenStart = 0;
+    private static float nbrSoldierStart = 0;
+    private static float nbrVikingBattle = 0;
+    private static float nbrShieldMaidenBattle = 0;
+    private static float nbrSoldierBattle = 0;
 
     // Getters and Setters
 
@@ -43,20 +46,20 @@ public static class Battle {
 
     public static void percentageLossCalculation(ConstantsAndEnums.dificultyInGame difficulty){
         if ( difficulty == ConstantsAndEnums.dificultyInGame.easy){
-            percentageLossOfVikings = 20 / 100 ;
-            percentageLossOfSieldMaidens = 25 / 100 ;
+            percentageLossOfVikings = 20f / 100f ;
+            percentageLossOfSieldMaidens = 25f / 100f ;
         } else if (difficulty == ConstantsAndEnums.dificultyInGame.medium){
-            percentageLossOfVikings = 40 / 100 ;
-            percentageLossOfSieldMaidens = 50 / 100 ;
+            percentageLossOfVikings = 40f / 100f ;
+            percentageLossOfSieldMaidens = 50f / 100f ;
 
         } else if (difficulty == ConstantsAndEnums.dificultyInGame.hard){
-            percentageLossOfVikings = 60 / 100 ;
-            percentageLossOfSieldMaidens = 80 / 100 ;
+            percentageLossOfVikings = 60f / 100f ;
+            percentageLossOfSieldMaidens = 80f / 100f ;
 
         }
     }
 
-    public static bool lossAccepted(Expedition expedition, int nbrFighterBattle, int nbrFighterStart){
+    public static bool lossAccepted(Expedition expedition, float nbrFighterBattle, float nbrFighterStart){
         if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.explore){
             if ( nbrFighterBattle <= nbrFighterStart * percentageLossAcceptedWhenExplore ){
                 return true;
@@ -84,28 +87,29 @@ public static class Battle {
             ennemyLost = lossAccepted(expedition,nbrSoldierBattle,nbrSoldierStart);
         }
         // résultat
+        expedition.NbrOfRemainingViking = (int)nbrVikingBattle;
+        expedition.NbrOfRemainingSM = (int)nbrShieldMaidenBattle;
         if ( ennemyLost ) { // battle won
+            Debug.Log("We won");
             // fonction de récupération de loot
-            // Debug.Log("We won");
+            award(expedition);
         } else if ( weLost ){ // battle lost
-            // fonction de CATASTROOOOOPHE
-            // Debug.Log("We lost");
+            Debug.Log("We lost");
+            // on rentre avec ce qu'il nous reste
         }
 
-        expedition.NbrOfViking = nbrVikingBattle;
-        expedition.NbrOfShieldMaiden = nbrShieldMaidenBattle;
     }
 
     public static void resultOfOneDuel(){
         ConstantsAndEnums.people choice = vikingOrShieldMaiden(nbrVikingBattle,nbrShieldMaidenBattle); // on choisit proportionnelement entre un viking ou une SM
         if ( choice == ConstantsAndEnums.people.Viking){
-            if (Random.Range(0,100) < percentageLossOfVikings ){
+            if (Random.Range(0,100) < percentageLossOfVikings * 100){
                 nbrVikingBattle -= 1;
             } else{
                 nbrSoldierBattle -=1;
             }
         } else {
-            if (Random.Range(0,100) < percentageLossOfSieldMaidens ){
+            if (Random.Range(0,100) < percentageLossOfSieldMaidens * 100 ){
                 nbrShieldMaidenBattle -= 1;
             } else{
                 nbrSoldierBattle -=1;
@@ -113,8 +117,8 @@ public static class Battle {
         }
     }
 
-    public static ConstantsAndEnums.people vikingOrShieldMaiden(int viking, int sm){
-        int percentageVikingPerSm = viking / (viking+sm);
+    public static ConstantsAndEnums.people vikingOrShieldMaiden(float viking, float sm){
+        float percentageVikingPerSm = viking / (viking+sm);
         if ( Random.Range(0, 100) < percentageVikingPerSm ){
             return ConstantsAndEnums.people.Viking;
         } else {
@@ -122,5 +126,54 @@ public static class Battle {
         }
     }
 
+    public static void award(Expedition expedition){
+        if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.explore){
+           awardBydifficulty(expedition,percentageLootRetrievedWhenExplore);
+        } else if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.plunder){
+           awardBydifficulty(expedition,percentageLootRetrievedWhenPlunder);
+        } else if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.raze){
+           awardBydifficulty(expedition,percentageLootRetrievedWhenRaze);
+        } 
+    }
 
+    public static void awardBydifficulty(Expedition expedition,float percentageLoot){
+        float pourcentageGold = (float)expedition.City.LootDetail.Gold / (float)(expedition.City.LootDetail.Gold + expedition.City.LootDetail.Wood + expedition.City.LootDetail.Iron);
+        float pourcentageWood = (float)expedition.City.LootDetail.Wood / (float)(expedition.City.LootDetail.Gold + expedition.City.LootDetail.Wood + expedition.City.LootDetail.Iron);
+        // float pourcentageIron = (float)expedition.City.LootDetail.Iron / (float)(expedition.City.LootDetail.Gold + expedition.City.LootDetail.Wood + expedition.City.LootDetail.Iron);
+       
+        bool maxGoldRetrieve = false;
+        bool maxWoodRetrieve = false;
+        bool maxIronRetrieve = false;
+        while ( expedition.GoldBroughtBack + expedition.WoodBroughtBack + expedition.IronBroughtBack <= expedition.SpaceForLoots
+            && !(maxGoldRetrieve && maxWoodRetrieve && maxIronRetrieve) ){
+            float choice = Random.Range(0,100);
+            if ( choice  < pourcentageGold * 100 ){
+                if (expedition.GoldBroughtBack >= percentageLoot * expedition.City.LootDetail.Gold 
+                    || expedition.GoldBroughtBack == expedition.City.LootDetail.Gold ){
+                    maxGoldRetrieve = true;
+                }
+                if ( !maxGoldRetrieve ){
+                    expedition.GoldBroughtBack += 1;
+                }
+            } else if ( choice  < ( pourcentageGold + pourcentageWood) * 100 ){
+                if (expedition.WoodBroughtBack >= percentageLoot * expedition.City.LootDetail.Wood 
+                    || expedition.WoodBroughtBack == expedition.City.LootDetail.Wood ){
+                    maxWoodRetrieve = true;
+                }
+                if ( !maxWoodRetrieve ){
+                    expedition.WoodBroughtBack += 1;
+                }
+            } else {
+                if (expedition.IronBroughtBack >= percentageLoot * expedition.City.LootDetail.Iron 
+                    || expedition.IronBroughtBack == expedition.City.LootDetail.Iron ){
+                    maxIronRetrieve = true;
+                }
+                if ( !maxIronRetrieve ){
+                    expedition.IronBroughtBack += 1;
+                }
+            }
+        }
+        expedition.SlaveBroughtBack = Mathf.Min(Mathf.RoundToInt(percentageLoot * expedition.City.LootDetail.Slaves),
+                                                expedition.SpaceForMen - (expedition.NbrOfRemainingViking + expedition.NbrOfRemainingSM));
+    }
 }

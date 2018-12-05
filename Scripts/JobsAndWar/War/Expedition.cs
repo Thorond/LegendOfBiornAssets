@@ -8,14 +8,22 @@ public class Expedition {
     // public Expedition(){
         
     // }
-    public Expedition(int vik,int sm,int ship, City city, ConstantsAndEnums.possibleAttacks attackChosen){
+    public Expedition(int vik,int sm,int ship,int spaceForMen, int spaceForLoots, City city, ConstantsAndEnums.possibleAttacks attackChosen){
 		this.battleInProgress = true;
         this.nbrOfViking = vik;
         this.nbrOfShieldMaiden = sm;
         this.nbrOfShip = ship;
+        this.spaceForMen = spaceForMen;
+        this.spaceForLoots = spaceForLoots;
         this.city = city;
         this.attackChosen = attackChosen;
         this.durationOfMission = city.ApproximatedTripAndBattleTime;
+        this.nbrOfRemainingViking = 0;
+        this.nbrOfRemainingSM = 0;
+        this.goldBroughtBack = 0;
+        this.woodBroughtBack = 0;
+        this.ironBroughtBack = 0;
+        this.slaveBroughtBack = 0;
     }
 
     // Variables
@@ -24,10 +32,19 @@ public class Expedition {
     private int nbrOfViking;
     private int nbrOfShieldMaiden;
     private int nbrOfShip;
+    private int spaceForMen;
+    private int spaceForLoots;
     private City city;
     private ConstantsAndEnums.possibleAttacks attackChosen;
 
     private int durationOfMission;
+
+    private int nbrOfRemainingViking;
+    private int nbrOfRemainingSM;
+    private int goldBroughtBack;
+    private int woodBroughtBack;
+    private int ironBroughtBack;
+    private int slaveBroughtBack;
 
     // Getters and Setters
 
@@ -35,9 +52,18 @@ public class Expedition {
     public int NbrOfViking{get{return nbrOfViking;}set{nbrOfViking = value;}}
     public int NbrOfShieldMaiden{get{return nbrOfShieldMaiden;}set{nbrOfShieldMaiden = value;}}
     public int NbrOfShip{get{return nbrOfShip;}}
+    public int SpaceForMen{get{return spaceForMen;}set{spaceForMen = value;}}
+    public int SpaceForLoots{get{return spaceForLoots;}set{spaceForLoots = value;}}
     public City City{get{return city;}}
     public ConstantsAndEnums.possibleAttacks AttackChosen{get{return attackChosen;}}
     public int DurationOfMission{get{return durationOfMission;}set{durationOfMission = value;}}
+
+    public int NbrOfRemainingViking{get{return nbrOfRemainingViking;}set{nbrOfRemainingViking = value;}}
+    public int NbrOfRemainingSM{get{return nbrOfRemainingSM;}set{nbrOfRemainingSM = value;}}
+    public int GoldBroughtBack{get{return goldBroughtBack;}set{goldBroughtBack = value;}}
+    public int WoodBroughtBack{get{return woodBroughtBack;}set{woodBroughtBack = value;}}
+    public int IronBroughtBack{get{return ironBroughtBack;}set{ironBroughtBack = value;}}
+    public int SlaveBroughtBack{get{return slaveBroughtBack;}set{slaveBroughtBack = value;}}
 
     // Functions
 

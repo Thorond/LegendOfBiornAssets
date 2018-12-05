@@ -33,7 +33,7 @@ public class ExpeditionManager : JobsAndWar {
 	private int nbrOfSpacesAvailable;
 	private int totalForceValue;
 
-	private int NBR_MAX_OF_SIMULTANEOUS_EXPEDITION = 5;
+	// private int NBR_MAX_OF_SIMULTANEOUS_EXPEDITION = 5;
 	private int nbrOfSimulatneousExpedition;
 	private Expedition[] expeditions; // différentes batailles en cours
 
@@ -76,26 +76,35 @@ public class ExpeditionManager : JobsAndWar {
 
 	public void assignWork(GameManager gameManager, City currentCity){
 		if (nbrOfAssignedVikingChosen > 0 || nbrOfAssignedShieldMaidenChosen > 0 ){
-			if ( nbrOfSimulatneousExpedition < NBR_MAX_OF_SIMULTANEOUS_EXPEDITION ){
-				Expedition expedition = new Expedition(nbrOfAssignedVikingChosen,nbrOfAssignedShieldMaidenChosen,
-														nbrOfAssignedShipChosen,currentCity,TypeOfAttackSelected);
-				expeditions[nbrOfSimulatneousExpedition] = expedition;
-				nbrOfSimulatneousExpedition += 1;
+			int rank = 0;
+			foreach (Expedition exp in expeditions){
+				if ( exp == null || !exp.BattleInProgress ){
+					Expedition expedition = new Expedition(nbrOfAssignedVikingChosen,nbrOfAssignedShieldMaidenChosen,nbrOfAssignedShipChosen,
+														nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen,
+														nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfLoot,
+														currentCity,TypeOfAttackSelected);
+					expeditions[rank] = expedition;
+					nbrOfSimulatneousExpedition +=1;
 
-				// mise a jour des donnees de jeu
-				gameManager.Resources.People.NbrOfVikings -= nbrOfAssignedVikingChosen;
-				gameManager.Resources.People.NbrOfShieldMaidens -= nbrOfAssignedShieldMaidenChosen;
-				gameManager.Resources.Ships.NbrOfShipType1 -= nbrOfAssignedShipChosen;
+					// Enlever la ville des villes attaquables
 
-				// réinitialisation des paramètres 
-				nbrOfAssignedVikingChosen = 0;
-				nbrOfAssignedShieldMaidenChosen = 0;
-				nbrOfAssignedShipChosen = 0;
+					// mise a jour des donnees de jeu
+					gameManager.Resources.People.NbrOfVikings -= nbrOfAssignedVikingChosen;
+					gameManager.Resources.People.NbrOfShieldMaidens -= nbrOfAssignedShieldMaidenChosen;
+					gameManager.Resources.Ships.NbrOfShipType1 -= nbrOfAssignedShipChosen;
 
-				nbrOfSpacesAvailableCalculation(gameManager);
-				totalForceValueCalculation(gameManager);
+					// réinitialisation des paramètres 
+					nbrOfAssignedVikingChosen = 0;
+					nbrOfAssignedShieldMaidenChosen = 0;
+					nbrOfAssignedShipChosen = 0;
 
-			} else {
+					nbrOfSpacesAvailableCalculation(gameManager);
+					totalForceValueCalculation(gameManager);
+				} else{
+					rank+=1;
+				}
+			}
+			if (rank == 5) {
 				// dire que le joueur à atteint le nombre max d'attaques simulténées
 			}
 			
