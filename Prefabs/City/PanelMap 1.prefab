@@ -133,7 +133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1105272490974040
 GameObject:
   m_ObjectHideFlags: 1
@@ -239,7 +239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1178477728892054
 GameObject:
   m_ObjectHideFlags: 1
@@ -2196,7 +2196,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 100
 --- !u!114 &114143149190192432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2341,7 +2341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2611,7 +2611,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 100
 --- !u!114 &114256294604216048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2677,7 +2677,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Easy
+  m_Text: easy
 --- !u!114 &114279195958968214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2794,7 +2794,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Efficacit\xE9 d'une SM"
+  m_Text: 'Force d''une SM : 8'
 --- !u!114 &114303202589800856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2992,7 +2992,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 0
 --- !u!114 &114373032192628282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3248,7 +3248,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Efficacit\xE9 d'un viking"
+  m_Text: 'Force d''un viking : 10'
 --- !u!114 &114433791085889784
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3353,7 +3353,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Workforce selected
+  m_Text: 'Fighter force selected : 0'
 --- !u!114 &114447822500219346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3640,7 +3640,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: City name
+  m_Text: Lindisfarne
 --- !u!114 &114466549729933106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3757,7 +3757,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 100
 --- !u!114 &114485860298724384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3904,10 +3904,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Space avai :
+  m_Text: 'Space available : 0
 
 
-    Space avai loot: '
+    Space available for loots : 0'
 --- !u!114 &114502436010810462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4163,7 +4163,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 4
 --- !u!114 &114544434617301306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4283,7 +4283,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 20
 --- !u!114 &114591797920727244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4428,7 +4428,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3
+  m_Text: 'Espace dans un navire : 10
+
+
+    Espace pour les loots : 20'
 --- !u!114 &114626766411952702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5030,7 +5033,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Vikings :'
+  m_Text: 'Soldiers :'
 --- !u!114 &114709119336563822
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5943,7 +5946,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Loots
+  m_Text: Possible loots
 --- !u!114 &114903464007107448
 MonoBehaviour:
   m_ObjectHideFlags: 1

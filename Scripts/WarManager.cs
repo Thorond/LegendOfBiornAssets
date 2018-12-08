@@ -233,6 +233,7 @@ public class WarManager : JobsAndWarManager {
 	public void backBattlesBoard(){
 		reportPanel.SetActive(false);
 		if ( myExpedition.Expeditions[battleDisplayChosen -1].ExpeditionStatus == ConstantsAndEnums.expeditionStatus.battleOver){
+			myExpedition.Expeditions[battleDisplayChosen -1].City.UnderAttack = false;
 			myExpedition.Expeditions[battleDisplayChosen -1].ExpeditionStatus = ConstantsAndEnums.expeditionStatus.over;
 		}
 	}

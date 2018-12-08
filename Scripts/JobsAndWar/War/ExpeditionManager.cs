@@ -77,10 +77,11 @@ public class ExpeditionManager : JobsAndWar {
 
 
 	public void assignWork(GameManager gameManager, City currentCity){
-		if (nbrOfAssignedVikingChosen > 0 || nbrOfAssignedShieldMaidenChosen > 0 ){
+		if (( nbrOfAssignedVikingChosen > 0 || nbrOfAssignedShieldMaidenChosen > 0 ) && !currentCity.UnderAttack ){
 			int rank = 0;
 			foreach (Expedition exp in expeditions){
 				if ( exp == null || exp.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.over ){
+					currentCity.UnderAttack = true;
 					Expedition expedition = new Expedition(nbrOfAssignedVikingChosen,nbrOfAssignedShieldMaidenChosen,nbrOfAssignedShipChosen,
 														nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen,
 														nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfLoot,

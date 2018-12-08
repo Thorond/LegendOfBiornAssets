@@ -9,6 +9,7 @@ public class City
     private String nameOfCity;
     private int nbSoldats;
     private ConstantsAndEnums.dificultyInGame cityDificulty;
+    private bool underAttack;
 
     private int approximatedTripAndBattleTime;
     private Loot loot;
@@ -20,6 +21,7 @@ public class City
         nameOfCity = name;
         nbSoldats = nbS;
         cityDificulty = cityDif;
+        underAttack = false;
         approximatedTripAndBattleTime = time;
         loot = l;
     }
@@ -61,6 +63,7 @@ public class City
         }
     }
 
+    public bool UnderAttack{get{return underAttack;}set{underAttack = value;}}
     public int ApproximatedTripAndBattleTime{get{return approximatedTripAndBattleTime;}set{approximatedTripAndBattleTime = value;}}
     public Loot LootDetail
     {
