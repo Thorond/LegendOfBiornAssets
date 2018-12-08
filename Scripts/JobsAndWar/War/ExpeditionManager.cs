@@ -48,10 +48,12 @@ public class ExpeditionManager : JobsAndWar {
 	public int NbrOfAssignedShipChosen{ get{return nbrOfAssignedShipChosen;} set{ nbrOfAssignedShipChosen = value;}}
 	public int NbrOfSpacesAvailable{ get{return nbrOfSpacesAvailable;} set{ nbrOfSpacesAvailable = value;}}
 	public int TotalForceValue{ get{return totalForceValue;} set{ totalForceValue = value;}}
+	public int NbrOfSimulatneousExpedition{ get{return nbrOfSimulatneousExpedition;} set{ nbrOfSimulatneousExpedition = value;}}
 
 	public Expedition[] Expeditions{get{return expeditions;}}
 
 	// Functions 
+
 
 	public void assignAnotherShip(){
 		nbrOfShipAssigned += 1;
@@ -78,7 +80,7 @@ public class ExpeditionManager : JobsAndWar {
 		if (nbrOfAssignedVikingChosen > 0 || nbrOfAssignedShieldMaidenChosen > 0 ){
 			int rank = 0;
 			foreach (Expedition exp in expeditions){
-				if ( exp == null || !exp.BattleInProgress ){
+				if ( exp == null || exp.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.over ){
 					Expedition expedition = new Expedition(nbrOfAssignedVikingChosen,nbrOfAssignedShieldMaidenChosen,nbrOfAssignedShipChosen,
 														nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen,
 														nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfLoot,
@@ -100,6 +102,7 @@ public class ExpeditionManager : JobsAndWar {
 
 					nbrOfSpacesAvailableCalculation(gameManager);
 					totalForceValueCalculation(gameManager);
+					break;
 				} else{
 					rank+=1;
 				}

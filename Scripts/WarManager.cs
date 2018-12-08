@@ -16,6 +16,7 @@ public class WarManager : JobsAndWarManager {
 	
     [SerializeField] GameObject panelDetails;
     [SerializeField] GameObject battlesPanel;
+    [SerializeField] protected GameObject reportPanel;
     [SerializeField] Btn exploreBtn;
     [SerializeField] Btn plunderBtn;
     [SerializeField] Btn razeBtn;
@@ -24,11 +25,14 @@ public class WarManager : JobsAndWarManager {
 	private ExpeditionManager myExpedition;
 	private Btn whichAttackSelected;
 
+	private int battleDisplayChosen = 0;
+
 	
 	// Getters and Setters
 
 	public ExpeditionManager MyExpedition { get{return myExpedition;}}
 	public City CurrentCity { get{return currentCity;}}
+	public int BattleDisplayChosen { get{return battleDisplayChosen;}}
 
 	
 	// Use this for initialization
@@ -204,5 +208,33 @@ public class WarManager : JobsAndWarManager {
 		battlesPanel.SetActive(true);
 	}
 
+	
+	public void openDetailPanel(Btn btn){
+
+		if ( btn.tag == ConstantsAndEnums.battleDisplayBtn.battleDisplay1.ToString() ) battleDisplayChosen = 1;
+		else if ( btn.tag == ConstantsAndEnums.battleDisplayBtn.battleDisplay2.ToString() ) battleDisplayChosen = 2;
+		else if ( btn.tag == ConstantsAndEnums.battleDisplayBtn.battleDisplay3.ToString() ) battleDisplayChosen = 3;
+		else if ( btn.tag == ConstantsAndEnums.battleDisplayBtn.battleDisplay4.ToString() ) battleDisplayChosen = 4;
+		else if ( btn.tag == ConstantsAndEnums.battleDisplayBtn.battleDisplay5.ToString() ) battleDisplayChosen = 5;
+		
+		Expedition currentExpedition = myExpedition.Expeditions[battleDisplayChosen -1];
+		if ( currentExpedition != null ){
+			if (  currentExpedition.ExpeditionStatus != ConstantsAndEnums.expeditionStatus.over){
+				
+				reportPanel.SetActive(true);
+			} else {
+				battleDisplayChosen = 0;
+			}
+		} else {
+			battleDisplayChosen = 0;
+		}
+		
+	}
+	public void backBattlesBoard(){
+		reportPanel.SetActive(false);
+		if ( myExpedition.Expeditions[battleDisplayChosen -1].ExpeditionStatus == ConstantsAndEnums.expeditionStatus.battleOver){
+			myExpedition.Expeditions[battleDisplayChosen -1].ExpeditionStatus = ConstantsAndEnums.expeditionStatus.over;
+		}
+	}
 
 }

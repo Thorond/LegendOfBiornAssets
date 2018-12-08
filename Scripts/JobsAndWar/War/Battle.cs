@@ -91,10 +91,12 @@ public static class Battle {
         expedition.NbrOfRemainingSM = (int)nbrShieldMaidenBattle;
         if ( ennemyLost ) { // battle won
             Debug.Log("We won");
+            expedition.BattleStatus = ConstantsAndEnums.battleStatus.won;
             // fonction de récupération de loot
             award(expedition);
         } else if ( weLost ){ // battle lost
             Debug.Log("We lost");
+            expedition.BattleStatus = ConstantsAndEnums.battleStatus.lost;
             // on rentre avec ce qu'il nous reste
         }
 

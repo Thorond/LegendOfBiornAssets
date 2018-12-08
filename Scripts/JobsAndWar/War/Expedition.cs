@@ -9,7 +9,8 @@ public class Expedition {
         
     // }
     public Expedition(int vik,int sm,int ship,int spaceForMen, int spaceForLoots, City city, ConstantsAndEnums.possibleAttacks attackChosen){
-		this.battleInProgress = true;
+		this.expeditionStatus = ConstantsAndEnums.expeditionStatus.inMovement;
+        this.battleStatus = ConstantsAndEnums.battleStatus.onGoing;
         this.nbrOfViking = vik;
         this.nbrOfShieldMaiden = sm;
         this.nbrOfShip = ship;
@@ -27,8 +28,9 @@ public class Expedition {
     }
 
     // Variables
-
-	private bool battleInProgress;
+    
+	private ConstantsAndEnums.expeditionStatus expeditionStatus;
+    private ConstantsAndEnums.battleStatus battleStatus;
     private int nbrOfViking;
     private int nbrOfShieldMaiden;
     private int nbrOfShip;
@@ -48,7 +50,8 @@ public class Expedition {
 
     // Getters and Setters
 
-    public bool BattleInProgress{get{return battleInProgress;}set{battleInProgress = value;}}
+    public ConstantsAndEnums.expeditionStatus ExpeditionStatus{get{return expeditionStatus;}set{expeditionStatus = value;}}
+    public ConstantsAndEnums.battleStatus BattleStatus{get{return battleStatus;}set{battleStatus = value;}}
     public int NbrOfViking{get{return nbrOfViking;}set{nbrOfViking = value;}}
     public int NbrOfShieldMaiden{get{return nbrOfShieldMaiden;}set{nbrOfShieldMaiden = value;}}
     public int NbrOfShip{get{return nbrOfShip;}}
@@ -69,7 +72,7 @@ public class Expedition {
 
     
 	public void missionUpdate(int timeE){
-		if ( battleInProgress ) {
+		if ( expeditionStatus == ConstantsAndEnums.expeditionStatus.inMovement ) {
             if ( durationOfMission > 0 ){
 				durationOfMission -= timeE;
 			}
@@ -77,7 +80,7 @@ public class Expedition {
 				// dérouler la bataille, appeler battle
                 Battle.battleCourse(this);
 				
-				battleInProgress = false;
+				expeditionStatus = ConstantsAndEnums.expeditionStatus.battleOver;
 			} 
 		} 
 	}

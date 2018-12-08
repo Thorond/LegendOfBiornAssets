@@ -78,6 +78,21 @@ public class TextManager : Singleton<TextManager> {
 	[SerializeField] private Text[] RemainingTime;
 	[SerializeField] private Image[] difficultyCityImageDisplay;
 
+	// Pour expedtion
+
+	[SerializeField] private Text cityNameCurrentExpedition;
+	[SerializeField] private Text nbrOfVikingStart;
+	[SerializeField] private Text nbrOfSMStart;
+	[SerializeField] private Text expeditionStatus;
+	[SerializeField] private Text battleStatus;
+	[SerializeField] private Text nbrOfVikingEnd;
+	[SerializeField] private Text nbrOfSMEnd;
+	[SerializeField] private Text goldGained;
+	[SerializeField] private Text woodGained;
+	[SerializeField] private Text ironGained;
+	[SerializeField] private Text slaveGained;
+
+
 
 
 	// Use this for initialization
@@ -247,7 +262,7 @@ public class TextManager : Singleton<TextManager> {
 		int iteration = 0;
 		foreach (Expedition expedition in warManager.MyExpedition.Expeditions ) {
 			if (expedition != null){
-				if (expedition.BattleInProgress){
+				if ( expedition.ExpeditionStatus != ConstantsAndEnums.expeditionStatus.over){
 
 					if ( expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.explore ){
 						typeOfAttack[iteration].sprite = exploreAttack;
@@ -259,7 +274,11 @@ public class TextManager : Singleton<TextManager> {
 					typeOfAttack[iteration].color = new Color(255,255,255,255);
 
 					cityAttacked[iteration].text = expedition.City.NameOfCity;
-					RemainingTime[iteration].text = expedition.DurationOfMission.ToString();
+					if ( expedition.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.inMovement){
+						RemainingTime[iteration].text = expedition.DurationOfMission.ToString();
+					} else {
+						RemainingTime[iteration].text = "Finished";
+					}
 
 					if ( expedition.City.DificultyCity == ConstantsAndEnums.dificultyInGame.easy ){
 						difficultyCityImageDisplay[iteration].sprite = easyDifficulty;
@@ -284,6 +303,46 @@ public class TextManager : Singleton<TextManager> {
 		cityAttacked[iteration].text = "";
 		RemainingTime[iteration].text = "";
 		difficultyCityImageDisplay[iteration].color = new Color(0,0,0,0);
+	}
+
+
+
+	// pour les expeditions
+
+	public void detailsExpedition(){
+		
+		if ( warManager.MyExpedition.NbrOfSimulatneousExpedition > 0 &&  warManager.BattleDisplayChosen != 0) {
+			Expedition currentExpedition = warManager.MyExpedition.Expeditions[warManager.BattleDisplayChosen -1];
+			
+			if ( currentExpedition != null ){
+				if (  currentExpedition.ExpeditionStatus != ConstantsAndEnums.expeditionStatus.over){
+					cityNameCurrentExpedition.text = currentExpedition.City.NameOfCity.ToString();
+					nbrOfVikingStart.text = currentExpedition.NbrOfViking.ToString();
+					nbrOfSMStart.text = currentExpedition.NbrOfShieldMaiden.ToString();	
+					expeditionStatus.text = currentExpedition.ExpeditionStatus.ToString();
+					battleStatus.text = currentExpedition.BattleStatus.ToString();
+					if ( currentExpedition.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.battleOver ){
+
+						nbrOfVikingEnd.text = currentExpedition.NbrOfRemainingViking.ToString();
+						nbrOfSMEnd.text = currentExpedition.NbrOfRemainingSM.ToString();
+						goldGained.text = currentExpedition.GoldBroughtBack.ToString();
+						woodGained.text = currentExpedition.WoodBroughtBack.ToString();
+						ironGained.text = currentExpedition.IronBroughtBack.ToString();
+						slaveGained.text = currentExpedition.SlaveBroughtBack.ToString();
+						
+					} else {
+
+						nbrOfVikingEnd.text = "-";
+						nbrOfSMEnd.text = "-";
+						goldGained.text = "-";
+						woodGained.text = "-";
+						ironGained.text = "-";
+						slaveGained.text = "-";
+					}
+				}
+			}
+		
+		}
 	}
 
 }
