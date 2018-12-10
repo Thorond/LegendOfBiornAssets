@@ -19,8 +19,10 @@ public static class ConstantsAndEnums {
 	public enum shipType{type1,type2,type3}
 
 	// War
-
+	public enum battleDisplayBtn{battleDisplay1,battleDisplay2,battleDisplay3,battleDisplay4,battleDisplay5}
 	public enum possibleAttacks{explore,plunder,raze}
+	public enum expeditionStatus{inMovement,battleOver,over}
+	public enum battleStatus{won,lost,onGoing}
 
 	// Cities 
 

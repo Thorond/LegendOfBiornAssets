@@ -6,6 +6,7 @@ TextureImporter:
     21300002: downNormal
     21300004: validateNormal
     21300006: backBtn
+    21300008: menuBtn
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -117,8 +118,8 @@ TextureImporter:
         y: 6445
         width: 313
         height: 316
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.51517594, y: 0.5300633}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -178,13 +179,33 @@ TextureImporter:
         width: 291
         height: 285
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: def3fe07fd690714582603c6a14fad25
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menuBtn
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 5183
+        width: 293
+        height: 282
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60620800bab835d4bbe50b1a086f6dc6
       vertices: []
       indices: 
       edges: []
