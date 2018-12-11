@@ -12,7 +12,6 @@ public class WarManager : JobsAndWarManager {
 	}
 
 	// Variables
-	[SerializeField] TextManager textManager;
 
 	
     [SerializeField] GameObject panelDetails;
@@ -52,11 +51,12 @@ public class WarManager : JobsAndWarManager {
 		whichShipSelected = btnSelected;
 		if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship1Btn.ToString()){
 			myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type1;
-		} else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship2Btn.ToString()){
-			myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type2;
-		} else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship3Btn.ToString()){
-			myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type3;
 		} 
+		// else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship2Btn.ToString()){
+		// 	myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type2;
+		// } else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship3Btn.ToString()){
+		// 	myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type3;
+		// } 
 	}
 
 	public void selectedTypeOfAttack(Btn btnSelected){

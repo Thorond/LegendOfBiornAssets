@@ -57,11 +57,12 @@ public class JobsManager : JobsAndWarManager {
 		whichShipSelected = btnSelected;
 		if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship1Btn.ToString()){
 			myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type1;
-		} else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship2Btn.ToString()){
-			myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type2;
-		} else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship3Btn.ToString()){
-			myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type3;
 		} 
+		// else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship2Btn.ToString()){
+		// 	myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type2;
+		// } else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship3Btn.ToString()){
+		// 	myShipBuilderBuilding.TypeOfShipConstruct = ConstantsAndEnums.shipType.type3;
+		// } 
 	}
 
 	public override void jobOrCitySettingCreation(){
@@ -81,8 +82,8 @@ public class JobsManager : JobsAndWarManager {
 			if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString()){ // Afficher le panel de la construction de navires
 				applyBtn.SetActive(true);
 				ship1Btn.SetActive(true);
-				ship2Btn.SetActive(true);
-				ship3Btn.SetActive(true);
+				// ship2Btn.SetActive(true);
+				// ship3Btn.SetActive(true);
 				shipUI.SetActive(true);
 			}
 		} else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.harbor.ToString()){
@@ -177,12 +178,14 @@ public class JobsManager : JobsAndWarManager {
 		// application des travailleurs pour les trois types de navires
 		if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagShipType.applyBtn.ToString()) && !myShipBuilderBuilding.WorkInProgress ){
 			int valeur = gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded ;
-			if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
-				//valeur = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded ;
-			} else if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type3){
-				//valeur = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded ;
-			}
-			myShipBuilderBuilding.assignWork(gameManager,valeur);
+			// if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
+			// 	//valeur = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded ;
+			// } else if (myShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type3){
+			// 	//valeur = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded ;
+			// }
+			myShipBuilderBuilding.assignWork(gameManager,textManager,valeur);
+		} else if (myShipBuilderBuilding.WorkInProgress){
+			textManager.errorTextDisplay("A construction is already in progress !");
 		}
 
 		// mise à jour de la valeur effective de la force de main d'oeuvre avec les choix de travailleurs
