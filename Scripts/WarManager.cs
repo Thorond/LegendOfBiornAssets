@@ -232,9 +232,9 @@ public class WarManager : JobsAndWarManager {
 	}
 	public void backBattlesBoard(){
 		reportPanel.SetActive(false);
-		if ( myExpedition.Expeditions[battleDisplayChosen -1].ExpeditionStatus == ConstantsAndEnums.expeditionStatus.battleOver){
-			myExpedition.Expeditions[battleDisplayChosen -1].City.UnderAttack = false;
-			myExpedition.Expeditions[battleDisplayChosen -1].ExpeditionStatus = ConstantsAndEnums.expeditionStatus.over;
+		Expedition expeTemp = myExpedition.Expeditions[battleDisplayChosen -1];
+		if ( expeTemp.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.battleOver){
+			myExpedition.closeExpedition(gameManager,expeTemp);
 		}
 	}
 

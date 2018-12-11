@@ -117,4 +117,18 @@ public class ExpeditionManager : JobsAndWar {
 			// dire qu'il faut selectionner des guerriers
 		}
 	}
+
+	public void closeExpedition(GameManager gameManager, Expedition expeTemp){
+	
+		gameManager.Resources.People.NbrOfVikings += expeTemp.NbrOfRemainingViking;
+		gameManager.Resources.People.NbrOfShieldMaidens += expeTemp.NbrOfRemainingSM;
+		gameManager.Resources.People.NbrOfSlave += expeTemp.SlaveBroughtBack;
+		gameManager.Resources.Ships.NbrOfShipType1 += expeTemp.NbrOfShip;
+		gameManager.Resources.Gold += expeTemp.GoldBroughtBack;
+		gameManager.Resources.Wood += expeTemp.WoodBroughtBack;
+		gameManager.Resources.Iron += expeTemp.IronBroughtBack;
+
+		expeTemp.City.UnderAttack = false;
+		expeTemp.ExpeditionStatus = ConstantsAndEnums.expeditionStatus.over;
+	}
 }
