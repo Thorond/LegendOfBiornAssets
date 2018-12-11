@@ -15,6 +15,15 @@ public class TextManager : Singleton<TextManager> {
 
 	// Les différents Texts
 
+	// Text d'erreur
+
+	[SerializeField] private Text errorText;
+
+	private IEnumerator coroutineErrorText;
+
+
+	// infos standard
+
 	[SerializeField] private Text nameOfPeople;
 	[SerializeField] private Text displayOfNbrOfPeople;
 	[SerializeField] private Text displayOfResources;
@@ -102,13 +111,21 @@ public class TextManager : Singleton<TextManager> {
 	
 	// Update is called once per frame
 	void Update () {
-		
 		textDisplay();
 		battleGeneralPanelDisplay();
+		
 	}
 
 
 	// ********** FUNCTIONS **********
+
+	public void errorTextDisplay(string errorMessage){
+		errorText.text = errorMessage;
+		coroutineErrorText = TextEffects.FadeTextToZeroAlpha(2f, errorText);
+		StartCoroutine(coroutineErrorText);
+		
+	}
+
 
 	public void textDisplay(){
 		peopleAndNbrOfPeopleAndResourcesTextDisplay(); // affichage des personnes disponibles et des ressources
@@ -253,8 +270,6 @@ public class TextManager : Singleton<TextManager> {
 		timeElapsedText.text = "Year " + timeManager.TimeInYear.ToString() + " - Day " + timeManager.TimeInDay.ToString()
 			+ "\nDays to skip : " + timeManager.TimeChoice.ToString();
 	}
-
-
 
 	// Pour warManager
 

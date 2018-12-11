@@ -12,6 +12,7 @@ public class WarManager : JobsAndWarManager {
 	}
 
 	// Variables
+	[SerializeField] TextManager textManager;
 
 	
     [SerializeField] GameObject panelDetails;
@@ -175,7 +176,7 @@ public class WarManager : JobsAndWarManager {
 
 		// application des travailleurs pour les trois types de navires
 		if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagShipType.applyBtn.ToString()) ){
-			myExpedition.assignWork(gameManager, currentCity);
+			myExpedition.assignWork(gameManager,textManager, currentCity);
 		}
 
 

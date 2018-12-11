@@ -76,7 +76,7 @@ public class ExpeditionManager : JobsAndWar {
 	}
 
 
-	public void assignWork(GameManager gameManager, City currentCity){
+	public void assignWork(GameManager gameManager, TextManager textManager, City currentCity){
 		if (( nbrOfAssignedVikingChosen > 0 || nbrOfAssignedShieldMaidenChosen > 0 ) && !currentCity.UnderAttack ){
 			int rank = 0;
 			foreach (Expedition exp in expeditions){
@@ -110,11 +110,17 @@ public class ExpeditionManager : JobsAndWar {
 			}
 			if (rank == 5) {
 				// dire que le joueur à atteint le nombre max d'attaques simulténées
+				textManager.errorTextDisplay("You already have five ongoing missions !");
 			}
 			
 		}
-		else {
+		else if ( currentCity.UnderAttack ){
+			textManager.errorTextDisplay("The city is already under attack !");
+
+		}
+		else if ( nbrOfAssignedVikingChosen == 0 && nbrOfAssignedShieldMaidenChosen == 0 ){
 			// dire qu'il faut selectionner des guerriers
+			textManager.errorTextDisplay("You did not assigned any warrior !");
 		}
 	}
 
