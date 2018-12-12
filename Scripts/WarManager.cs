@@ -30,6 +30,7 @@ public class WarManager : JobsAndWarManager {
 	
 	// Getters and Setters
 
+	public WorldCity WorldCities{get{return worldCities;}}
 	public ExpeditionManager MyExpedition { get{return myExpedition;}}
 	public City CurrentCity { get{return currentCity;}}
 	public int BattleDisplayChosen { get{return battleDisplayChosen;}}
@@ -91,6 +92,7 @@ public class WarManager : JobsAndWarManager {
     {
         if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.LindisfarneBtn.ToString())
         {
+
             currentCity = worldCities.Lindisfarne;
         }
         else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.DublinBtn.ToString())
@@ -187,7 +189,11 @@ public class WarManager : JobsAndWarManager {
 
     public void AfficherDetails()
     {
-        panelDetails.SetActive(true);
+		if ( ! currentCity.OpenToAttack ){
+			textManager.errorTextDisplay("The city is not open to battle - at least not untill " + currentCity.NbrOfDayUntillAvailable + " days !");
+		} else {
+        	panelDetails.SetActive(true);
+		}
     }
 
 	

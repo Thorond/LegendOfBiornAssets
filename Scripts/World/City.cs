@@ -6,15 +6,6 @@ using UnityEngine;
 public class City 
 {
 
-    private String nameOfCity;
-    private int nbSoldats;
-    private ConstantsAndEnums.dificultyInGame cityDificulty;
-    private bool underAttack;
-
-    private int approximatedTripAndBattleTime;
-    private Loot loot;
-
-
     //Constructor
     public City(String name, int nbS, ConstantsAndEnums.dificultyInGame cityDif,int time, Loot l)
     {
@@ -24,7 +15,23 @@ public class City
         underAttack = false;
         approximatedTripAndBattleTime = time;
         loot = l;
+        openToAttack = true;
+        nbrOfDayUntillAvailable = 0;
     }
+
+    // Variables  
+
+    private String nameOfCity;
+    private int nbSoldats;
+    private ConstantsAndEnums.dificultyInGame cityDificulty;
+    private bool underAttack;
+    private int approximatedTripAndBattleTime;
+    private Loot loot;
+
+    private bool openToAttack;
+    private int nbrOfDayUntillAvailable;
+
+
 
     //Getters and Setters
     public String NameOfCity
@@ -76,5 +83,24 @@ public class City
             loot = value;
         }
     }
+    public bool OpenToAttack{get{return openToAttack;}set{openToAttack = value;}}
+    public int NbrOfDayUntillAvailable{get{return nbrOfDayUntillAvailable;}set{nbrOfDayUntillAvailable = value;}}
+
+
+    // Functions 
+
+    
+	public void updateCity(int timeE){
+		if ( ! openToAttack ) {
+            if ( nbrOfDayUntillAvailable > 0 ){
+				nbrOfDayUntillAvailable -= timeE;
+			}
+			if ( nbrOfDayUntillAvailable <= 0 ){
+				
+				openToAttack = true;
+			} 
+		} 
+	}
+
 
 }

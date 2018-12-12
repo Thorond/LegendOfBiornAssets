@@ -94,11 +94,25 @@ public static class Battle {
             expedition.BattleStatus = ConstantsAndEnums.battleStatus.won;
             // fonction de récupération de loot
             award(expedition);
+            consequencesOfVictory(expedition);
         } else if ( weLost ){ // battle lost
             Debug.Log("We lost");
             expedition.BattleStatus = ConstantsAndEnums.battleStatus.lost;
             // on rentre avec ce qu'il nous reste
         }
+
+    }
+
+    
+    public static void consequencesOfVictory(Expedition expedition){
+        if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.explore){
+            
+        } else if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.plunder){
+            
+        } else if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.raze){
+            expedition.City.OpenToAttack = false;
+            expedition.City.NbrOfDayUntillAvailable = Random.Range(30,100); // la ville peut être repeuplé entre 30 et 100 jours
+        } 
 
     }
 
