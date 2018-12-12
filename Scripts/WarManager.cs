@@ -190,6 +190,8 @@ public class WarManager : JobsAndWarManager {
         panelDetails.SetActive(true);
     }
 
+	
+
     public void RetourMap()
     {
         panelDetails.SetActive(false);
@@ -228,9 +230,22 @@ public class WarManager : JobsAndWarManager {
 			}
 		} else {
 			battleDisplayChosen = 0;
-		}
-		
+		}	
 	}
+	
+	public void returningFromExpedition(){
+		
+		Expedition currentExpedition = myExpedition.Expeditions[battleDisplayChosen -1];
+		if ( currentExpedition != null ){
+			if (  currentExpedition.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.inMovement 
+					&& currentExpedition.BattleStatus != ConstantsAndEnums.battleStatus.returning ){
+				
+				currentExpedition.BattleStatus = ConstantsAndEnums.battleStatus.returning;
+				currentExpedition.DurationOfMission = currentExpedition.City.ApproximatedTripAndBattleTime - currentExpedition.DurationOfMission;
+			}
+		}
+	}
+
 	public void backBattlesBoard(){
 		reportPanel.SetActive(false);
 		Expedition expeTemp = myExpedition.Expeditions[battleDisplayChosen -1];
@@ -238,5 +253,6 @@ public class WarManager : JobsAndWarManager {
 			myExpedition.closeExpedition(gameManager,expeTemp);
 		}
 	}
+
 
 }

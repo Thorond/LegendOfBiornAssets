@@ -332,18 +332,18 @@ public class TextManager : Singleton<TextManager> {
 			if ( currentExpedition != null ){
 				if (  currentExpedition.ExpeditionStatus != ConstantsAndEnums.expeditionStatus.over){
 					cityNameCurrentExpedition.text = currentExpedition.City.NameOfCity.ToString();
-					nbrOfVikingStart.text = currentExpedition.NbrOfViking.ToString();
-					nbrOfSMStart.text = currentExpedition.NbrOfShieldMaiden.ToString();	
-					expeditionStatus.text = currentExpedition.ExpeditionStatus.ToString();
-					battleStatus.text = currentExpedition.BattleStatus.ToString();
+					nbrOfVikingStart.text = "Vikings sent : " + currentExpedition.NbrOfViking.ToString();
+					nbrOfSMStart.text = "SM sent : " + currentExpedition.NbrOfShieldMaiden.ToString();	
+					expeditionStatus.text = "State : " + currentExpedition.ExpeditionStatus.ToString();
+					battleStatus.text = "Result : " + currentExpedition.BattleStatus.ToString();
 					if ( currentExpedition.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.battleOver ){
 
-						nbrOfVikingEnd.text = currentExpedition.NbrOfRemainingViking.ToString();
-						nbrOfSMEnd.text = currentExpedition.NbrOfRemainingSM.ToString();
-						goldGained.text = currentExpedition.GoldBroughtBack.ToString();
-						woodGained.text = currentExpedition.WoodBroughtBack.ToString();
-						ironGained.text = currentExpedition.IronBroughtBack.ToString();
-						slaveGained.text = currentExpedition.SlaveBroughtBack.ToString();
+						nbrOfVikingEnd.text = "Remaining vkings : " + currentExpedition.NbrOfRemainingViking.ToString();
+						nbrOfSMEnd.text = "Remaining SM : " + currentExpedition.NbrOfRemainingSM.ToString();
+						goldGained.text = "Gold gained : " + currentExpedition.GoldBroughtBack.ToString();
+						woodGained.text = "Wood gained : " + currentExpedition.WoodBroughtBack.ToString();
+						ironGained.text = "Iron gained : " + currentExpedition.IronBroughtBack.ToString();
+						slaveGained.text = "Slave gained : " + currentExpedition.SlaveBroughtBack.ToString();
 						
 					} else {
 

@@ -22,7 +22,7 @@ public static class ConstantsAndEnums {
 	public enum battleDisplayBtn{battleDisplay1,battleDisplay2,battleDisplay3,battleDisplay4,battleDisplay5}
 	public enum possibleAttacks{explore,plunder,raze}
 	public enum expeditionStatus{inMovement,battleOver,over}
-	public enum battleStatus{won,lost,onGoing}
+	public enum battleStatus{won,lost,onGoing,returning}
 
 	// Cities 
 
