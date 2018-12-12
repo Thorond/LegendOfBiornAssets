@@ -106,9 +106,9 @@ public static class Battle {
     
     public static void consequencesOfVictory(Expedition expedition){
         if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.explore){
-            
+            expedition.City.upgradeCity();
         } else if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.plunder){
-            
+            expedition.City.upgradeCity();
         } else if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.raze){
             expedition.City.OpenToAttack = false;
             expedition.City.NbrOfDayUntillAvailable = Random.Range(30,100); // la ville peut être repeuplé entre 30 et 100 jours

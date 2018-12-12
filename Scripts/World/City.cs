@@ -90,6 +90,31 @@ public class City
     // Functions 
 
     
+    public void upgradeCity(){
+        if ( this.DificultyCity == ConstantsAndEnums.dificultyInGame.easy && UnityEngine.Random.Range(0,100) < 50 ){
+            this.DificultyCity = ConstantsAndEnums.dificultyInGame.medium;
+        }
+        if ( this.DificultyCity == ConstantsAndEnums.dificultyInGame.medium &&  UnityEngine.Random.Range(0,100) < 20 ){
+            this.DificultyCity = ConstantsAndEnums.dificultyInGame.hard;
+        }
+
+        if ( UnityEngine.Random.Range(0,100) < 70 ){
+            increaseProporties(20f/100f);
+        } else if ( UnityEngine.Random.Range(0,100) < 90 ){
+            increaseProporties(25f/100f);
+        } else {
+            increaseProporties(30f/100f);
+        }
+    }
+    void increaseProporties(float increaseRate){
+        this.NbSoldats = this.NbSoldats + (int) (this.NbSoldats * increaseRate);
+        this.loot.Gold = this.loot.Gold + (int) (this.loot.Gold * increaseRate);
+        this.loot.Wood = this.loot.Wood + (int) (this.loot.Wood * increaseRate);
+        this.loot.Iron = this.loot.Iron + (int) (this.loot.Iron * increaseRate);
+        this.loot.Slaves = this.loot.Slaves + (int) (this.loot.Slaves * increaseRate);
+    }
+
+
 	public void updateCity(int timeE){
 		if ( ! openToAttack ) {
             if ( nbrOfDayUntillAvailable > 0 ){
