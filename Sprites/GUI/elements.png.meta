@@ -16,6 +16,7 @@ TextureImporter:
     21300022: food
     21300024: battleDataBoard
     21300026: easyDifficulty
+    21300028: foodItem
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -377,13 +378,33 @@ TextureImporter:
         width: 70
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: a10556802fa59294eaa93be644d7de13
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: foodItem
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 2269
+        width: 72
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a51cead1d5c9ff5489fa9e1610a8fdd2
       vertices: []
       indices: 
       edges: []

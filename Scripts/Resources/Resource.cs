@@ -71,14 +71,14 @@ public class Resource {
 	// Constructor
 
 	public Resource(){
-		gold = 50;
-		maxGold = 200;
-		wood = 50;
-		maxWood = 200;
-		iron = 10;
-		maxIron = 50;
-		food = 40;
-		maxFood = 160;
+		gold = 500;
+		maxGold = 2000;
+		wood = 500;
+		maxWood = 2000;
+		iron = 100;
+		maxIron = 500;
+		food = 400;
+		maxFood = 1600;
 		ships = new Ships();
 		people = new People();
 	}

@@ -13,6 +13,8 @@ public abstract class Inhabitant  {
 	protected int shipConstructionEffeciency;
 	protected int battleEfficiency;
 
+	protected int foodConsomationPerDay;
+
 	// Getters and setters
 
 	public int FoodGatheringEfficiency{get{return foodGatheringEfficiency;}set{foodGatheringEfficiency = value;}}
@@ -20,6 +22,7 @@ public abstract class Inhabitant  {
 	public int IronGatheringEfficiency{get{return ironGatheringEfficiency;}set{ironGatheringEfficiency = value;}}
 	public int ShipConstructionEffeciency{get{return shipConstructionEffeciency;}set{shipConstructionEffeciency = value;}}
 	public int BattleEfficiency{get{return battleEfficiency;}set{battleEfficiency = value;}}
+	public int FoodConsomationPerDay{get{return foodConsomationPerDay;}set{foodConsomationPerDay = value;}}
 
 	// Constructor
 	public Inhabitant(){

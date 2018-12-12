@@ -47,6 +47,7 @@ public class TextManager : Singleton<TextManager> {
 	[SerializeField] private Text displayOfLaborChosen;
 
 	// Pour les batailles 
+	[SerializeField] private Text foodNeeded;
 	[SerializeField] private Text displayOfForceOfAViking;
 	[SerializeField] private Text displayOfForceOfAShieldMaiden;
 	[SerializeField] private Text displayOfTheSpacesOfAShip;
@@ -231,6 +232,7 @@ public class TextManager : Singleton<TextManager> {
 		
 	// Pour les batailles
 	void choiceOfFighterForWarTextDisplay(){
+		foodNeeded.text = warManager.MyExpedition.NbrOfFoodNeeded.ToString();
 		displayOfNbrOfVikingChosenForWar.text = warManager.MyExpedition.NbrOfAssignedVikingChosen.ToString();
 		displayOfNbrOfShieldMaidenChosenForWar.text = warManager.MyExpedition.NbrOfAssignedShieldMaidenChosen.ToString();
 		displayOfNbrOfShipChosenForWar.text = warManager.MyExpedition.NbrOfAssignedShipChosen.ToString();

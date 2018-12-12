@@ -55,6 +55,7 @@ MonoBehaviour:
   timeManager: {fileID: 0}
   jobsManager: {fileID: 0}
   warManager: {fileID: 0}
+  errorText: {fileID: 0}
   nameOfPeople: {fileID: 0}
   displayOfNbrOfPeople: {fileID: 0}
   displayOfResources: {fileID: 0}
@@ -72,6 +73,7 @@ MonoBehaviour:
   displayOfShipTypeChosen: {fileID: 0}
   displayOfLaborNeeded: {fileID: 0}
   displayOfLaborChosen: {fileID: 0}
+  foodNeeded: {fileID: 0}
   displayOfForceOfAViking: {fileID: 0}
   displayOfForceOfAShieldMaiden: {fileID: 0}
   displayOfTheSpacesOfAShip: {fileID: 0}
@@ -119,3 +121,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  cityNameCurrentExpedition: {fileID: 0}
+  nbrOfVikingStart: {fileID: 0}
+  nbrOfSMStart: {fileID: 0}
+  expeditionStatus: {fileID: 0}
+  battleStatus: {fileID: 0}
+  nbrOfVikingEnd: {fileID: 0}
+  nbrOfSMEnd: {fileID: 0}
+  goldGained: {fileID: 0}
+  woodGained: {fileID: 0}
+  ironGained: {fileID: 0}
+  slaveGained: {fileID: 0}

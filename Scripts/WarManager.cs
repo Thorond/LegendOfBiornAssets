@@ -138,7 +138,6 @@ public class WarManager : JobsAndWarManager {
 
     }
 
-	
 	public override void peopleAssignement( ){
 		attackAssignement();
 	}
@@ -181,11 +180,10 @@ public class WarManager : JobsAndWarManager {
 			myExpedition.assignWork(gameManager,textManager, currentCity);
 		}
 
-
+		myExpedition.nbrOfFoodNeedCalcultation(gameManager,currentCity);
 		myExpedition.nbrOfSpacesAvailableCalculation(gameManager);
 		myExpedition.totalForceValueCalculation(gameManager);
 	}
-
 
     public void AfficherDetails()
     {
@@ -195,8 +193,6 @@ public class WarManager : JobsAndWarManager {
         	panelDetails.SetActive(true);
 		}
     }
-
-	
 
     public void RetourMap()
     {
