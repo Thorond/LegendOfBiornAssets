@@ -86,6 +86,14 @@ public class Resource {
 
 	// Functions
 
+	public void updateFood(){
+		// fonction a ameliorer en fonction des travailleurs etc ( mais pas le temps )
+		int foodConsumedInOneday = people.NbrOfVikings * people.Vikings.FoodConsomationPerDay 
+								 + people.NbrOfShieldMaidens * people.ShieldMaidens.FoodConsomationPerDay
+								 + people.NbrOfSlave * (people.Slaves.FoodConsomationPerDay);
+		this.food -= foodConsumedInOneday;
+	}
+
 	public string textDisplay(){
 		return "Gold : " + gold.ToString()
 			+ "\nWood : " + wood.ToString()

@@ -87,32 +87,36 @@ public class TimeManager : Singleton<TimeManager> {
 	
 	void updateJobsAndWar(){
 		if ( timeElapsed > 0 ){
-			updateJobs(timeElapsed * 3);
-			jobsManager.MyShipBuilderBuilding.RemainingTimeForConstruction -= timeElapsed;
-			jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People );
-			updateExplorations(timeElapsed);
-			updateStatusOfCities(timeElapsed);
-			updateBarrackTrainings(timeElapsed);
-			timeElapsed = 0;
+			while ( timeElapsed > 0 ){
+				
+				updateJobs(1 * 3);
+				globalUpdateForOneDay();
+				timeElapsed -= 1 ;
+
+				// pendant ce temps, si une attaque se produit, il faudra arreter l'elapse
+			}
 		} else {
 			if ( DateTime.Now.Subtract(resourceFrequency).Seconds > TIME_OF_A_DAY_IN_SECONDS / 3 ){
 				updateJobs(1);
 				resourceFrequency = DateTime.Now;
 			} 
 			else if (DateTime.Now.Subtract(resourceFrequency).Seconds > TIME_OF_A_DAY_IN_SECONDS){ 
-				updateExplorations(1);
-				updateStatusOfCities(1);
-				updateBarrackTrainings(1);
-				jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People);
+				globalUpdateForOneDay();
 			}
 		}
 		if ( oneDayHavePassed){
-			jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People ); 
-			updateExplorations(1);
-			updateStatusOfCities(1);
-			updateBarrackTrainings(1);
+			globalUpdateForOneDay();
 			oneDayHavePassed = false;
 		}
+	}
+
+
+	void globalUpdateForOneDay(){
+		jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People ); 
+		updateExplorations();
+		updateStatusOfCities();
+		updateBarrackTrainings();
+		gameManager.Resources.updateFood();
 	}
 
 	void updateJob(Jobs job, int time){
@@ -126,23 +130,23 @@ public class TimeManager : Singleton<TimeManager> {
 	}
 
 	// fonction qui devrait etre directement dans warManager comme celle faites apres coup dans barrack
-	void updateExplorations(int timeE){
+	void updateExplorations(){
 		foreach (Expedition expedition in warManager.MyExpedition.Expeditions ) {
 			if (expedition != null){
-				expedition.missionUpdate(timeE);
+				expedition.missionUpdate();
 			}
 		}
 	}
 
 	// de meme, fonction qui devrait etre dans warManager ou worldCities
-	void updateStatusOfCities(int timeE){
+	void updateStatusOfCities(){
 		foreach ( City city in warManager.WorldCities.Cities){
-			city.updateCity(timeE);
+			city.updateCity();
 		}
 	}
 	
-	void updateBarrackTrainings(int timeE){
-		jobsManager.MyBarrack.updateTrainings(timeE,gameManager);
+	void updateBarrackTrainings(){
+		jobsManager.MyBarrack.updateTrainings(gameManager);
 	}
 
 }

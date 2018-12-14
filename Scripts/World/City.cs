@@ -115,10 +115,10 @@ public class City
     }
 
 
-	public void updateCity(int timeE){
+	public void updateCity(){
 		if ( ! openToAttack ) {
             if ( nbrOfDayUntillAvailable > 0 ){
-				nbrOfDayUntillAvailable -= timeE;
+				nbrOfDayUntillAvailable -= 1;
 			}
 			if ( nbrOfDayUntillAvailable <= 0 ){
 				

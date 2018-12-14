@@ -36,6 +36,8 @@ public class BalanceManager : Singleton<BalanceManager> {
 	void updateSliders(){
 		updateWarriorSlider();
 		updateFoodSlider();
+		updateMoral();
+		updateTrust();
 	}
 
 
@@ -59,6 +61,14 @@ public class BalanceManager : Singleton<BalanceManager> {
 
 
 		foodSlider.value = Mathf.Min(100f,foodPercent);
+	}
+
+	void updateMoral(){
+
+	}
+
+	void updateTrust(){
+
 	}
 
 }

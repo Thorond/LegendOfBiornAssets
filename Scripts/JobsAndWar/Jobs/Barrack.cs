@@ -108,10 +108,10 @@ public class Barrack  {
 		
 	}
 
-	public void updateTrainings(int timeE,GameManager gameManager){
+	public void updateTrainings(GameManager gameManager){
 		foreach (Training training in trainings){
 			if (training != null  ){
-				this.nbrOfSimulatneousTrainings = training.updateTraining(timeE, gameManager.Resources, this.nbrOfSimulatneousTrainings);
+				this.nbrOfSimulatneousTrainings = training.updateTraining( gameManager.Resources, this.nbrOfSimulatneousTrainings);
 			}
 		}
 	}

@@ -34,10 +34,10 @@ public class Training {
 	
 	// Functions
 
-	public int updateTraining(int timeE,Resource ressources, int simultanouesTraining){
+	public int updateTraining(Resource ressources, int simultanouesTraining){
 		if ( inTraining  ) {
             if ( timeRemainingForTraining > 0 ){
-				timeRemainingForTraining -= timeE;
+				timeRemainingForTraining -= 1;
 			}
 			if ( timeRemainingForTraining <= 0 ){
 				
