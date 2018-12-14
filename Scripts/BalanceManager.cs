@@ -10,13 +10,19 @@ public class BalanceManager : Singleton<BalanceManager> {
 	[SerializeField] GameManager gameManager;
 	[SerializeField] JobsManager jobsManager;
 	[SerializeField] WarManager warManager;
+	[SerializeField] GameObject balancePanel;
 	[SerializeField] Slider warriorSlider;
 	[SerializeField] Slider foodSlider;
 	[SerializeField] Slider moralSlider;
 	[SerializeField] Slider trustSlider;
 
-	private int moral;
-	private int trust;
+	private float moral = 50;
+	private float trust = 50;
+
+	// Getters and Setters
+
+	public float Moral{get{return moral;}set{moral = value;}}
+	public float Trust{get{return trust;}set{trust = value;}}
 
 	// Functions
 
@@ -36,8 +42,8 @@ public class BalanceManager : Singleton<BalanceManager> {
 	void updateSliders(){
 		updateWarriorSlider();
 		updateFoodSlider();
-		updateMoral();
-		updateTrust();
+		updateMoralSlider();
+		updateTrustSlider();
 	}
 
 
@@ -63,12 +69,35 @@ public class BalanceManager : Singleton<BalanceManager> {
 		foodSlider.value = Mathf.Min(100f,foodPercent);
 	}
 
-	void updateMoral(){
-
+	public void updateMoralDayAfterDay(){
+		if ( warManager.MyExpedition.NbrOfSimulatneousExpedition == 0 ) moral -= 0.5f; 
+	}
+	public void updateMoralWhenGoingAnExpedition(){ // and not returning obviously
+		moral = Mathf.Min(100,moral + 15 );
 	}
 
-	void updateTrust(){
+	void updateMoralSlider(){
+		moralSlider.value = moral;
+	}
 
+	public void updateTrustAfterBattle(bool positif){
+		if (positif){
+			if (trust <=99 ) trust = Mathf.Min(100, trust + 5);
+		} else {
+			trust -= 10; // gameOver si en dessous de 0
+		}
+	}
+
+	void updateTrustSlider(){
+		trustSlider.value = trust;
+	}
+
+	public void openAndCloseBalancePanel(){
+		if ( balancePanel.activeSelf ){
+			balancePanel.SetActive(false);
+		} else {
+			balancePanel.SetActive(true);
+		}
 	}
 
 }

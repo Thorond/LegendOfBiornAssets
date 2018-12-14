@@ -255,7 +255,9 @@ public class WarManager : JobsAndWarManager {
 		reportPanel.SetActive(false);
 		Expedition expeTemp = myExpedition.Expeditions[battleDisplayChosen -1];
 		if ( expeTemp.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.battleOver){
-			myExpedition.closeExpedition(gameManager,expeTemp);
+			myExpedition.closeExpedition(gameManager,balanceManager,expeTemp);
+			balanceManager.updateMoralWhenGoingAnExpedition();
+			myExpedition.NbrOfSimulatneousExpedition -= 1;
 		}
 	}
 

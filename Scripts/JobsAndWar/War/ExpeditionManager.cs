@@ -100,7 +100,7 @@ public class ExpeditionManager : JobsAndWar {
 																nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfLoot,
 																currentCity,TypeOfAttackSelected);
 							expeditions[rank] = expedition;
-							// nbrOfSimulatneousExpedition +=1; inutile?? 
+							nbrOfSimulatneousExpedition +=1;
 
 
 							// mise a jour des donnees de jeu
@@ -144,11 +144,14 @@ public class ExpeditionManager : JobsAndWar {
 		}
 	}
 
-	public void closeExpedition(GameManager gameManager, Expedition expeTemp){
+	public void closeExpedition(GameManager gameManager,BalanceManager balanceManager, Expedition expeTemp){
 
 		if ( expeTemp.BattleStatus == ConstantsAndEnums.battleStatus.won){
 			Battle.consequencesOfVictory(expeTemp);
-		}
+			balanceManager.updateTrustAfterBattle(true); // le moral augmente
+		} else if ( expeTemp.BattleStatus == ConstantsAndEnums.battleStatus.lost){
+			balanceManager.updateTrustAfterBattle(false); // le moral diminue
+		} 
 	
 		gameManager.Resources.People.NbrOfVikings += expeTemp.NbrOfRemainingViking;
 		gameManager.Resources.People.NbrOfShieldMaidens += expeTemp.NbrOfRemainingSM;

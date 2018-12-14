@@ -11,6 +11,7 @@ public class TimeManager : Singleton<TimeManager> {
 	[SerializeField] private GameManager gameManager;
 	[SerializeField] private JobsManager jobsManager;
 	[SerializeField] private WarManager warManager;
+	[SerializeField] private BalanceManager balanceManager;
 	private DateTime inGameDate;
 	private int timeInYear;
 	private int timeInDay;
@@ -117,6 +118,7 @@ public class TimeManager : Singleton<TimeManager> {
 		updateStatusOfCities();
 		updateBarrackTrainings();
 		gameManager.Resources.updateFood();
+		balanceManager.updateMoralDayAfterDay();
 	}
 
 	void updateJob(Jobs job, int time){
