@@ -207,10 +207,13 @@ public class WarManager : JobsAndWarManager {
     }
 
 	public void BattleBtnFunction(){
-        panelCity.SetActive(true);
-		panelMap.SetActive(false);
-        panelDetails.SetActive(false);
-		battlesPanel.SetActive(true);
+		if ( ! battlesPanel.activeSelf){
+			panelMap.SetActive(false);
+			panelDetails.SetActive(false);
+			battlesPanel.SetActive(true);
+		} else {
+			BackAccueil();
+		}
 	}
 
 	

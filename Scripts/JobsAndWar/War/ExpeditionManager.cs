@@ -94,13 +94,13 @@ public class ExpeditionManager : JobsAndWar {
 						if ( exp == null || exp.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.over ){
 							// Enlever la ville des villes attaquables
 							currentCity.UnderAttack = true;
-							
+
 							Expedition expedition = new Expedition(nbrOfAssignedVikingChosen,nbrOfAssignedShieldMaidenChosen,nbrOfAssignedShipChosen,
 																nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen,
 																nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfLoot,
 																currentCity,TypeOfAttackSelected);
 							expeditions[rank] = expedition;
-							nbrOfSimulatneousExpedition +=1;
+							// nbrOfSimulatneousExpedition +=1; inutile?? 
 
 
 							// mise a jour des donnees de jeu
@@ -145,6 +145,10 @@ public class ExpeditionManager : JobsAndWar {
 	}
 
 	public void closeExpedition(GameManager gameManager, Expedition expeTemp){
+
+		if ( expeTemp.BattleStatus == ConstantsAndEnums.battleStatus.won){
+			Battle.consequencesOfVictory(expeTemp);
+		}
 	
 		gameManager.Resources.People.NbrOfVikings += expeTemp.NbrOfRemainingViking;
 		gameManager.Resources.People.NbrOfShieldMaidens += expeTemp.NbrOfRemainingSM;

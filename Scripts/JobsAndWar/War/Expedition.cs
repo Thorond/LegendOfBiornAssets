@@ -78,8 +78,9 @@ public class Expedition {
 			}
 			if ( durationOfMission <= 0 ){
 				// dérouler la bataille, appeler battle
-                if ( battleStatus != ConstantsAndEnums.battleStatus.returning ) Battle.battleCourse(this);
-				
+                if ( battleStatus != ConstantsAndEnums.battleStatus.returning ) {
+                    Battle.battleCourse(this);
+                }
 				expeditionStatus = ConstantsAndEnums.expeditionStatus.battleOver;
 			} 
 		} 

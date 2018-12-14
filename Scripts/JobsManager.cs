@@ -101,7 +101,6 @@ public class JobsManager : JobsAndWarManager {
 				barrackUI.SetActive(true);
 			}
 		} else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.harbor.ToString()){
-			panelCity.SetActive(false);
 			panelMap.SetActive(true);
 		}
 

@@ -376,7 +376,7 @@ public class TextManager : Singleton<TextManager> {
 
 	public void detailsExpedition(){
 		
-		if ( warManager.MyExpedition.NbrOfSimulatneousExpedition > 0 &&  warManager.BattleDisplayChosen != 0) {
+		if (  warManager.BattleDisplayChosen != 0) {
 			Expedition currentExpedition = warManager.MyExpedition.Expeditions[warManager.BattleDisplayChosen -1];
 			
 			if ( currentExpedition != null ){

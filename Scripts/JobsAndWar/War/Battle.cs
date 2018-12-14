@@ -94,7 +94,6 @@ public static class Battle {
             expedition.BattleStatus = ConstantsAndEnums.battleStatus.won;
             // fonction de récupération de loot
             award(expedition);
-            consequencesOfVictory(expedition);
         } else if ( weLost ){ // battle lost
             Debug.Log("We lost");
             expedition.BattleStatus = ConstantsAndEnums.battleStatus.lost;
