@@ -15,6 +15,11 @@ public class BalanceManager : Singleton<BalanceManager> {
 	[SerializeField] Slider foodSlider;
 	[SerializeField] Slider moralSlider;
 	[SerializeField] Slider trustSlider;
+	[SerializeField] GameObject infoPanelBalance;
+	[SerializeField] GameObject infoPanelWarriorSlider;
+	[SerializeField] GameObject infoPanelFoodSlider;
+	[SerializeField] GameObject infoPanelMoralSlider;
+	[SerializeField] GameObject infoPanelTrustSlider;
 
 	private float moral = 50;
 	private float trust = 50;
@@ -98,6 +103,38 @@ public class BalanceManager : Singleton<BalanceManager> {
 		} else {
 			balancePanel.SetActive(true);
 		}
+	}
+
+	public void infoDisplayOpen(){
+		infoPanelBalance.SetActive(true);
+	}
+	public void infoDisplayClose(){
+		infoPanelBalance.SetActive(false);
+	}
+	
+	public void infoDisplayWarriorSliderOpen(){
+		infoPanelWarriorSlider.SetActive(true);
+	}
+	public void infoDisplayWarriorSliderClose(){
+		infoPanelWarriorSlider.SetActive(false);
+	}
+	public void infoDisplayFoodSliderOpen(){
+		infoPanelFoodSlider.SetActive(true);
+	}
+	public void infoDisplayFoodSliderClose(){
+		infoPanelFoodSlider.SetActive(false);
+	}
+	public void infoDisplayMoralSliderOpen(){
+		infoPanelMoralSlider.SetActive(true);
+	}
+	public void infoDisplayMoralSliderClose(){
+		infoPanelMoralSlider.SetActive(false);
+	}
+	public void infoDisplayTrustSliderOpen(){
+		infoPanelTrustSlider.SetActive(true);
+	}
+	public void infoDisplayTrustSliderClose(){
+		infoPanelTrustSlider.SetActive(false);
 	}
 
 }
