@@ -52,6 +52,7 @@ public class Training {
 	void updateWarriors(Resource ressources){
 		ressources.People.NbrOfVikings += this.nbrOfVikingToTrain;
 		ressources.People.NbrOfShieldMaidens += this.nbrOFSMToTrain + this.nbrOfTeachersSM;
+		ressources.People.NbrTotalOfWarriors += this.nbrOfVikingToTrain + this.nbrOFSMToTrain; // on met a jour le nbr total pour les barres d'équilibres
 	}
 
 

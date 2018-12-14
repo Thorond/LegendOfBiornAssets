@@ -9,58 +9,52 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1105366462868078}
+  m_RootGameObject: {fileID: 1132057085077816}
   m_IsPrefabAsset: 1
---- !u!1 &1105366462868078
+--- !u!1 &1132057085077816
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4341106049197268}
-  - component: {fileID: 114400550927551832}
+  - component: {fileID: 4070306374557766}
+  - component: {fileID: 114478982666265700}
   m_Layer: 0
-  m_Name: JobsManager
+  m_Name: BalanceManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4341106049197268
+--- !u!4 &4070306374557766
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1105366462868078}
-  m_LocalRotation: {x: -0.79854244, y: -0.04764552, z: 0.05457061, w: 0.5975633}
-  m_LocalPosition: {x: 60.27841, y: -3.6553478, z: -13.224614}
-  m_LocalScale: {x: 1.1663574, y: 1.0000201, z: 1.0035279}
+  m_GameObject: {fileID: 1132057085077816}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114400550927551832
+--- !u!114 &114478982666265700
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1105366462868078}
+  m_GameObject: {fileID: 1132057085077816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c359f99cc695eda4580dd4a397a76331, type: 3}
+  m_Script: {fileID: 11500000, guid: cbd856a9e6594b64485769c4d68637c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  textManager: {fileID: 0}
-  balanceManager: {fileID: 0}
-  panelCity: {fileID: 0}
-  panelMap: {fileID: 0}
-  ship1Btn: {fileID: 0}
-  ship2Btn: {fileID: 0}
-  ship3Btn: {fileID: 0}
-  applyBtn: {fileID: 0}
-  jobPanel: {fileID: 0}
-  shipUI: {fileID: 0}
-  slaveUI: {fileID: 0}
-  barrackUI: {fileID: 0}
+  jobsManager: {fileID: 0}
+  warManager: {fileID: 0}
+  warriorSlider: {fileID: 0}
+  foodSlider: {fileID: 0}
+  moralSlider: {fileID: 0}
+  trustSlider: {fileID: 0}

@@ -12,6 +12,8 @@ public class People  {
 	private ShieldMaiden shieldMaidens;
 	private int nbrOfShieldMaidens;
 
+	private int nbrTotalOfWarriors;
+
 	// Getters and Setters 
 
 	public Slaves Slaves{get{return slaves;}}
@@ -41,6 +43,15 @@ public class People  {
 			nbrOfShieldMaidens = value;
 		}
 	}
+	public int NbrTotalOfWarriors{
+		get{
+			return nbrTotalOfWarriors;
+		}
+		set{
+			nbrTotalOfWarriors = value;
+		}
+	}
+
 
 	// Constructor
 	public People(){
@@ -50,6 +61,7 @@ public class People  {
 		nbrOfSlave = 5;
 		nbrOfVikings = 20;
 		nbrOfShieldMaidens = 10;
+		nbrTotalOfWarriors = nbrOfVikings + nbrOfShieldMaidens;
 	}
 
 	// Functions

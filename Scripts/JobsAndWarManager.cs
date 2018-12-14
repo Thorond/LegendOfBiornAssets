@@ -13,6 +13,7 @@ public abstract class JobsAndWarManager : Singleton<JobsAndWarManager> {
 	// Variables
 	[SerializeField] protected GameManager gameManager;
 	[SerializeField] protected TextManager textManager;
+	[SerializeField] protected BalanceManager balanceManager;
     [SerializeField] protected GameObject panelCity;
     [SerializeField] protected GameObject panelMap;
 

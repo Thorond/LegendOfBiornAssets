@@ -152,6 +152,9 @@ public class ExpeditionManager : JobsAndWar {
 	
 		gameManager.Resources.People.NbrOfVikings += expeTemp.NbrOfRemainingViking;
 		gameManager.Resources.People.NbrOfShieldMaidens += expeTemp.NbrOfRemainingSM;
+		gameManager.Resources.People.NbrTotalOfWarriors -= (expeTemp.NbrOfViking - expeTemp.NbrOfRemainingViking) 
+														+ (expeTemp.NbrOfShieldMaiden -  expeTemp.NbrOfRemainingSM);
+
 		gameManager.Resources.People.NbrOfSlave += expeTemp.SlaveBroughtBack;
 		gameManager.Resources.Ships.NbrOfShipType1 += expeTemp.NbrOfShip;
 		gameManager.Resources.Gold += expeTemp.GoldBroughtBack;

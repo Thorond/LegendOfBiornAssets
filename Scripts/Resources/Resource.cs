@@ -77,8 +77,8 @@ public class Resource {
 		maxWood = 2000;
 		iron = 100;
 		maxIron = 500;
-		food = 400;
-		maxFood = 1600;
+		food = 4000;
+		maxFood = 16000;
 		ships = new Ships();
 		people = new People();
 	}
