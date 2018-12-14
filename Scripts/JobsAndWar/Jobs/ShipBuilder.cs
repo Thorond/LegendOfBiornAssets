@@ -15,6 +15,7 @@ public class ShipBuilder : Jobs {
 		totalLaborValue = 0;
 		remainingTimeForConstruction = 0;
 	}
+	
 	// Variables
 	private bool workInProgress;
 	private ConstantsAndEnums.shipType typeOfShipConstruct;

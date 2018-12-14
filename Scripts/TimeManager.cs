@@ -92,6 +92,7 @@ public class TimeManager : Singleton<TimeManager> {
 			jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People );
 			updateExplorations(timeElapsed);
 			updateStatusOfCities(timeElapsed);
+			updateBarrackTrainings(timeElapsed);
 			timeElapsed = 0;
 		} else {
 			if ( DateTime.Now.Subtract(resourceFrequency).Seconds > TIME_OF_A_DAY_IN_SECONDS / 3 ){
@@ -101,13 +102,15 @@ public class TimeManager : Singleton<TimeManager> {
 			else if (DateTime.Now.Subtract(resourceFrequency).Seconds > TIME_OF_A_DAY_IN_SECONDS){ 
 				updateExplorations(1);
 				updateStatusOfCities(1);
+				updateBarrackTrainings(1);
 				jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People);
 			}
 		}
 		if ( oneDayHavePassed){
 			jobsManager.MyShipBuilderBuilding.inConstruction(gameManager.Resources.Ships, gameManager.Resources.People ); 
 			updateExplorations(1);
-				updateStatusOfCities(1);
+			updateStatusOfCities(1);
+			updateBarrackTrainings(1);
 			oneDayHavePassed = false;
 		}
 	}
@@ -122,7 +125,7 @@ public class TimeManager : Singleton<TimeManager> {
 		updateJob(jobsManager.MyMineralBuilding,time);
 	}
 
-
+	// fonction qui devrait etre directement dans warManager comme celle faites apres coup dans barrack
 	void updateExplorations(int timeE){
 		foreach (Expedition expedition in warManager.MyExpedition.Expeditions ) {
 			if (expedition != null){
@@ -131,11 +134,15 @@ public class TimeManager : Singleton<TimeManager> {
 		}
 	}
 
+	// de meme, fonction qui devrait etre dans warManager ou worldCities
 	void updateStatusOfCities(int timeE){
 		foreach ( City city in warManager.WorldCities.Cities){
 			city.updateCity(timeE);
 		}
 	}
 	
+	void updateBarrackTrainings(int timeE){
+		jobsManager.MyBarrack.updateTrainings(timeE,gameManager);
+	}
 
 }

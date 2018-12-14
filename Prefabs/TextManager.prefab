@@ -73,6 +73,23 @@ MonoBehaviour:
   displayOfShipTypeChosen: {fileID: 0}
   displayOfLaborNeeded: {fileID: 0}
   displayOfLaborChosen: {fileID: 0}
+  displayOfNbrOfTeacherNeeded: {fileID: 0}
+  displayOfNbrOfGoldNeed: {fileID: 0}
+  timeRemainingTraining:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nbrVikingInTraining:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nbrSMInTraining:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   foodNeeded: {fileID: 0}
   displayOfForceOfAViking: {fileID: 0}
   displayOfForceOfAShieldMaiden: {fileID: 0}

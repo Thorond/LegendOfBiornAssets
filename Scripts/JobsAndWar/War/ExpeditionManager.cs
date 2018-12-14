@@ -92,7 +92,9 @@ public class ExpeditionManager : JobsAndWar {
 					int rank = 0;
 					foreach (Expedition exp in expeditions){
 						if ( exp == null || exp.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.over ){
+							// Enlever la ville des villes attaquables
 							currentCity.UnderAttack = true;
+							
 							Expedition expedition = new Expedition(nbrOfAssignedVikingChosen,nbrOfAssignedShieldMaidenChosen,nbrOfAssignedShipChosen,
 																nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen,
 																nbrOfAssignedShipChosen * gameManager.Resources.Ships.ShipType1.TotalCapacityOfLoot,
@@ -100,7 +102,6 @@ public class ExpeditionManager : JobsAndWar {
 							expeditions[rank] = expedition;
 							nbrOfSimulatneousExpedition +=1;
 
-							// Enlever la ville des villes attaquables
 
 							// mise a jour des donnees de jeu
 							gameManager.Resources.People.NbrOfVikings -= nbrOfAssignedVikingChosen;
