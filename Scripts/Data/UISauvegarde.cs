@@ -62,7 +62,7 @@ public class UISauvegarde : MonoBehaviour {
             ct = ct + "{ \"pseudo\":\" " + datas[0].Name + "\", \"score\":\"" + datas[0].Score + "\"}";
             for (int v = 1; v < varTest; v++)
             {
-                Debug.Log(varTest);
+                // Debug.Log(varTest);
                 ct = ct + "/{ \"pseudo\":\" " + datas[v].Name + "\", \"score\":\"" + datas[v].Score + "\"}";
             }
 

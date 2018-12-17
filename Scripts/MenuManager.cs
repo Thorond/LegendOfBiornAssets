@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour {
+public class MenuManager : Singleton<MenuManager> {
 
     [SerializeField] GameObject leaderboardPanel;
     [SerializeField] GameObject tutoPanel;
@@ -42,7 +42,7 @@ public class MenuManager : MonoBehaviour {
 
     public void retourMenu(Btn selectedBtn)
     {
-        Debug.Log(selectedBtn.tag);
+        // Debug.Log(selectedBtn.tag);
         if (selectedBtn.tag == "tutorielBtn")
             tutoPanel.SetActive(false);
         else if (selectedBtn.tag == "optionsBtn")

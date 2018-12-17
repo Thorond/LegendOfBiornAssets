@@ -1629,7 +1629,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Efficacit\xE9"
+  m_Text: Efficiency
 --- !u!114 &114127749249788184
 MonoBehaviour:
   m_ObjectHideFlags: 1

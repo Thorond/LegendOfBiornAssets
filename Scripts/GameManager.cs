@@ -7,7 +7,10 @@ public class GameManager : Singleton<GameManager> {
 
 	// Variables
 	[SerializeField] GameObject panelOptions;
+	[SerializeField] GameObject gameOverPanel;
+	[SerializeField] BalanceManager balanceManager;
     private bool optionActive = false;
+	private bool gameOver = false;
 	private Resource resources;
 
 	// Getters and Setters
@@ -18,6 +21,7 @@ public class GameManager : Singleton<GameManager> {
 			return resources;
 		}
 	}
+	public bool GameOver{get{return gameOver;}set{gameOver = value;}}
 	
 
 	// Use this for initialization
@@ -41,12 +45,19 @@ public class GameManager : Singleton<GameManager> {
             panelOptions.SetActive(false);
             optionActive = false;
         }
+
+		if ( !gameOver){
+			
+		} else {
+			gameOverPanel.SetActive(true);
+		}
     }
 
 	// Functions 
 
     public void backMenu()
     {
+		gameOverPanel.SetActive(false);
         SceneManager.LoadScene("MenuScene");
     }
 
@@ -54,5 +65,6 @@ public class GameManager : Singleton<GameManager> {
     {
         Application.Quit();
     }
+
 	
 }
