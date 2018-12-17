@@ -13,6 +13,7 @@ public class JobsManager : JobsAndWarManager {
 		myMineralBuilding = new MineralGathering();
 		myWoodBuilding = new WoodGathering();
 		myBarrack = new Barrack();
+		nameJob = "";
 	}
 
 	// Variables
@@ -21,6 +22,9 @@ public class JobsManager : JobsAndWarManager {
 	[SerializeField] GameObject shipUI;
 	[SerializeField] GameObject slaveUI;
 	[SerializeField] GameObject barrackUI;
+	[SerializeField] GameObject infoPanelSpacesShip;
+	[SerializeField] GameObject infoPanelStrengthViking;
+	[SerializeField] GameObject infoPanelStrengthSM;
 	private Btn woodOrIronBtnPressed;
 
 	private Hunting myHuntingBuilding;
@@ -29,6 +33,8 @@ public class JobsManager : JobsAndWarManager {
 	private MineralGathering myMineralBuilding;
 	private WoodGathering myWoodBuilding;
 	private Barrack myBarrack;
+
+	private string nameJob;
 	
 
 
@@ -82,27 +88,40 @@ public class JobsManager : JobsAndWarManager {
 			GameObject btnToActivate;
 			jobPanel.SetActive(true); // Afficher le panel des métiers
 			slaveUI.SetActive(true);
+			if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.huntingBtn.ToString()){ // afficher le panel de la chasse des matières premières
+				nameJob = "Hunting";
+			}
 			if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.rawMaterialBtn.ToString()){ // afficher le panel du travail des matières premières
 				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.woodBtn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
 				btnToActivate = findGameObject(ConstantsAndEnums.tagPanelJobs.ironBtn.ToString()); 
 				if (btnToActivate) btnToActivate.SetActive(true);
+
+				nameJob = "Raw Material";
 			}
 			if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.shipBuilderBtn.ToString()){ // Afficher le panel de la construction de navires
 				applyBtn.SetActive(true);
-				ship1Btn.SetActive(true);
+				// ship1Btn.SetActive(true);
 				// ship2Btn.SetActive(true);
 				// ship3Btn.SetActive(true);
 				shipUI.SetActive(true);
+
+				nameJob = "Ship Builder";
 			}
 			if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.barrackBtn.ToString()){ // Afficher le panel pour l'entrainement des guerriers
 				applyBtn.SetActive(true);
 				slaveUI.SetActive(false);
 				barrackUI.SetActive(true);
+
+				nameJob = "Barrack";
 			}
 		} else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.harbor.ToString()){
 			panelMap.SetActive(true);
+
+			nameJob = "Harbor";
 		}
+
+		textManager.nameJobDisplay(nameJob);
 
 	}
 
@@ -255,5 +274,27 @@ public class JobsManager : JobsAndWarManager {
 			foreach( ConstantsAndEnums.tagPanelJobs tagou in Enum.GetValues(typeof(ConstantsAndEnums.tagPanelJobs)))
 				if ( go.tag.Equals(tagou.ToString())) go.SetActive(false);
 		} ;
+	}
+
+	
+
+	
+	public void infoDisplayShipOpen(){
+		infoPanelSpacesShip.SetActive(true);
+	}
+	public void infoDisplayShipClose(){
+		infoPanelSpacesShip.SetActive(false);
+	}
+	public void infoDisplayStrengthVikingOpen(){
+		infoPanelStrengthViking.SetActive(true);
+	}
+	public void infoDisplayStrengthVikingClose(){
+		infoPanelStrengthViking.SetActive(false);
+	}
+	public void infoDisplayStrengthSMOpen(){
+		infoPanelStrengthSM.SetActive(true);
+	}
+	public void infoDisplayStrengthSMClose(){
+		infoPanelStrengthSM.SetActive(false);
 	}
 }

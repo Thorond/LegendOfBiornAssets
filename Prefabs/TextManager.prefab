@@ -59,6 +59,7 @@ MonoBehaviour:
   nameOfPeople: {fileID: 0}
   displayOfNbrOfPeople: {fileID: 0}
   displayOfResources: {fileID: 0}
+  nameJob: {fileID: 0}
   displayOfNbrOfHunter: {fileID: 0}
   displayOfNbrOfShipBuilder: {fileID: 0}
   displayOfNbrOfShip: {fileID: 0}

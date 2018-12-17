@@ -30,6 +30,7 @@ public class TextManager : Singleton<TextManager> {
 
 
 	// Pour les jobs
+	[SerializeField] private Text nameJob;
 	[SerializeField] private Text displayOfNbrOfHunter;
 	// [SerializeField] private Text displayOfNbrOfFisherMen;
 	[SerializeField] private Text displayOfNbrOfShipBuilder;
@@ -61,7 +62,8 @@ public class TextManager : Singleton<TextManager> {
 	[SerializeField] private Text foodNeeded;
 	[SerializeField] private Text displayOfForceOfAViking;
 	[SerializeField] private Text displayOfForceOfAShieldMaiden;
-	[SerializeField] private Text displayOfTheSpacesOfAShip;
+	[SerializeField] private Text displayOfTheSpacesWarriorOfAShip;
+	[SerializeField] private Text displayOfTheSpacesLootOfAShip;
 	[SerializeField] private Text displayOfNbrOfVikingChosenForWar;
 	[SerializeField] private Text displayOfNbrOfShieldMaidenChosenForWar;
 	[SerializeField] private Text displayOfNbrOfShipChosenForWar;
@@ -155,6 +157,9 @@ public class TextManager : Singleton<TextManager> {
 	}
 
 	// Pour les jobs
+	public void nameJobDisplay(string name){
+		nameJob.text = name;
+	}
 	void choiceOfWorkerForShipBuildingTextDisplay(){
 		displayOfNbrOfVikingChosen.text = jobsManager.MyShipBuilderBuilding.NbrOfAssignedVikingChosen.ToString();
 		displayOfNbrOfShieldMaidenChosen.text = jobsManager.MyShipBuilderBuilding.NbrOfAssignedShieldMaidenChosen.ToString();
@@ -295,11 +300,10 @@ public class TextManager : Singleton<TextManager> {
 	void forceOfPeopleTextDisplay(){
 			
 	
-		displayOfForceOfAViking.text = "Force d'un viking : " + gameManager.Resources.People.Vikings.BattleEfficiency.ToString();
-		displayOfForceOfAShieldMaiden.text = "Force d'une SM : " +  gameManager.Resources.People.ShieldMaidens.BattleEfficiency.ToString();
-		displayOfTheSpacesOfAShip.text = "Espace dans un navire : " +  gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen.ToString()
-									+ "\n\nEspace pour les loots : " + gameManager.Resources.Ships.ShipType1.TotalCapacityOfLoot.ToString(); // a faire pour les trois types
-		
+		displayOfForceOfAViking.text = "Strength of a viking : " + gameManager.Resources.People.Vikings.BattleEfficiency.ToString();
+		displayOfForceOfAShieldMaiden.text = "Strength of a SM : " +  gameManager.Resources.People.ShieldMaidens.BattleEfficiency.ToString();
+		displayOfTheSpacesWarriorOfAShip.text = "Space for warriors : " +  gameManager.Resources.Ships.ShipType1.TotalCapacityOfMen.ToString();
+		displayOfTheSpacesLootOfAShip.text = "Space for loots : " + gameManager.Resources.Ships.ShipType1.TotalCapacityOfLoot.ToString(); 
 			
 	}
 
