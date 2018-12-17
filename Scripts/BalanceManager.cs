@@ -60,14 +60,14 @@ public class BalanceManager : Singleton<BalanceManager> {
 
 	void updateFoodSlider(){
 		int food = gameManager.Resources.Food;
-		int foodConsomationForThirtyDaysForAllTheWarriors = ( gameManager.Resources.People.Vikings.FoodConsomationPerDay 
+		int foodConsomationForTenDaysForAllTheWarriors = ( gameManager.Resources.People.Vikings.FoodConsomationPerDay 
 										+ gameManager.Resources.People.ShieldMaidens.FoodConsomationPerDay ) * 10 * gameManager.Resources.People.NbrTotalOfWarriors ;
 
 		// si le joueur peut tenir 10 fois trentes jours, il est a 100 %
 		// s'il ne peut tenir que 30 jours, il est a 0%
 		float foodPercent = 
-			((float)(food-foodConsomationForThirtyDaysForAllTheWarriors)
-			/(float)(10*foodConsomationForThirtyDaysForAllTheWarriors-foodConsomationForThirtyDaysForAllTheWarriors))
+			((float)(food-foodConsomationForTenDaysForAllTheWarriors)
+			/(float)(10*foodConsomationForTenDaysForAllTheWarriors-foodConsomationForTenDaysForAllTheWarriors))
 			*100f;
 
 
