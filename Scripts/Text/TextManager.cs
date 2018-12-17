@@ -15,6 +15,15 @@ public class TextManager : Singleton<TextManager> {
 
 	// Les différents Texts
 
+	// Text d'erreur
+
+	[SerializeField] private Text errorText;
+
+	private IEnumerator coroutineErrorText;
+
+
+	// infos standard
+
 	[SerializeField] private Text nameOfPeople;
 	[SerializeField] private Text displayOfNbrOfPeople;
 	[SerializeField] private Text displayOfResources;
@@ -37,7 +46,19 @@ public class TextManager : Singleton<TextManager> {
 	[SerializeField] private Text displayOfLaborNeeded;
 	[SerializeField] private Text displayOfLaborChosen;
 
+		// pour la caserne
+
+	[SerializeField] private Text displayOfNbrOfTeacherNeeded;
+	[SerializeField] private Text displayOfNbrOfGoldNeed;
+
+		// pour les entrainements
+	[SerializeField] private Text[] timeRemainingTraining;
+	[SerializeField] private Text[] nbrVikingInTraining;
+	[SerializeField] private Text[] nbrSMInTraining;
+	
+
 	// Pour les batailles 
+	[SerializeField] private Text foodNeeded;
 	[SerializeField] private Text displayOfForceOfAViking;
 	[SerializeField] private Text displayOfForceOfAShieldMaiden;
 	[SerializeField] private Text displayOfTheSpacesOfAShip;
@@ -102,18 +123,28 @@ public class TextManager : Singleton<TextManager> {
 	
 	// Update is called once per frame
 	void Update () {
-		
 		textDisplay();
 		battleGeneralPanelDisplay();
+		
 	}
 
 
 	// ********** FUNCTIONS **********
 
+	public void errorTextDisplay(string errorMessage){
+		errorText.text = errorMessage;
+		coroutineErrorText = TextEffects.FadeTextToZeroAlpha(2f, errorText);
+		StartCoroutine(coroutineErrorText);
+		
+	}
+
+
 	public void textDisplay(){
 		peopleAndNbrOfPeopleAndResourcesTextDisplay(); // affichage des personnes disponibles et des ressources
 		workerTextDisplay(); // affichage du nombre de travailleurs pour chaque travail
 		shipsTextDisplay(); // affichage du nombre de navires de chaque types
+		barrackTextDisplay(); // affichage des donnees pour l'entrainement de guerriers
+		trainingDisplay(); // affichage des entrainements en cours
 		choiceOfWorkerForShipBuildingTextDisplay(); // Affichage du choix IG du joueur pour la construction de navires
 		efficiencyOfPeopleTextDisplay(); // Affichage de l'efficacité de chaque personnes (Viking ou ShieldMaiden ou Slave) en fonction du travail demandé
 
@@ -134,13 +165,14 @@ public class TextManager : Singleton<TextManager> {
 			displayOfLaborNeeded.text = "Workforce needed : " + gameManager.Resources.Ships.ShipType1.NbrOfLaborNeeded.ToString()
 										+ "\nWood needed : " + gameManager.Resources.Ships.ShipType1.NbrOfWoodNeededForConstruction.ToString()
 										+ "\nIron needed : " + gameManager.Resources.Ships.ShipType1.NbrOfIronNeededForConstruction.ToString();
-		} else if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
-			displayOfShipTypeChosen.text = "Type of ship to construct : type 2" ;
-			// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded.ToString() ;
-		} else if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type3){
-			displayOfShipTypeChosen.text = "Type of ship to construct : type 3" ;
-			// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded.ToString() ;
-		}
+		} 
+		// else if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type2){
+		// 	displayOfShipTypeChosen.text = "Type of ship to construct : type 2" ;
+		// 	// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType2.NbrOfLaborNeeded.ToString() ;
+		// } else if (jobsManager.MyShipBuilderBuilding.TypeOfShipConstruct == ConstantsAndEnums.shipType.type3){
+		// 	displayOfShipTypeChosen.text = "Type of ship to construct : type 3" ;
+		// 	// displayOfLaborNeeded.text = gameManager.Resources.Ships.ShipType3.NbrOfLaborNeeded.ToString() ;
+		// }
 		
 		displayOfLaborChosen.text = "Workforce selected : " + jobsManager.MyShipBuilderBuilding.TotalLaborValue.ToString();
 	}
@@ -202,6 +234,13 @@ public class TextManager : Singleton<TextManager> {
 				displayOfEfficiencyOfASlave.text = gameManager.Resources.People.Slaves.ShipConstructionEffeciency.ToString();
 			}
 			
+			// on profite des gameObject text de l'efficacité pour l'affichage du nombre de viking et de sm selectionnes pour l'entrainement
+			else if (jobsManager.JobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnJob.barrackBtn.ToString()){
+				displayOfEfficiencyOfAViking.text = jobsManager.MyBarrack.NbrOfVikingToTrainChosen.ToString();
+				displayOfEfficiencyOfAShieldMaiden.text = jobsManager.MyBarrack.NbrOFSMToTrainChosen.ToString();
+				displayOfEfficiencyOfASlave.text = "";
+			}
+			
 		} else{
 			displayOfEfficiencyOfAViking.text = "";
 			displayOfEfficiencyOfAShieldMaiden.text = "";
@@ -211,9 +250,39 @@ public class TextManager : Singleton<TextManager> {
 	void shipsTextDisplay(){
 		displayOfNbrOfShip.text = "Ships  \n Type 1 : " + gameManager.Resources.Ships.NbrOfShipType1.ToString();
 	}
-		
+	void barrackTextDisplay(){
+		displayOfNbrOfTeacherNeeded.text = "ShieldMaidens needed : " + jobsManager.MyBarrack.NbrOfTeachersSMNeeded.ToString();
+		displayOfNbrOfGoldNeed.text = "Gold needed : " + jobsManager.MyBarrack.GoldNeeded.ToString();
+	}
+	
+		// pour les entrainements
+	void trainingDisplay(){
+		int iteration = 0;
+		foreach (Training training in jobsManager.MyBarrack.Trainings ) {
+			if (training != null){
+				if ( training.InTraining ){
+
+					timeRemainingTraining[iteration].text = training.TimeRemainingForTraining.ToString();
+					nbrVikingInTraining[iteration].text = "Viking : " + training.NbrOfVikingToTrain.ToString();
+					nbrSMInTraining[iteration].text = "SM : " + training.NbrOFSMToTrain.ToString();
+
+				} else {
+					timeRemainingTraining[iteration].text = "";
+					nbrVikingInTraining[iteration].text = "";
+					nbrSMInTraining[iteration].text = "";
+				}
+			} else {
+					timeRemainingTraining[iteration].text = "";
+					nbrVikingInTraining[iteration].text = "";
+					nbrSMInTraining[iteration].text = "";
+			}
+			iteration +=1;
+		}
+	}
+
 	// Pour les batailles
 	void choiceOfFighterForWarTextDisplay(){
+		foodNeeded.text = warManager.MyExpedition.NbrOfFoodNeeded.ToString();
 		displayOfNbrOfVikingChosenForWar.text = warManager.MyExpedition.NbrOfAssignedVikingChosen.ToString();
 		displayOfNbrOfShieldMaidenChosenForWar.text = warManager.MyExpedition.NbrOfAssignedShieldMaidenChosen.ToString();
 		displayOfNbrOfShipChosenForWar.text = warManager.MyExpedition.NbrOfAssignedShipChosen.ToString();
@@ -254,8 +323,6 @@ public class TextManager : Singleton<TextManager> {
 			+ "\nDays to skip : " + timeManager.TimeChoice.ToString();
 	}
 
-
-
 	// Pour warManager
 
 	public void battleGeneralPanelDisplay(){
@@ -289,46 +356,44 @@ public class TextManager : Singleton<TextManager> {
 					}
 					difficultyCityImageDisplay[iteration].color = new Color(255,255,255,255);
 				} else {
-					hideImagesAndTexts(iteration);
+					hideImagesAndTextsForBattlePanel(iteration);
 				}
 			} else {
-				hideImagesAndTexts(iteration);
+				hideImagesAndTextsForBattlePanel(iteration);
 			}
 			iteration +=1;
 		}
 	}
 
-	void hideImagesAndTexts(int iteration){
+	void hideImagesAndTextsForBattlePanel(int iteration){
 		typeOfAttack[iteration].color = new Color(0,0,0,0);
 		cityAttacked[iteration].text = "";
 		RemainingTime[iteration].text = "";
 		difficultyCityImageDisplay[iteration].color = new Color(0,0,0,0);
 	}
 
-
-
 	// pour les expeditions
 
 	public void detailsExpedition(){
 		
-		if ( warManager.MyExpedition.NbrOfSimulatneousExpedition > 0 &&  warManager.BattleDisplayChosen != 0) {
+		if (  warManager.BattleDisplayChosen != 0) {
 			Expedition currentExpedition = warManager.MyExpedition.Expeditions[warManager.BattleDisplayChosen -1];
 			
 			if ( currentExpedition != null ){
 				if (  currentExpedition.ExpeditionStatus != ConstantsAndEnums.expeditionStatus.over){
 					cityNameCurrentExpedition.text = currentExpedition.City.NameOfCity.ToString();
-					nbrOfVikingStart.text = currentExpedition.NbrOfViking.ToString();
-					nbrOfSMStart.text = currentExpedition.NbrOfShieldMaiden.ToString();	
-					expeditionStatus.text = currentExpedition.ExpeditionStatus.ToString();
-					battleStatus.text = currentExpedition.BattleStatus.ToString();
+					nbrOfVikingStart.text = "Vikings sent : " + currentExpedition.NbrOfViking.ToString();
+					nbrOfSMStart.text = "SM sent : " + currentExpedition.NbrOfShieldMaiden.ToString();	
+					expeditionStatus.text = "State : " + currentExpedition.ExpeditionStatus.ToString();
+					battleStatus.text = "Result : " + currentExpedition.BattleStatus.ToString();
 					if ( currentExpedition.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.battleOver ){
 
-						nbrOfVikingEnd.text = currentExpedition.NbrOfRemainingViking.ToString();
-						nbrOfSMEnd.text = currentExpedition.NbrOfRemainingSM.ToString();
-						goldGained.text = currentExpedition.GoldBroughtBack.ToString();
-						woodGained.text = currentExpedition.WoodBroughtBack.ToString();
-						ironGained.text = currentExpedition.IronBroughtBack.ToString();
-						slaveGained.text = currentExpedition.SlaveBroughtBack.ToString();
+						nbrOfVikingEnd.text = "Remaining vkings : " + currentExpedition.NbrOfRemainingViking.ToString();
+						nbrOfSMEnd.text = "Remaining SM : " + currentExpedition.NbrOfRemainingSM.ToString();
+						goldGained.text = "Gold gained : " + currentExpedition.GoldBroughtBack.ToString();
+						woodGained.text = "Wood gained : " + currentExpedition.WoodBroughtBack.ToString();
+						ironGained.text = "Iron gained : " + currentExpedition.IronBroughtBack.ToString();
+						slaveGained.text = "Slave gained : " + currentExpedition.SlaveBroughtBack.ToString();
 						
 					} else {
 

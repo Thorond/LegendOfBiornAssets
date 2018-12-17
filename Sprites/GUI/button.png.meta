@@ -7,6 +7,9 @@ TextureImporter:
     21300004: validateNormal
     21300006: backBtn
     21300008: menuBtn
+    21300010: stopBtn
+    21300012: rectEmptyBtn
+    21300014: upAndDownBtn
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -199,13 +202,73 @@ TextureImporter:
         width: 293
         height: 282
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 60620800bab835d4bbe50b1a086f6dc6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: stopBtn
+      rect:
+        serializedVersion: 2
+        x: 1559
+        y: 2986
+        width: 279
+        height: 265
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01e45f6f16564684baf945e428e69bea
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rectEmptyBtn
+      rect:
+        serializedVersion: 2
+        x: 1427
+        y: 6918
+        width: 470
+        height: 232
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b5f4a51246889f4db9f503422b7e763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: upAndDownBtn
+      rect:
+        serializedVersion: 2
+        x: 1560
+        y: 448
+        width: 273
+        height: 274
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 640572a2a40fa4f46b138bcee5d14007
       vertices: []
       indices: 
       edges: []

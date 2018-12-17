@@ -10,5 +10,6 @@ public class Viking : Inhabitant {
 		this.ironGatheringEfficiency = 4;
 		this.shipConstructionEffeciency = 3;
 		this.battleEfficiency = 10;
+		this.foodConsomationPerDay = 2;
 	}
 }

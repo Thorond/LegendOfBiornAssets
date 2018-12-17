@@ -30,6 +30,7 @@ public class WarManager : JobsAndWarManager {
 	
 	// Getters and Setters
 
+	public WorldCity WorldCities{get{return worldCities;}}
 	public ExpeditionManager MyExpedition { get{return myExpedition;}}
 	public City CurrentCity { get{return currentCity;}}
 	public int BattleDisplayChosen { get{return battleDisplayChosen;}}
@@ -51,11 +52,12 @@ public class WarManager : JobsAndWarManager {
 		whichShipSelected = btnSelected;
 		if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship1Btn.ToString()){
 			myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type1;
-		} else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship2Btn.ToString()){
-			myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type2;
-		} else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship3Btn.ToString()){
-			myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type3;
 		} 
+		// else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship2Btn.ToString()){
+		// 	myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type2;
+		// } else if (whichShipSelected.tag == ConstantsAndEnums.tagShipType.ship3Btn.ToString()){
+		// 	myExpedition.TypeOfShipSelected = ConstantsAndEnums.shipType.type3;
+		// } 
 	}
 
 	public void selectedTypeOfAttack(Btn btnSelected){
@@ -90,6 +92,7 @@ public class WarManager : JobsAndWarManager {
     {
         if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.LindisfarneBtn.ToString())
         {
+
             currentCity = worldCities.Lindisfarne;
         }
         else if (jobsOrCityBtnPressed.tag == ConstantsAndEnums.tagBtnCity.DublinBtn.ToString())
@@ -135,7 +138,6 @@ public class WarManager : JobsAndWarManager {
 
     }
 
-	
 	public override void peopleAssignement( ){
 		attackAssignement();
 	}
@@ -175,18 +177,21 @@ public class WarManager : JobsAndWarManager {
 
 		// application des travailleurs pour les trois types de navires
 		if ( upOrDownBtnPressed.tag.Equals(ConstantsAndEnums.tagShipType.applyBtn.ToString()) ){
-			myExpedition.assignWork(gameManager, currentCity);
+			myExpedition.assignWork(gameManager,textManager, currentCity);
 		}
 
-
+		myExpedition.nbrOfFoodNeedCalcultation(gameManager,currentCity);
 		myExpedition.nbrOfSpacesAvailableCalculation(gameManager);
 		myExpedition.totalForceValueCalculation(gameManager);
 	}
 
-
     public void AfficherDetails()
     {
-        panelDetails.SetActive(true);
+		if ( ! currentCity.OpenToAttack ){
+			textManager.errorTextDisplay("The city is not open to battle - at least not untill " + currentCity.NbrOfDayUntillAvailable + " days !");
+		} else {
+        	panelDetails.SetActive(true);
+		}
     }
 
     public void RetourMap()
@@ -202,10 +207,13 @@ public class WarManager : JobsAndWarManager {
     }
 
 	public void BattleBtnFunction(){
-        panelCity.SetActive(true);
-		panelMap.SetActive(false);
-        panelDetails.SetActive(false);
-		battlesPanel.SetActive(true);
+		if ( ! battlesPanel.activeSelf){
+			panelMap.SetActive(false);
+			panelDetails.SetActive(false);
+			battlesPanel.SetActive(true);
+		} else {
+			BackAccueil();
+		}
 	}
 
 	
@@ -227,15 +235,31 @@ public class WarManager : JobsAndWarManager {
 			}
 		} else {
 			battleDisplayChosen = 0;
-		}
-		
+		}	
 	}
+	
+	public void returningFromExpedition(){
+		
+		Expedition currentExpedition = myExpedition.Expeditions[battleDisplayChosen -1];
+		if ( currentExpedition != null ){
+			if (  currentExpedition.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.inMovement 
+					&& currentExpedition.BattleStatus != ConstantsAndEnums.battleStatus.returning ){
+				
+				currentExpedition.BattleStatus = ConstantsAndEnums.battleStatus.returning;
+				currentExpedition.DurationOfMission = currentExpedition.City.ApproximatedTripAndBattleTime - currentExpedition.DurationOfMission;
+			}
+		}
+	}
+
 	public void backBattlesBoard(){
 		reportPanel.SetActive(false);
-		if ( myExpedition.Expeditions[battleDisplayChosen -1].ExpeditionStatus == ConstantsAndEnums.expeditionStatus.battleOver){
-			myExpedition.Expeditions[battleDisplayChosen -1].City.UnderAttack = false;
-			myExpedition.Expeditions[battleDisplayChosen -1].ExpeditionStatus = ConstantsAndEnums.expeditionStatus.over;
+		Expedition expeTemp = myExpedition.Expeditions[battleDisplayChosen -1];
+		if ( expeTemp.ExpeditionStatus == ConstantsAndEnums.expeditionStatus.battleOver){
+			myExpedition.closeExpedition(gameManager,balanceManager,expeTemp);
+			balanceManager.updateMoralWhenGoingAnExpedition();
+			myExpedition.NbrOfSimulatneousExpedition -= 1;
 		}
 	}
+
 
 }

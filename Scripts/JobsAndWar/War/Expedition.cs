@@ -71,15 +71,16 @@ public class Expedition {
     // Functions
 
     
-	public void missionUpdate(int timeE){
+	public void missionUpdate(){
 		if ( expeditionStatus == ConstantsAndEnums.expeditionStatus.inMovement ) {
             if ( durationOfMission > 0 ){
-				durationOfMission -= timeE;
+				durationOfMission -= 1;
 			}
 			if ( durationOfMission <= 0 ){
 				// dérouler la bataille, appeler battle
-                Battle.battleCourse(this);
-				
+                if ( battleStatus != ConstantsAndEnums.battleStatus.returning ) {
+                    Battle.battleCourse(this);
+                }
 				expeditionStatus = ConstantsAndEnums.expeditionStatus.battleOver;
 			} 
 		} 

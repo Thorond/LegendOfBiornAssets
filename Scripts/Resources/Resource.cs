@@ -71,20 +71,28 @@ public class Resource {
 	// Constructor
 
 	public Resource(){
-		gold = 50;
-		maxGold = 200;
-		wood = 50;
-		maxWood = 200;
-		iron = 10;
-		maxIron = 50;
-		food = 40;
-		maxFood = 160;
+		gold = 500;
+		maxGold = 2000;
+		wood = 500;
+		maxWood = 2000;
+		iron = 100;
+		maxIron = 500;
+		food = 4000;
+		maxFood = 16000;
 		ships = new Ships();
 		people = new People();
 	}
 	
 
 	// Functions
+
+	public void updateFood(){
+		// fonction a ameliorer en fonction des travailleurs etc ( mais pas le temps )
+		int foodConsumedInOneday = people.NbrOfVikings * people.Vikings.FoodConsomationPerDay 
+								 + people.NbrOfShieldMaidens * people.ShieldMaidens.FoodConsomationPerDay
+								 + people.NbrOfSlave * (people.Slaves.FoodConsomationPerDay);
+		this.food -= foodConsumedInOneday;
+	}
 
 	public string textDisplay(){
 		return "Gold : " + gold.ToString()

@@ -19,7 +19,7 @@ public class Ships {
 	// Constructor 
 	public Ships(){
 		shipType1 = new ShipType1();
-		nbrOfShipType1 = 5;
+		nbrOfShipType1 = 6;
 	}
 
 

@@ -55,6 +55,7 @@ MonoBehaviour:
   timeManager: {fileID: 0}
   jobsManager: {fileID: 0}
   warManager: {fileID: 0}
+  errorText: {fileID: 0}
   nameOfPeople: {fileID: 0}
   displayOfNbrOfPeople: {fileID: 0}
   displayOfResources: {fileID: 0}
@@ -72,6 +73,24 @@ MonoBehaviour:
   displayOfShipTypeChosen: {fileID: 0}
   displayOfLaborNeeded: {fileID: 0}
   displayOfLaborChosen: {fileID: 0}
+  displayOfNbrOfTeacherNeeded: {fileID: 0}
+  displayOfNbrOfGoldNeed: {fileID: 0}
+  timeRemainingTraining:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nbrVikingInTraining:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nbrSMInTraining:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  foodNeeded: {fileID: 0}
   displayOfForceOfAViking: {fileID: 0}
   displayOfForceOfAShieldMaiden: {fileID: 0}
   displayOfTheSpacesOfAShip: {fileID: 0}
@@ -90,8 +109,8 @@ MonoBehaviour:
   slaves: {fileID: 0}
   timeElapsedText: {fileID: 0}
   easyDifficulty: {fileID: 21300000, guid: 50ae04b459a020141958cea164931110, type: 3}
-  mediumDifficulty: {fileID: 21300000, guid: e22acca8839f138428bc8e89735e9894, type: 3}
-  hardDifficulty: {fileID: 21300000, guid: b32626a81ac1820418c4b0a72f02c8e8, type: 3}
+  mediumDifficulty: {fileID: 21300000, guid: b32626a81ac1820418c4b0a72f02c8e8, type: 3}
+  hardDifficulty: {fileID: 21300000, guid: e22acca8839f138428bc8e89735e9894, type: 3}
   exploreAttack: {fileID: 21300016, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
   plunderAttack: {fileID: 21300018, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
   razeAttack: {fileID: 21300020, guid: fe01737257ed04441a4a3a938c031c28, type: 3}
@@ -119,3 +138,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  cityNameCurrentExpedition: {fileID: 0}
+  nbrOfVikingStart: {fileID: 0}
+  nbrOfSMStart: {fileID: 0}
+  expeditionStatus: {fileID: 0}
+  battleStatus: {fileID: 0}
+  nbrOfVikingEnd: {fileID: 0}
+  nbrOfSMEnd: {fileID: 0}
+  goldGained: {fileID: 0}
+  woodGained: {fileID: 0}
+  ironGained: {fileID: 0}
+  slaveGained: {fileID: 0}

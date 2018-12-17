@@ -52,5 +52,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  textManager: {fileID: 0}
+  balanceManager: {fileID: 0}
   panelCity: {fileID: 0}
   panelMap: {fileID: 0}
+  ship1Btn: {fileID: 0}
+  ship2Btn: {fileID: 0}
+  ship3Btn: {fileID: 0}
+  applyBtn: {fileID: 0}
+  jobPanel: {fileID: 0}
+  shipUI: {fileID: 0}
+  slaveUI: {fileID: 0}
+  barrackUI: {fileID: 0}

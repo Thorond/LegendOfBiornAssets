@@ -10,5 +10,6 @@ public class Slaves : Inhabitant {
 		this.ironGatheringEfficiency = 1;
 		this.shipConstructionEffeciency = 1;
 		this.battleEfficiency = 0;
+		this.foodConsomationPerDay = 3;
 	}
 }

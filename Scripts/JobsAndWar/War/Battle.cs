@@ -102,19 +102,32 @@ public static class Battle {
 
     }
 
+    
+    public static void consequencesOfVictory(Expedition expedition){
+        if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.explore){
+            expedition.City.upgradeCity();
+        } else if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.plunder){
+            expedition.City.upgradeCity();
+        } else if (expedition.AttackChosen == ConstantsAndEnums.possibleAttacks.raze){
+            expedition.City.OpenToAttack = false;
+            expedition.City.NbrOfDayUntillAvailable = Random.Range(30,100); // la ville peut être repeuplé entre 30 et 100 jours
+        } 
+
+    }
+
     public static void resultOfOneDuel(){
         ConstantsAndEnums.people choice = vikingOrShieldMaiden(nbrVikingBattle,nbrShieldMaidenBattle); // on choisit proportionnelement entre un viking ou une SM
         if ( choice == ConstantsAndEnums.people.Viking){
             if (Random.Range(0,100) < percentageLossOfVikings * 100){
-                nbrVikingBattle -= 1;
+                if ( nbrVikingBattle > 0 ) nbrVikingBattle -= 1;
             } else{
-                nbrSoldierBattle -=1;
+                if ( nbrSoldierBattle > 0 ) nbrSoldierBattle -=1;
             }
         } else {
             if (Random.Range(0,100) < percentageLossOfSieldMaidens * 100 ){
-                nbrShieldMaidenBattle -= 1;
+                if ( nbrShieldMaidenBattle > 0 ) nbrShieldMaidenBattle -= 1;
             } else{
-                nbrSoldierBattle -=1;
+                if ( nbrSoldierBattle > 0 ) nbrSoldierBattle -=1;
             }
         }
     }

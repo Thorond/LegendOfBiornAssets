@@ -15,6 +15,7 @@ public class ShipBuilder : Jobs {
 		totalLaborValue = 0;
 		remainingTimeForConstruction = 0;
 	}
+	
 	// Variables
 	private bool workInProgress;
 	private ConstantsAndEnums.shipType typeOfShipConstruct;
@@ -45,7 +46,7 @@ public class ShipBuilder : Jobs {
 		
 	}
 
-	public void assignWork(GameManager gameManager, int laborValue ){
+	public void assignWork(GameManager gameManager,TextManager textManager, int laborValue ){
 		if (nbrOfAssignedVikingChosen > 0 || nbrOfAssignedShieldMaidenChosen > 0 || nbrOfAssignedSlaveChosen > 0 ){
 			if ( totalLaborValue >= laborValue ){
 				if ( gameManager.Resources.Wood >= gameManager.Resources.Ships.ShipType1.NbrOfWoodNeededForConstruction ){
@@ -65,15 +66,21 @@ public class ShipBuilder : Jobs {
 						workInProgress = true;
 					}else{
 						// affichage d'erreur disant que le joueur n'a pas assez de métal
+						textManager.errorTextDisplay("Not enough iron.");
 					}
 				}else {
 					// message d'erreur disant que le joueur n'a pas assez de bois
+					textManager.errorTextDisplay("Not enough wood.");
 				}
 				
 			}
 			else {
 				//retourner un affichage d'erreur comme quoi le joueur n'a pas sélectionné assez de travailleurs 
+				textManager.errorTextDisplay("Not enough workers assigned.");
 			}
+		} else {
+			textManager.errorTextDisplay("You need to assigned some workers.");
+
 		}
 	}
 	public void closeAssignment(){

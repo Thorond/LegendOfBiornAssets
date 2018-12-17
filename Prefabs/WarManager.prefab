@@ -52,13 +52,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  textManager: {fileID: 0}
+  balanceManager: {fileID: 0}
   panelCity: {fileID: 0}
   panelMap: {fileID: 0}
+  ship1Btn: {fileID: 0}
+  ship2Btn: {fileID: 0}
+  ship3Btn: {fileID: 0}
+  applyBtn: {fileID: 0}
   panelDetails: {fileID: 0}
-  cityName: {fileID: 0}
-  nbSoldats: {fileID: 0}
-  dificulty: {fileID: 0}
-  gold: {fileID: 0}
-  wood: {fileID: 0}
-  iron: {fileID: 0}
-  slaves: {fileID: 0}
+  battlesPanel: {fileID: 0}
+  reportPanel: {fileID: 0}
+  exploreBtn: {fileID: 0}
+  plunderBtn: {fileID: 0}
+  razeBtn: {fileID: 0}
